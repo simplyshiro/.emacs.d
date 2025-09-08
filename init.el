@@ -290,6 +290,7 @@ mouse-3: Next buffer"
 
 (with-eval-after-load 'eglot
   (add-to-list 'eglot-server-programs
+               ;; Ruff doesn't have autocompletion yet.
                '(python-mode . ("ruff" "server")))
   (add-hook 'after-save-hook #'eglot-format))
 
@@ -304,11 +305,11 @@ mouse-3: Next buffer"
 
 (column-number-mode)
 (context-menu-mode)
-(cua-mode)
+;; (cua-mode)
 (line-number-mode)
 (global-auto-revert-mode)
 (global-display-line-numbers-mode)
-;; (global-hl-line-mode)
+(global-hl-line-mode)
 (pixel-scroll-precision-mode)
 (recentf-mode)
 (savehist-mode)
@@ -320,7 +321,7 @@ mouse-3: Next buffer"
 (setopt backup-by-copying t)
 
 ;; Move backup files to a single folder.
-(setopt backup-directory-alist `(("." . ,(expand-file-name "backups/" user-emacs-directory))))
+(setopt backup-directory-alist `(("." . ,(expand-file-name "backups" user-emacs-directory))))
 
 ;; Delete excess backup files silently.
 (setopt delete-old-versions t)
@@ -363,12 +364,11 @@ mouse-3: Next buffer"
 
 ;;; Fonts
 
-(when (member "Google Sans Code" (font-family-list))
-  (set-face-attribute 'default nil :family "Google Sans Code" :height 105)
-  (set-face-attribute 'fixed-pitch nil :family "Google Sans Code" :height 105))
-
-(when (member "Google Sans Flex" (font-family-list))
-  (set-face-attribute 'variable-pitch nil :family "Google Sans Flex" :height 105))
+(add-hook 'emacs-startup-hook
+          (lambda ()
+              (set-face-attribute 'default nil :family "Google Sans Code" :height 105)
+              (set-face-attribute 'fixed-pitch nil :family "Google Sans Code" :height 105)
+              (set-face-attribute 'variable-pitch nil :family "Google Sans Flex" :height 105)))
 
 (provide 'init)
 
