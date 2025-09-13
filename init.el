@@ -133,10 +133,6 @@
            '("8" . meow-digit-argument)
            '("9" . meow-digit-argument)
            '("0" . meow-digit-argument)
-           '("p" . meow-yank)
-           '("P" . meow-yank-pop)
-           '("f" . find-file)
-           '("c" . comment-dwim)
            '("b" . consult-buffer)
            '("/" . meow-keypad-describe-key)
            '("?" . meow-cheatsheet))
@@ -205,8 +201,7 @@
            '("." . meow-bounds-of-thing)))
   :config
   (meow-setup)
-  ;; (meow-global-mode)
-  )
+  (meow-global-mode))
 
 (use-package orderless
   :custom
@@ -272,8 +267,9 @@ mouse-3: Next buffer"
           (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" nil "typescript/src"))))
 
 (add-to-list 'major-mode-remap-alist
-             '((c++-mode . c++-ts-mode)
-               (c-mode . c-ts-mode)
+             '((c-mode . c-ts-mode)
+               (c-or-c++-mode . c-or-c++-ts-mode)
+               (c++-mode . c++-ts-mode)
                (csharp-mode . csharp-ts-mode)
                (css-mode . css-ts-mode)
                (html-mode . html-ts-mode)
@@ -305,7 +301,7 @@ mouse-3: Next buffer"
 
 (column-number-mode)
 (context-menu-mode)
-;; (cua-mode)
+(cua-mode)
 (line-number-mode)
 (global-auto-revert-mode)
 (global-display-line-numbers-mode)
