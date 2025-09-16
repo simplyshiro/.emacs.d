@@ -43,6 +43,8 @@
     (elpaca-generate-autoloads "elpaca" repo)
     (let ((load-source-file-function nil)) (load "./elpaca-autoloads"))))
 (add-hook 'after-init-hook #'elpaca-process-queues)
+(unless system-type 'windows-nt
+        (elpaca-no-symlink-mode))
 (elpaca `(,@elpaca-order))
 
 (elpaca elpaca-use-package
