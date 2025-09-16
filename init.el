@@ -320,6 +320,9 @@ mouse-3: Next buffer"
 
 ;;; Settings
 
+;; Move `auto-save-list' folder inside `user-emacs-directory'.
+(setopt auto-save-list-file-prefix (expand-file-name "auto-save-list/.saves-" user-emacs-directory))
+
 (setopt backup-by-copying t)
 
 ;; Move backup files to a single folder.
