@@ -108,6 +108,8 @@
 (use-package ef-themes
   :init (ef-themes-select 'ef-trio-light))
 
+(use-package magit)
+
 (use-package marginalia
   :bind (:map minibuffer-local-map
               ("M-A" . marginalia-cycle))
@@ -210,6 +212,8 @@
   (completion-styles '(orderless basic))
   (completion-category-defaults nil)
   (completion-category-overrides '(file (styles basic partial-completion))))
+
+(use-package transient)
 
 (use-package vertico
   :init (vertico-mode))
