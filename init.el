@@ -371,9 +371,11 @@ mouse-3: Next buffer"
 
 (add-hook 'emacs-startup-hook
           (lambda ()
+            (when (member "Google Sans Code" (font-family-list))
               (set-face-attribute 'default nil :family "Google Sans Code" :height 105)
-              (set-face-attribute 'fixed-pitch nil :family "Google Sans Code" :height 105)
-              (set-face-attribute 'variable-pitch nil :family "Google Sans Flex" :height 105)))
+              (set-face-attribute 'fixed-pitch nil :family "Google Sans Code" :height 105))
+            (when (member "Google Sans Flex" (font-family-list))
+              (set-face-attribute 'variable-pitch nil :family "Google Sans Flex" :height 105))))
 
 (provide 'init)
 
