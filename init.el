@@ -287,6 +287,8 @@ mouse-3: Next buffer"
 ;;; Eglot
 
 (add-hook 'c-mode-hook #'eglot-ensure)
+(add-hook 'java-mode-hook #'eglot-ensure)
+(add-hook 'kotlin-mode-hook #'eglot-ensure)
 (add-hook 'python-mode-hook #'eglot-ensure)
 (add-hook 'rust-mode-hook #'eglot-ensure)
 
