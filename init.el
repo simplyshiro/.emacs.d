@@ -293,7 +293,7 @@ mouse-3: Next buffer"
 (with-eval-after-load 'eglot
   (add-to-list 'eglot-server-programs
                ;; Ruff doesn't have autocompletion yet.
-               '(python-mode . ("ruff" "server")))
+               '((python-mode python-ts-mode) . ("ruff" "server")))
   (add-hook 'after-save-hook #'eglot-format))
 
 ;;; Hooks
