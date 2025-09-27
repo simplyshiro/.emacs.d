@@ -355,6 +355,9 @@ mouse-3: Next buffer"
 (setopt undo-strong-limit (* (expt 1024 2) 32))
 (setopt undo-outer-limit (* (expt 1024 2) 64))
 
+;; Use `y' or `n' instead of `yes' or `no'.
+(setopt use-short-answers t)
+
 ;; Make numbered backup files.
 (setopt version-control t)
 
