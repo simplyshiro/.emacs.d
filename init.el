@@ -207,6 +207,9 @@
   (meow-setup)
   (meow-global-mode))
 
+;; Required by `ef-themes'.
+(use-package modus-themes)
+
 (use-package orderless
   :custom
   (completion-styles '(orderless basic))
