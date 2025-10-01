@@ -347,6 +347,8 @@ mouse-3: Next buffer"
 ;; Try to indent first before doing completion.
 (setopt tab-always-indent 'complete)
 
+(setopt tab-width 4)
+
 ;; Maximum decoration level to be used by tree-sitter fontifications.
 (setopt treesit-font-lock-level 4)
 
