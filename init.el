@@ -112,7 +112,9 @@
   :init (global-corfu-mode))
 
 (use-package ef-themes
-  :init (ef-themes-select 'ef-trio-light))
+  :init
+  (ef-themes-take-over-modus-themes-mode)
+  (modus-themes-select 'ef-trio-light))
 
 (use-package magit)
 
@@ -367,16 +369,16 @@ mouse-3: Next buffer"
 ;; Make numbered backup files.
 (setopt version-control t)
 
-;;; ef-themes Customization
+;;; modus-themes Customization
 
-(defun my-ef-themes-mode-line ()
-  "Add padding on the mode line."
-  (ef-themes-with-colors
+(defun my-modus-themes-custom-faces ()
+  "Add padding to the mode line."
+  (modus-themes-with-colors
     (custom-set-faces
-     `(mode-line ((,c :box (:line-width 8 :color ,bg-mode-line))))
-     `(mode-line-inactive ((,c :box (:line-width 8 :color ,bg-alt)))))))
+     `(mode-line ((,c :box (:line-width 8 :color ,bg-mode-line-active))))
+     `(mode-line-inactive ((,c :box (:line-width 8 :color ,bg-mode-line-inactive)))))))
 
-(add-hook 'ef-themes-post-load-hook #'my-ef-themes-mode-line)
+(add-hook 'modus-themes-post-load-hook #'my-modus-themes-custom-faces)
 
 ;;; Fonts
 
