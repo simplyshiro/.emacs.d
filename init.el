@@ -213,6 +213,7 @@
   (completion-category-defaults nil)
   (completion-category-overrides '(file (styles basic partial-completion))))
 
+;; Required by `magit'.
 (use-package transient)
 
 (use-package vertico
