@@ -52,6 +52,12 @@
 
 ;;; Packages
 
+;; Required by `ef-themes'.
+(use-package modus-themes)
+
+;; Required by `magit'.
+(use-package transient)
+
 (use-package consult
   :custom
   (xref-show-xrefs-function #'consult-xref)
@@ -207,17 +213,11 @@
   (meow-setup)
   (meow-global-mode))
 
-;; Required by `ef-themes'.
-(use-package modus-themes)
-
 (use-package orderless
   :custom
   (completion-styles '(orderless basic))
   (completion-category-defaults nil)
   (completion-category-overrides '(file (styles basic partial-completion))))
-
-;; Required by `magit'.
-(use-package transient)
 
 (use-package vertico
   :init (vertico-mode))
