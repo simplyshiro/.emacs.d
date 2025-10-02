@@ -315,7 +315,6 @@ mouse-3: Next buffer"
 
 (column-number-mode)
 (context-menu-mode)
-(cua-mode)
 (line-number-mode)
 (global-auto-revert-mode)
 (global-display-line-numbers-mode)
