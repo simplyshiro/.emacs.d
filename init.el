@@ -116,6 +116,9 @@
   (ef-themes-take-over-modus-themes-mode)
   (modus-themes-select 'ef-trio-light))
 
+(use-package kotlin-ts-mode
+  :mode "\\.kt\\'")
+
 (use-package magit)
 
 (use-package marginalia
@@ -271,6 +274,7 @@ mouse-3: Next buffer"
           (java . ("https://github.com/tree-sitter/tree-sitter-java"))
           (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript"))
           (json . ("https://github.com/tree-sitter/tree-sitter-json"))
+          (kotlin . ("https://github.com/fwcd/tree-sitter-kotlin"))
           (php . ("https://github.com/tree-sitter/tree-sitter-php" nil "php/src"))
           (python . ("https://github.com/tree-sitter/tree-sitter-python"))
           (ruby . ("https://github.com/tree-sitter/tree-sitter-ruby"))
@@ -294,11 +298,13 @@ mouse-3: Next buffer"
 
 (add-hook 'c-mode-hook #'eglot-ensure)
 (add-hook 'java-mode-hook #'eglot-ensure)
-(add-hook 'kotlin-mode-hook #'eglot-ensure)
+(add-hook 'kotlin-ts-mode-hook #'eglot-ensure)
 (add-hook 'python-mode-hook #'eglot-ensure)
 (add-hook 'rust-mode-hook #'eglot-ensure)
 
 (with-eval-after-load 'eglot
+  (add-to-list 'eglot-server-programs
+               '((kotlin-ts-mode) . ("kotlin-lsp" "--stdio")))
   (add-to-list 'eglot-server-programs
                ;; Ruff doesn't have autocompletion yet.
                '((python-mode python-ts-mode) . ("ruff" "server")))
