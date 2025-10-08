@@ -305,9 +305,9 @@ mouse-3: Next buffer"
 (with-eval-after-load 'eglot
   (add-to-list 'eglot-server-programs
                '((kotlin-ts-mode) . ("kotlin-lsp" "--stdio")))
-  (add-to-list 'eglot-server-programs
-               ;; Ruff doesn't have autocompletion yet.
-               '((python-mode python-ts-mode) . ("ruff" "server")))
+  ;; Ruff doesn't have autocompletion yet.
+  ;; (add-to-list 'eglot-server-programs
+  ;;              '((python-mode python-ts-mode) . ("ruff" "server")))
   (add-hook 'after-save-hook #'eglot-format))
 
 ;;; Hooks
