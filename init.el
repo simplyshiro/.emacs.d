@@ -342,7 +342,7 @@ mouse-3: Next buffer"
 (setopt backup-by-copying t)
 
 ;; Move backup files to a single folder.
-(setopt backup-directory-alist `(("." . ,(expand-file-name "backups" user-emacs-directory))))
+(setopt backup-directory-alist `(("." . ,(expand-file-name "backups/" user-emacs-directory))))
 
 ;; Delete excess backup files silently.
 (setopt delete-old-versions t)
