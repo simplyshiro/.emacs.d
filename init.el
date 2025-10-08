@@ -300,7 +300,7 @@ mouse-3: Next buffer"
 (add-hook 'java-mode-hook #'eglot-ensure)
 (add-hook 'kotlin-ts-mode-hook #'eglot-ensure)
 (add-hook 'python-mode-hook #'eglot-ensure)
-(add-hook 'rust-mode-hook #'eglot-ensure)
+(add-hook 'rust-ts-mode-hook #'eglot-ensure)
 
 (with-eval-after-load 'eglot
   (add-to-list 'eglot-server-programs
@@ -330,6 +330,9 @@ mouse-3: Next buffer"
 (savehist-mode)
 (save-place-mode)
 (which-key-mode)
+
+(add-to-list 'auto-mode-alist
+             '("\\.rs\\'" . rust-ts-mode))
 
 ;;; Settings
 
