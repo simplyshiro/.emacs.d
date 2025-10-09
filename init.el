@@ -224,6 +224,9 @@
   (completion-category-defaults nil)
   (completion-category-overrides '(file (styles basic partial-completion))))
 
+(use-package qml-ts-mode
+  :ensure (:host github :repo "xhcoding/qml-ts-mode"))
+
 (use-package vertico
   :init (vertico-mode))
 
@@ -277,6 +280,7 @@ mouse-3: Next buffer"
           (kotlin . ("https://github.com/fwcd/tree-sitter-kotlin"))
           (php . ("https://github.com/tree-sitter/tree-sitter-php" nil "php/src"))
           (python . ("https://github.com/tree-sitter/tree-sitter-python"))
+          (qmljs . ("https://github.com/yuja/tree-sitter-qmljs"))
           (ruby . ("https://github.com/tree-sitter/tree-sitter-ruby"))
           (rust . ("https://github.com/tree-sitter/tree-sitter-rust"))
           (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" nil "tsx/src"))
@@ -301,6 +305,7 @@ mouse-3: Next buffer"
 (add-hook 'kotlin-ts-mode-hook #'eglot-ensure)
 (add-hook 'python-mode-hook #'eglot-ensure)
 (add-hook 'rust-ts-mode-hook #'eglot-ensure)
+(add-hook 'qml-ts-mode-hook #'eglot-ensure)
 
 (with-eval-after-load 'eglot
   (add-to-list 'eglot-server-programs
@@ -310,6 +315,8 @@ mouse-3: Next buffer"
   ;; Ruff doesn't have autocompletion yet.
   ;; (add-to-list 'eglot-server-programs
   ;;              '((python-mode python-ts-mode) . ("ruff" "server")))
+  (add-to-list 'eglot-server-programs
+               '((qml-ts-mode) . ("qmlls6" "-E")))
   (add-hook 'after-save-hook #'eglot-format))
 
 ;;; Hooks
