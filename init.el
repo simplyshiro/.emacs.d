@@ -304,6 +304,8 @@ mouse-3: Next buffer"
 
 (with-eval-after-load 'eglot
   (add-to-list 'eglot-server-programs
+               '((java-mode java-ts-mode) . ("jdtls" "--enable-preview")))
+  (add-to-list 'eglot-server-programs
                '((kotlin-ts-mode) . ("kotlin-lsp" "--stdio")))
   ;; Ruff doesn't have autocompletion yet.
   ;; (add-to-list 'eglot-server-programs
