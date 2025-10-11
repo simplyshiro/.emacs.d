@@ -53,7 +53,17 @@
 ;;; Packages
 
 ;; Required by `ef-themes'.
-(use-package modus-themes)
+(use-package modus-themes
+  :custom
+  (modus-themes-bold-constructs t)
+  (modus-themes-headings (quote ((0 . (2.0))
+                                 (1 . (1.5))
+                                 (2 . (1.4))
+                                 (3 . (1.3))
+                                 (4 . (1.2))
+                                 (5 . (1.1)))))
+  (modus-themes-italic-constructs t)
+  (modus-themes-mixed-fonts t))
 
 ;; Required by `magit'.
 (use-package transient)
@@ -389,13 +399,12 @@ mouse-3: Next buffer"
 ;;; modus-themes Customization
 
 (defun my-modus-themes-custom-faces ()
-  "Add padding to the mode line."
   (modus-themes-with-colors
     (custom-set-faces
      `(mode-line ((,c :box (:line-width 8 :color ,bg-mode-line-active))))
      `(mode-line-inactive ((,c :box (:line-width 8 :color ,bg-mode-line-inactive)))))))
 
-(add-hook 'modus-themes-post-load-hook #'my-modus-themes-custom-faces)
+(add-hook 'modus-themes-after-load-theme-hook #'my-modus-themes-custom-faces)
 
 ;;; Fonts
 
