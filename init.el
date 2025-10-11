@@ -329,6 +329,12 @@ mouse-3: Next buffer"
                '((qml-ts-mode) . ("qmlls6" "-E")))
   (add-hook 'after-save-hook #'eglot-format))
 
+;;; Org
+
+(setopt org-hide-emphasis-markers t)
+
+(add-hook 'org-mode-hook #'variable-pitch-mode)
+
 ;;; Hooks
 
 (add-hook 'before-save-hook #'delete-trailing-whitespace)
