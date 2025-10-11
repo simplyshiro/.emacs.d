@@ -349,7 +349,6 @@ mouse-3: Next buffer"
 (line-number-mode)
 (global-auto-revert-mode)
 (global-display-line-numbers-mode)
-(global-hl-line-mode)
 (pixel-scroll-precision-mode)
 (recentf-mode)
 (savehist-mode)
