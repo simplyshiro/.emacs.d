@@ -415,11 +415,11 @@ mouse-3: Next buffer"
 
 (add-hook 'emacs-startup-hook
           (lambda ()
-            (when (member "Roboto Mono" (font-family-list))
-              (set-face-attribute 'default nil :family "Roboto Mono" :height 105)
-              (set-face-attribute 'fixed-pitch nil :family "Roboto Mono" :height 105))
-            (when (member "Roboto Flex" (font-family-list))
-              (set-face-attribute 'variable-pitch nil :family "Roboto Flex" :height 105))))
+            (when (member "Iosevka" (font-family-list))
+              (set-face-attribute 'default nil :family "Iosevka" :height 105)
+              (set-face-attribute 'fixed-pitch nil :family "Iosevka" :height 105))
+            (when (member "Inter" (font-family-list))
+              (set-face-attribute 'variable-pitch nil :family "Inter" :height 105))))
 
 (provide 'init)
 
