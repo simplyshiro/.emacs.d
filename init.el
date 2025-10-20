@@ -326,7 +326,7 @@ mouse-3: Next buffer"
   ;; (add-to-list 'eglot-server-programs
   ;;              '((python-mode python-ts-mode) . ("ruff" "server")))
   (add-to-list 'eglot-server-programs
-               '((qml-ts-mode) . ("qmlls6" "-E")))
+               '((qml-ts-mode) . ("qmlls6")))
   (add-hook 'after-save-hook #'eglot-format))
 
 ;;; Org
