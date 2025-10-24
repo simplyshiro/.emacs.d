@@ -267,7 +267,7 @@ mouse-3: Next buffer"
 (setopt mode-line-format
         '("%e"
           " λ "
-          (:eval (meow-indicator))
+          (:eval (with-eval-after-load 'meow (meow-indicator)))
           (:eval mode-line-buffer-identification)
           (:eval (concat
                   " (" (downcase
