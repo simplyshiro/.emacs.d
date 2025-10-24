@@ -70,7 +70,8 @@
                                  (4 . (1.2))
                                  (5 . (1.1)))))
   (modus-themes-italic-constructs t)
-  (modus-themes-mixed-fonts t))
+  (modus-themes-mixed-fonts t)
+  :config (modus-themes-load-theme 'modus-operandi))
 
 ;; Required by `magit'.
 (use-package transient)
@@ -128,10 +129,10 @@
   (corfu-quit-no-match t)
   :init (global-corfu-mode))
 
-(use-package ef-themes
-  :init
-  (ef-themes-take-over-modus-themes-mode)
-  (modus-themes-select 'ef-trio-light))
+;; (use-package ef-themes
+;;   :init
+;;   (ef-themes-take-over-modus-themes-mode)
+;;   (modus-themes-load-theme 'ef-trio-light))
 
 (use-package kotlin-ts-mode
   :mode "\\.kt\\'")
