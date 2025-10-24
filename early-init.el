@@ -4,6 +4,13 @@
 
 ;;; Code:
 
+(defconst my-mebibytes-in-bytes (expt 2 20)
+  "The number of bytes in one mebibyte.")
+
+(defun my-convert-mebibytes-to-bytes (MEBIBYTES)
+  "Convert MEBIBYTES to bytes."
+  (* MEBIBYTES my-mebibytes-in-bytes))
+
 (setopt gc-cons-threshold most-positive-fixnum)
 
 (when (native-comp-available-p)
@@ -11,8 +18,7 @@
 
 (add-hook 'emacs-startup-hook
           (lambda ()
-            ;; 1024^2 * 16 = 16 MiB
-            (setopt gc-cons-threshold (* (expt 1024 2) 16))))
+            (setopt gc-cons-threshold (my-convert-mebibytes-to-bytes 32))))
 
 (setopt load-prefer-newer t)
 
