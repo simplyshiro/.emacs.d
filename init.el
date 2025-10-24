@@ -238,6 +238,10 @@
   :ensure (:host github :repo "xhcoding/qml-ts-mode"))
 
 (use-package vertico
+  :custom
+  (vertico-cycle t)
+  (vertico-resize t)
+  (vertico-scroll-margin (/ vertico-count 2))
   :init (vertico-mode))
 
 ;;; Mode Line
