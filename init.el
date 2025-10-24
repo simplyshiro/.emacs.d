@@ -7,6 +7,16 @@
 (defconst my-mebibytes-in-bytes (expt 2 20)
   "The number of bytes in one mebibyte.")
 
+(defvar my-iosevka-ligatures '("<--" "<---" "<<-" "<-" "->" "->>" "-->" "--->"
+                               "<==" "<===" "<<=" "<=" "=>" "=>>" "==>" "===>"
+                               ">=" ">>=" "<->" "<-->" "<--->" "<---->" "<=>"
+                               "<==>" "<===>" "<====>" "::" ":::" "<~~" "</"
+                               "</>" "/>" "~~>" "==" "!=" "<>" "===" "!=="
+                               "!===" "<:" ":=" "*=" "*+" "<*" "<*>" "*>" "<|"
+                               "<|>" "|>" "+*" "=*" "=:" ":>" "/*" "*/" "+++"
+                               "<!--" "<!---")
+  "List of ligatures in the default `calt' litigation set of Iosevka.")
+
 (defun my-convert-mebibytes-to-bytes (MEBIBYTES)
   "Convert MEBIBYTES to bytes."
   (* MEBIBYTES my-mebibytes-in-bytes))
@@ -136,6 +146,11 @@
 
 (use-package kotlin-ts-mode
   :mode "\\.kt\\'")
+
+(use-package ligature
+  :config
+  (ligature-set-ligatures 'prog-mode my-iosevka-ligatures)
+  (global-ligature-mode))
 
 (use-package magit)
 
