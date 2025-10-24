@@ -4,9 +4,6 @@
 
 ;;; Code:
 
-(defconst my-mebibytes-in-bytes (expt 2 20)
-  "The number of bytes in one mebibyte.")
-
 (defvar my-iosevka-ligatures '("<--" "<---" "<<-" "<-" "->" "->>" "-->" "--->"
                                "<==" "<===" "<<=" "<=" "=>" "=>>" "==>" "===>"
                                ">=" ">>=" "<->" "<-->" "<--->" "<---->" "<=>"
@@ -16,10 +13,6 @@
                                "<|>" "|>" "+*" "=*" "=:" ":>" "/*" "*/" "+++"
                                "<!--" "<!---")
   "List of ligatures in the default `calt' litigation set of Iosevka.")
-
-(defun my-convert-mebibytes-to-bytes (MEBIBYTES)
-  "Convert MEBIBYTES to bytes."
-  (* MEBIBYTES my-mebibytes-in-bytes))
 
 ;;; Elpaca
 
