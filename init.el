@@ -44,7 +44,7 @@
     (let ((load-source-file-function nil)) (load "./elpaca-autoloads"))))
 (add-hook 'after-init-hook #'elpaca-process-queues)
 (when (eq system-type 'windows-nt)
-        (elpaca-no-symlink-mode))
+  (elpaca-no-symlink-mode))
 (elpaca `(,@elpaca-order))
 
 (elpaca elpaca-use-package
