@@ -7,9 +7,9 @@
 (defconst my-mebibytes-in-bytes (expt 2 20)
   "The number of bytes in one mebibyte.")
 
-(defun my-convert-mebibytes-to-bytes (mebibytes)
+(defun my-convert-mebibytes-to-bytes (MEBIBYTES)
   "Convert MEBIBYTES to bytes."
-  (* mebibytes my-mebibytes-in-bytes))
+  (* MEBIBYTES my-mebibytes-in-bytes))
 
 ;;; Elpaca
 
