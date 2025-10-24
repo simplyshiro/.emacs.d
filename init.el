@@ -4,6 +4,13 @@
 
 ;;; Code:
 
+(defconst my-mebibytes-in-bytes (expt 2 20)
+  "The number of bytes in one mebibyte.")
+
+(defun my-convert-mebibytes-to-bytes (mebibytes)
+  "Convert MEBIBYTES to bytes."
+  (* mebibytes my-mebibytes-in-bytes))
+
 ;;; Elpaca
 
 (defvar elpaca-installer-version 0.11)
@@ -395,9 +402,9 @@ mouse-3: Next buffer"
 (setopt treesit-font-lock-level 4)
 
 ;; Set to 16 MiB, 32 MiB, and 64 MiB respectively.
-(setopt undo-limit (* (expt 1024 2) 16))
-(setopt undo-strong-limit (* (expt 1024 2) 32))
-(setopt undo-outer-limit (* (expt 1024 2) 64))
+(setopt undo-limit (my-convert-mebibytes-to-bytes 16))
+(setopt undo-strong-limit (my-convert-mebibytes-to-bytes 32))
+(setopt undo-outer-limit (my-convert-mebibytes-to-bytes 64))
 
 ;; Use `y' or `n' instead of `yes' or `no'.
 (setopt use-short-answers t)
