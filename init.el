@@ -426,7 +426,7 @@ mouse-3: Next buffer"
 (defun my-modus-themes-custom-faces ()
   (modus-themes-with-colors
     (custom-set-faces
-     `(mode-line ((,c :box (:line-width 8 :color ,bg-mode-line-active))))
+     `(mode-line-active ((,c :box (:line-width 8 :color ,bg-mode-line-active))))
      `(mode-line-inactive ((,c :box (:line-width 8 :color ,bg-mode-line-inactive)))))))
 
 (add-hook 'modus-themes-after-load-theme-hook #'my-modus-themes-custom-faces)
