@@ -73,7 +73,14 @@
                            (5 . (1.1))))
   (modus-themes-italic-constructs t)
   (modus-themes-mixed-fonts t)
-  :config (modus-themes-load-theme 'modus-operandi))
+  :init (defun my-modus-themes-custom-faces ()
+          (modus-themes-with-colors
+            (custom-set-faces
+             `(mode-line-active ((,c :box (:line-width 8 :color ,bg-mode-line-active))))
+             `(mode-line-inactive ((,c :box (:line-width 8 :color ,bg-mode-line-inactive)))))))
+  :config
+  (add-hook 'modus-themes-after-load-theme-hook #'my-modus-themes-custom-faces)
+  (modus-themes-load-theme 'modus-operandi))
 
 ;; Required by `magit'.
 (use-package transient)
@@ -420,16 +427,6 @@ mouse-3: Next buffer"
 
 ;; Make numbered backup files.
 (setopt version-control t)
-
-;;; modus-themes Customization
-
-(defun my-modus-themes-custom-faces ()
-  (modus-themes-with-colors
-    (custom-set-faces
-     `(mode-line-active ((,c :box (:line-width 8 :color ,bg-mode-line-active))))
-     `(mode-line-inactive ((,c :box (:line-width 8 :color ,bg-mode-line-inactive)))))))
-
-(add-hook 'modus-themes-after-load-theme-hook #'my-modus-themes-custom-faces)
 
 ;;; Fonts
 
