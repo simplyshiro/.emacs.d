@@ -280,6 +280,7 @@ mouse-3: Next buffer"
             (:eval mode-line-position-line-format))
            (column-number-mode
             (:eval mode-line-position-column-format)))))
+(setopt mode-line-right-align-edge 'right-fringe)
 (setopt mode-line-format
         '("%e"
           " λ "
