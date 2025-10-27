@@ -287,10 +287,11 @@ mouse-3: Next buffer"
            (column-number-mode
             (:eval mode-line-position-column-format)))))
 (setopt mode-line-right-align-edge 'right-margin)
+(setopt display-time-default-load-average nil)
+(setopt display-time-format " %I:%M %p ")
 (setopt mode-line-format
         '("%e"
           " λ "
-          (:eval (with-eval-after-load 'meow (meow-indicator)))
           (:eval (with-eval-after-load 'meow
                    (meow-indicator)))
           (:eval mode-line-buffer-identification)
@@ -300,8 +301,9 @@ mouse-3: Next buffer"
                               ((stringp mode-name) mode-name)
                               (t "unknown")))
                   " mode) "))
+          mode-line-position
           mode-line-format-right-align
-          mode-line-position))
+          display-time-string))
 
 ;;; Tree-Sitter
 
@@ -375,6 +377,7 @@ mouse-3: Next buffer"
 
 (column-number-mode)
 (context-menu-mode)
+(display-time-mode)
 (line-number-mode)
 (global-auto-revert-mode)
 (global-display-line-numbers-mode)
