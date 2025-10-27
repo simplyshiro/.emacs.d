@@ -269,13 +269,13 @@
 ;;; Mode Line
 
 (setopt mode-line-buffer-identification
-        `(:propertize
-          " %b " face mode-line-buffer-id
-          mouse-face mode-line-emphasis
-          help-echo "Buffer name
+        (propertize
+          " %b " 'face 'mode-line-buffer-id
+          'mouse-face 'mode-line-emphasis
+          'help-echo "Buffer name
 mouse-1: Previous buffer
 mouse-3: Next buffer"
-          local-map ,mode-line-buffer-identification-keymap))
+          'local-map mode-line-buffer-identification-keymap))
 (setopt mode-line-position-line-format '(" L%l "))
 (setopt mode-line-position-column-format '(" C%C "))
 (setopt mode-line-position-column-line-format '(" %l:%C "))
