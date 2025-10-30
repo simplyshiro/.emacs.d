@@ -371,6 +371,7 @@ mouse-3: Next buffer"
 (add-hook 'before-save-hook #'delete-trailing-whitespace)
 
 (add-hook 'prog-mode-hook #'electric-pair-mode)
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)
 (add-hook 'prog-mode-hook #'flymake-mode)
 
 ;;; Modes
@@ -380,7 +381,6 @@ mouse-3: Next buffer"
 (display-time-mode)
 (line-number-mode)
 (global-auto-revert-mode)
-(global-display-line-numbers-mode)
 (pixel-scroll-precision-mode)
 (recentf-mode)
 (savehist-mode)
