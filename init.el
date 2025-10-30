@@ -73,14 +73,15 @@
                            (5 . (1.1))))
   (modus-themes-italic-constructs t)
   (modus-themes-mixed-fonts t)
-  :init (defun my-modus-themes-custom-faces ()
-          (modus-themes-with-colors
-            (custom-set-faces
-             `(mode-line-active ((,c :box (:line-width 8 :color ,bg-mode-line-active))))
-             `(mode-line-inactive ((,c :box (:line-width 8 :color ,bg-mode-line-inactive)))))))
+  :init
+  (defun my-modus-themes-custom-faces ()
+    (modus-themes-with-colors
+      (custom-set-faces
+       `(mode-line-active ((,c :box (:line-width 8 :color ,bg-mode-line-active))))
+       `(mode-line-inactive ((,c :box (:line-width 8 :color ,bg-mode-line-inactive)))))))
+  (modus-themes-include-derivatives-mode)
   :config
-  (add-hook 'modus-themes-after-load-theme-hook #'my-modus-themes-custom-faces)
-  (modus-themes-load-theme 'modus-operandi))
+  (add-hook 'modus-themes-after-load-theme-hook #'my-modus-themes-custom-faces))
 
 ;; Required by `magit'.
 (use-package transient)
@@ -138,10 +139,8 @@
   (corfu-quit-no-match t)
   :init (global-corfu-mode))
 
-;; (use-package ef-themes
-;;   :init
-;;   (ef-themes-take-over-modus-themes-mode)
-;;   (modus-themes-load-theme 'ef-trio-light))
+(use-package ef-themes
+  :init (modus-themes-load-theme 'ef-trio-light))
 
 (use-package kotlin-ts-mode
   :mode "\\.kt\\'")
