@@ -7,9 +7,9 @@
 (defconst my-mebibytes-in-bytes (expt 2 20)
   "The number of bytes in one mebibyte.")
 
-(defun my-convert-mebibytes-to-bytes (MEBIBYTES)
+(defun my-convert-mebibytes-to-bytes (mebibytes)
   "Convert MEBIBYTES to bytes."
-  (* MEBIBYTES my-mebibytes-in-bytes))
+  (* mebibytes my-mebibytes-in-bytes))
 
 (setopt gc-cons-threshold most-positive-fixnum)
 
