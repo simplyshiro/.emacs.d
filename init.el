@@ -206,6 +206,20 @@
   :init (global-corfu-mode))
 
 (use-package ef-themes
+  :custom
+  (ef-trio-light-palette-overrides
+   '((primary-container "#eaddff")
+     (on-primary-container "#4f378b")
+     (surface "#fef7ff")
+     (on-surface "#1d1b20")
+     (surface-variant "#e7e0ec")
+     (on-surface-variant "#49454f")
+     (bg-main surface)
+     (bg-alt surface-variant)
+     (fg-main on-surface)
+     (fg-dim on-surface-variant)
+     (bg-mode-line-active primary-container)
+     (fg-mode-line-active on-primary-container)))
   :init (modus-themes-load-theme 'ef-trio-light))
 
 (use-package kotlin-ts-mode
