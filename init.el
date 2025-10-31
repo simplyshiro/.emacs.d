@@ -59,6 +59,40 @@
 (elpaca elpaca-use-package
   (elpaca-use-package-mode))
 
+(use-package treesit
+  :ensure nil
+  :custom (treesit-font-lock-level 4)
+  :init
+  (setopt treesit-language-source-alist
+   '((bash . ("https://github.com/tree-sitter/tree-sitter-bash" "v0.25.0"))
+     (c . ("https://github.com/tree-sitter/tree-sitter-c" "v0.24.1"))
+     (c-sharp . ("https://github.com/tree-sitter/tree-sitter-c-sharp" "v0.23.1"))
+     (cpp . ("https://github.com/tree-sitter/tree-sitter-cpp" "v0.23.4"))
+     (css . ("https://github.com/tree-sitter/tree-sitter-css" "v0.25.0"))
+     (go . ("https://github.com/tree-sitter/tree-sitter-go" "v0.25.0"))
+     (html . ("https://github.com/tree-sitter/tree-sitter-html" "v0.23.2"))
+     (java . ("https://github.com/tree-sitter/tree-sitter-java" "v0.23.5"))
+     (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript" "v0.25.0"))
+     (json . ("https://github.com/tree-sitter/tree-sitter-json" "v0.24.8"))
+     (kotlin . ("https://github.com/fwcd/tree-sitter-kotlin" "0.3.8"))
+     (php . ("https://github.com/tree-sitter/tree-sitter-php" "v0.24.2" "php/src"))
+     (python . ("https://github.com/tree-sitter/tree-sitter-python" "v0.25.0"))
+     (qmljs . ("https://github.com/yuja/tree-sitter-qmljs" "0.3.0"))
+     (ruby . ("https://github.com/tree-sitter/tree-sitter-ruby" "v0.23.1"))
+     (rust . ("https://github.com/tree-sitter/tree-sitter-rust" "v0.24.0"))
+     (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.23.2" "tsx/src"))
+     (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.23.2" "typescript/src"))))
+  (add-to-list 'major-mode-remap-alist
+             '((c-mode . c-ts-mode)
+               (c-or-c++-mode . c-or-c++-ts-mode)
+               (c++-mode . c++-ts-mode)
+               (csharp-mode . csharp-ts-mode)
+               (css-mode . css-ts-mode)
+               (html-mode . html-ts-mode)
+               (java-mode . java-ts-mode)
+               (js-mode . js-ts-mode)
+               (python-mode . python-ts-mode)
+               (ruby-mode . ruby-ts-mode))))
 ;;; Packages
 
 ;; Required by `ef-themes'.
@@ -304,39 +338,6 @@ mouse-3: Next buffer"
           mode-line-format-right-align
           display-time-string))
 
-;;; Tree-Sitter
-
-(setopt treesit-language-source-alist
-        '((bash . ("https://github.com/tree-sitter/tree-sitter-bash" "v0.25.0"))
-          (c . ("https://github.com/tree-sitter/tree-sitter-c" "v0.24.1"))
-          (c-sharp . ("https://github.com/tree-sitter/tree-sitter-c-sharp" "v0.23.1"))
-          (cpp . ("https://github.com/tree-sitter/tree-sitter-cpp" "v0.23.4"))
-          (css . ("https://github.com/tree-sitter/tree-sitter-css" "v0.25.0"))
-          (go . ("https://github.com/tree-sitter/tree-sitter-go" "v0.25.0"))
-          (html . ("https://github.com/tree-sitter/tree-sitter-html" "v0.23.2"))
-          (java . ("https://github.com/tree-sitter/tree-sitter-java" "v0.23.5"))
-          (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript" "v0.25.0"))
-          (json . ("https://github.com/tree-sitter/tree-sitter-json" "v0.24.8"))
-          (kotlin . ("https://github.com/fwcd/tree-sitter-kotlin" "0.3.8"))
-          (php . ("https://github.com/tree-sitter/tree-sitter-php" "v0.24.2" "php/src"))
-          (python . ("https://github.com/tree-sitter/tree-sitter-python" "v0.25.0"))
-          (qmljs . ("https://github.com/yuja/tree-sitter-qmljs" "0.3.0"))
-          (ruby . ("https://github.com/tree-sitter/tree-sitter-ruby" "v0.23.1"))
-          (rust . ("https://github.com/tree-sitter/tree-sitter-rust" "v0.24.0"))
-          (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.23.2" "tsx/src"))
-          (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.23.2" "typescript/src"))))
-
-(add-to-list 'major-mode-remap-alist
-             '((c-mode . c-ts-mode)
-               (c-or-c++-mode . c-or-c++-ts-mode)
-               (c++-mode . c++-ts-mode)
-               (csharp-mode . csharp-ts-mode)
-               (css-mode . css-ts-mode)
-               (html-mode . html-ts-mode)
-               (java-mode . java-ts-mode)
-               (js-mode . js-ts-mode)
-               (python-mode . python-ts-mode)
-               (ruby-mode . ruby-ts-mode)))
 
 ;;; Eglot
 
@@ -417,9 +418,6 @@ mouse-3: Next buffer"
 (setopt tab-always-indent 'complete)
 
 (setopt tab-width 4)
-
-;; Maximum decoration level to be used by tree-sitter fontifications.
-(setopt treesit-font-lock-level 4)
 
 ;; Set to 16 MiB, 32 MiB, and 64 MiB respectively.
 (setopt undo-limit (my-convert-mebibytes-to-bytes 16))
