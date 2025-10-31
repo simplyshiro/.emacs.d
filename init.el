@@ -123,18 +123,20 @@
                (js-mode . js-ts-mode)
                (python-mode . python-ts-mode)
                (ruby-mode . ruby-ts-mode))))
+
 ;;; Packages
 
 ;; Required by `ef-themes'.
 (use-package modus-themes
   :custom
   (modus-themes-bold-constructs t)
-  (modus-themes-headings '((0 . (2.0))
-                           (1 . (1.5))
-                           (2 . (1.4))
-                           (3 . (1.3))
-                           (4 . (1.2))
-                           (5 . (1.1))))
+  (modus-themes-headings
+   '((0 . (2.0))
+     (1 . (1.5))
+     (2 . (1.4))
+     (3 . (1.3))
+     (4 . (1.2))
+     (5 . (1.1))))
   (modus-themes-italic-constructs t)
   (modus-themes-mixed-fonts t)
   :init
