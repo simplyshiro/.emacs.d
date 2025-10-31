@@ -130,6 +130,10 @@
 (use-package modus-themes
   :custom
   (modus-themes-bold-constructs t)
+  (modus-themes-common-palette-overrides
+   '((fringe unspecified)
+     (bg-line-number-inactive unspecified)
+     (bg-line-number-active unspecified)))
   (modus-themes-headings
    '((0 . (2.0))
      (1 . (1.5))
