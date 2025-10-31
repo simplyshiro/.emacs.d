@@ -485,16 +485,16 @@ mouse-3: Next buffer"
 
 (defvar my-font-size 105)
 
-(defun my-set-faces ()
+(defun my-set-fonts (&optional frame)
   (when (member "Iosevka" (font-family-list))
-    (set-face-attribute 'default nil :family "Iosevka" :height my-font-size)
-    (set-face-attribute 'fixed-pitch nil :family "Iosevka" :height my-font-size))
+    (set-face-attribute 'default frame :family "Iosevka" :height my-font-size)
+    (set-face-attribute 'fixed-pitch frame :family "Iosevka" :height my-font-size))
   (when (member "Inter" (font-family-list))
-    (set-face-attribute 'variable-pitch nil :family "Inter" :height my-font-size)))
+    (set-face-attribute 'variable-pitch frame :family "Inter" :height my-font-size)))
 
 (if (daemonp)
-    (add-hook 'server-after-make-frame-hook #'my-set-faces)
-  (my-set-faces))
+    (add-hook 'server-after-make-frame-hook #'my-set-fonts)
+  (my-set-fonts))
 
 (provide 'init)
 
