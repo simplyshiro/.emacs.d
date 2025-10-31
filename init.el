@@ -447,13 +447,18 @@ mouse-3: Next buffer"
 
 ;;; Fonts
 
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (when (member "Iosevka" (font-family-list))
-              (set-face-attribute 'default nil :family "Iosevka" :height 105)
-              (set-face-attribute 'fixed-pitch nil :family "Iosevka" :height 105))
-            (when (member "Inter" (font-family-list))
-              (set-face-attribute 'variable-pitch nil :family "Inter" :height 105))))
+(defvar my-font-size 105)
+
+(defun my-set-faces ()
+  (when (member "Iosevka" (font-family-list))
+    (set-face-attribute 'default nil :family "Iosevka" :height my-font-size)
+    (set-face-attribute 'fixed-pitch nil :family "Iosevka" :height my-font-size))
+  (when (member "Inter" (font-family-list))
+    (set-face-attribute 'variable-pitch nil :family "Inter" :height my-font-size)))
+
+(if (daemonp)
+    (add-hook 'server-after-make-frame-hook #'my-set-faces)
+  (my-set-faces))
 
 (provide 'init)
 
