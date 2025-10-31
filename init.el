@@ -80,6 +80,11 @@
   (add-to-list 'eglot-server-programs
                '((qml-ts-mode) . ("qmlls6"))))
 
+(use-package org
+  :ensure nil
+  :custom (org-hide-emphasis-markers t)
+  :hook (org-mode-hook . variable-pitch-mode))
+
 (use-package treesit
   :ensure nil
   :custom (treesit-font-lock-level 4)
@@ -358,12 +363,6 @@ mouse-3: Next buffer"
           mode-line-position
           mode-line-format-right-align
           display-time-string))
-
-;;; Org
-
-(setopt org-hide-emphasis-markers t)
-
-(add-hook 'org-mode-hook #'variable-pitch-mode)
 
 ;;; Hooks
 
