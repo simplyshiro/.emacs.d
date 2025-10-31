@@ -233,8 +233,7 @@
      (bg-mode-line-active primary-container)
      (fg-mode-line-active on-primary-container)
      (bg-region primary-container)
-     (fg-region on-primary-container)
-     (accent-0 primary)))
+     (fg-region on-primary-container)))
   :init (modus-themes-load-theme 'ef-trio-light))
 
 (use-package kotlin-ts-mode
