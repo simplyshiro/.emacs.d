@@ -131,7 +131,18 @@
   :custom
   (modus-themes-bold-constructs t)
   (modus-themes-common-palette-overrides
-   '((fringe unspecified)
+   '((primary90 "#eaddff")
+     (primary80 "#d0bcff")
+     (primary40 "#6750a4")
+     (primary30 "#4f378b")
+     (neutral98 "#fef7ff")
+     (neutral90 "#e6e0e9")
+     (neutral10 "#1d1b20")
+     (neutral6 "#141218")
+     (neutral-variant90 "#e7e0ec")
+     (neutral-variant80 "#cac4d0")
+     (neutral-variant30 "#49454f")
+     (fringe unspecified)
      (bg-line-number-inactive unspecified)
      (bg-line-number-active unspecified)))
   (modus-themes-headings
@@ -211,24 +222,31 @@
 
 (use-package ef-themes
   :custom
+  (ef-trio-dark-palette-overrides
+   '((primary primary80)
+     (primary-container primary30)
+     (on-primary-container primary90)
+     (surface neutral6)
+     (on-surface neutral90)
+     (surface-variant neutral-variant30)
+     (on-surface-variant neutral-variant80)
+     (cursor primary)
+     (bg-main surface)
+     (bg-alt surface-variant)
+     (fg-main on-surface)
+     (fg-dim on-surface-variant)
+     (bg-mode-line-active primary-container)
+     (fg-mode-line-active on-primary-container)
+     (bg-region primary-container)
+     (fg-region on-primary-container)))
   (ef-trio-light-palette-overrides
-   '(;; M3 palettes
-     (primary90 "#eaddff")
-     (primary40 "#6750a4")
-     (primary30 "#4f378b")
-     (neutral98 "#fef7ff")
-     (neutral10 "#1d1b20")
-     (neutral-variant90 "#e7e0ec")
-     (neutral-variant30 "#49454f")
-     ;; M3 color schemes
-     (primary primary40)
+   '((primary primary40)
      (primary-container primary90)
      (on-primary-container primary30)
      (surface neutral98)
      (on-surface neutral10)
      (surface-variant neutral-variant90)
      (on-surface-variant neutral-variant30)
-     ;; `ef-trio-light' palette overrides
      (cursor primary)
      (bg-main surface)
      (bg-alt surface-variant)
