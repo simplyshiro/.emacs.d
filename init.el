@@ -85,6 +85,10 @@
   :custom (org-hide-emphasis-markers t)
   :hook (org-mode-hook . variable-pitch-mode))
 
+(use-package rust-ts-mode
+  :ensure nil
+  :mode "\\.rs\\'")
+
 (use-package treesit
   :ensure nil
   :custom (treesit-font-lock-level 4)
@@ -384,9 +388,6 @@ mouse-3: Next buffer"
 (savehist-mode)
 (save-place-mode)
 (which-key-mode)
-
-(add-to-list 'auto-mode-alist
-             '("\\.rs\\'" . rust-ts-mode))
 
 ;;; Settings
 
