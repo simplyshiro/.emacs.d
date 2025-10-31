@@ -59,6 +59,27 @@
 (elpaca elpaca-use-package
   (elpaca-use-package-mode))
 
+;;; Built-in
+
+(use-package eglot
+  :ensure nil
+  :custom (eglot-events-buffer-config '(:size 0))
+  :hook
+  (after-save-hook . eglot-format)
+  (c-mode-hook . eglot-ensure)
+  (java-mode-hook . eglot-ensure)
+  (kotlin-ts-mode-hook . eglot-ensure)
+  (python-mode-hook . eglot-ensure)
+  (rust-ts-mode-hook . eglot-ensure)
+  (qml-ts-mode-hook . eglot-ensure)
+  :config
+  (add-to-list 'eglot-server-programs
+               '((java-mode java-ts-mode) . ("jdtls" "--enable-preview")))
+  (add-to-list 'eglot-server-programs
+               '((kotlin-ts-mode) . ("kotlin-lsp" "--stdio")))
+  (add-to-list 'eglot-server-programs
+               '((qml-ts-mode) . ("qmlls6"))))
+
 (use-package treesit
   :ensure nil
   :custom (treesit-font-lock-level 4)
@@ -337,28 +358,6 @@ mouse-3: Next buffer"
           mode-line-position
           mode-line-format-right-align
           display-time-string))
-
-
-;;; Eglot
-
-(add-hook 'c-mode-hook #'eglot-ensure)
-(add-hook 'java-mode-hook #'eglot-ensure)
-(add-hook 'kotlin-ts-mode-hook #'eglot-ensure)
-(add-hook 'python-mode-hook #'eglot-ensure)
-(add-hook 'rust-ts-mode-hook #'eglot-ensure)
-(add-hook 'qml-ts-mode-hook #'eglot-ensure)
-
-(with-eval-after-load 'eglot
-  (add-to-list 'eglot-server-programs
-               '((java-mode java-ts-mode) . ("jdtls" "--enable-preview")))
-  (add-to-list 'eglot-server-programs
-               '((kotlin-ts-mode) . ("kotlin-lsp" "--stdio")))
-  ;; Ruff doesn't have autocompletion yet.
-  ;; (add-to-list 'eglot-server-programs
-  ;;              '((python-mode python-ts-mode) . ("ruff" "server")))
-  (add-to-list 'eglot-server-programs
-               '((qml-ts-mode) . ("qmlls6")))
-  (add-hook 'after-save-hook #'eglot-format))
 
 ;;; Org
 
