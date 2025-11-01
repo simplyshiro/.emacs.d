@@ -403,7 +403,7 @@ mouse-3: Next buffer"
             (:eval mode-line-position-column-format)))))
 (setopt mode-line-right-align-edge 'right-margin)
 (setopt display-time-default-load-average nil)
-(setopt display-time-format " %I:%M %p ")
+(setopt display-time-format " %H:%M ")
 (setopt mode-line-format
         '("%e"
           " λ "
