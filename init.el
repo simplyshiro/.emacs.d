@@ -161,8 +161,7 @@
        `(mode-line-active ((,c :box (:line-width 8 :color ,bg-mode-line-active))))
        `(mode-line-inactive ((,c :box (:line-width 8 :color ,bg-mode-line-inactive)))))))
   (modus-themes-include-derivatives-mode)
-  :config
-  (add-hook 'modus-themes-after-load-theme-hook #'my-modus-themes-custom-faces))
+  :config (add-hook 'modus-themes-after-load-theme-hook #'my-modus-themes-custom-faces))
 
 ;; Required by `magit'.
 (use-package transient)
@@ -274,8 +273,7 @@
   :init (marginalia-mode))
 
 (use-package meow
-  :custom
-  (meow-use-clipboard t)
+  :custom (meow-use-clipboard t)
   :init (defun meow-setup ()
           (setopt meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
 
