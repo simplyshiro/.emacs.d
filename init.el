@@ -469,9 +469,9 @@ mouse-3: Next buffer"
 (setopt tab-width 4)
 
 ;; Set to 16 MiB, 32 MiB, and 64 MiB respectively.
-(setopt undo-limit (my-convert-mebibytes-to-bytes 16))
-(setopt undo-strong-limit (my-convert-mebibytes-to-bytes 32))
-(setopt undo-outer-limit (my-convert-mebibytes-to-bytes 64))
+(setopt undo-limit (my-convert-from-mebibytes-to-bytes 16))
+(setopt undo-strong-limit (my-convert-from-mebibytes-to-bytes 32))
+(setopt undo-outer-limit (my-convert-from-mebibytes-to-bytes 64))
 
 ;; Use `y' or `n' instead of `yes' or `no'.
 (setopt use-short-answers t)
