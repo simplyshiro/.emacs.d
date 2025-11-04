@@ -6,6 +6,26 @@
 
 ;;; Built-in
 
+(use-package emacs
+  :ensure nil
+  :custom
+  (enable-recursive-minibuffers t)
+  (tab-width 4)
+  (tab-always-indent 'complete)
+  (use-short-answers t)
+  (undo-limit (shiro-convert-from-mebibytes-to-bytes 16))
+  (undo-strong-limit (shiro-convert-from-mebibytes-to-bytes 32))
+  (undo-outer-limit (shiro-convert-from-mebibytes-to-bytes 64)))
+
+(use-package comp-run
+  :ensure nil
+  :custom (native-comp-async-query-on-exit t))
+
+(use-package display-line-numbers
+  :ensure nil
+  :custom (display-line-numbers-type 'relative)
+  :hook (prog-mode-hook . display-line-numbers-mode))
+
 (use-package eglot
   :ensure nil
   :custom (eglot-events-buffer-config '(:size 0))
@@ -25,6 +45,22 @@
   (add-to-list 'eglot-server-programs
                '((qml-ts-mode) . ("qmlls6"))))
 
+(use-package elec-pair
+  :ensure nil
+  :hook (prog-mode-hook . electric-pair-mode))
+
+(use-package files
+  :ensure nil
+  :custom
+  (backup-by-copying t)
+  (backup-directory-alist `(("." . ,(expand-file-name "backups/" user-emacs-directory))))
+  (delete-old-versions t)
+  (version-control t))
+
+(use-package flymake
+  :ensure nil
+  :hook (prog-mode-hook . flymake-mode))
+
 (use-package org
   :ensure nil
   :custom (org-hide-emphasis-markers t)
@@ -33,6 +69,16 @@
 (use-package rust-ts-mode
   :ensure nil
   :mode "\\.rs\\'")
+
+(use-package simple
+  :ensure nil
+  :custom
+  (indent-tabs-mode nil)
+  (read-extended-command-predicate #'command-completion-default-include-p)
+  :hook (before-save-hook . delete-trailing-whitespace)
+  :init
+  (column-number-mode)
+  (line-number-mode))
 
 (use-package treesit
   :ensure nil
@@ -68,6 +114,10 @@
                   (rust . ("https://github.com/tree-sitter/tree-sitter-rust" "v0.24.0"))
                   (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.23.2" "tsx/src"))
                   (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.23.2" "typescript/src")))))
+
+(use-package which-key
+  :ensure nil
+  :init (which-key-mode))
 
 ;;; Packages
 
@@ -372,66 +422,14 @@ mouse-3: Next buffer"
           mode-line-format-right-align
           display-time-string))
 
-;;; Hooks
-
-(add-hook 'before-save-hook #'delete-trailing-whitespace)
-
-(add-hook 'prog-mode-hook #'electric-pair-mode)
-(add-hook 'prog-mode-hook #'display-line-numbers-mode)
-(add-hook 'prog-mode-hook #'flymake-mode)
-
 ;;; Modes
 
-(column-number-mode)
-(context-menu-mode)
 (display-time-mode)
-(line-number-mode)
 (global-auto-revert-mode)
 (pixel-scroll-precision-mode)
 (recentf-mode)
 (savehist-mode)
 (save-place-mode)
-(which-key-mode)
-
-;;; Settings
-
-;; Move `auto-save-list' folder inside `user-emacs-directory'.
-(setopt auto-save-list-file-prefix (expand-file-name "auto-save-list/.saves-" user-emacs-directory))
-
-(setopt backup-by-copying t)
-
-;; Move backup files to a single folder.
-(setopt backup-directory-alist `(("." . ,(expand-file-name "backups/" user-emacs-directory))))
-
-;; Delete excess backup files silently.
-(setopt delete-old-versions t)
-
-(setopt display-line-numbers-type 'relative)
-(setopt enable-recursive-minibuffers t)
-
-;; Use spaces for indentation.
-(setopt indent-tabs-mode nil)
-
-(setopt native-comp-async-query-on-exit t)
-
-;; Hide commands which are specific to modes other than the current buffer's mode.
-(setopt read-extended-command-predicate #'command-completion-default-include-p)
-
-;; Try to indent first before doing completion.
-(setopt tab-always-indent 'complete)
-
-(setopt tab-width 4)
-
-;; Set to 16 MiB, 32 MiB, and 64 MiB respectively.
-(setopt undo-limit (my-convert-from-mebibytes-to-bytes 16))
-(setopt undo-strong-limit (my-convert-from-mebibytes-to-bytes 32))
-(setopt undo-outer-limit (my-convert-from-mebibytes-to-bytes 64))
-
-;; Use `y' or `n' instead of `yes' or `no'.
-(setopt use-short-answers t)
-
-;; Make numbered backup files.
-(setopt version-control t)
 
 ;;; Fonts
 
