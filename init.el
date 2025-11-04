@@ -252,7 +252,7 @@
   :mode "\\.kt\\'")
 
 (use-package ligature
-  :init (defvar my-iosevka-ligatures
+  :init (defvar shiro-iosevka-ligatures
           '("<--" "<---" "<<-" "<-" "->" "->>" "-->" "--->"
             "<==" "<===" "<<=" "<=" "=>" "=>>" "==>" "===>"
             ">=" ">>=" "<->" "<-->" "<--->" "<---->" "<=>"
@@ -262,7 +262,7 @@
             "<|>" "|>" "+*" "=*" "=:" ":>" "/*" "*/" "+++"
             "<!--" "<!---"))
   :config
-  (ligature-set-ligatures 'prog-mode my-iosevka-ligatures)
+  (ligature-set-ligatures 'prog-mode shiro-iosevka-ligatures)
   (global-ligature-mode))
 
 (use-package magit)
