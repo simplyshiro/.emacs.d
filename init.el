@@ -123,6 +123,7 @@
 
 ;; Required by `ef-themes'.
 (use-package modus-themes
+  :ensure (:tag "5.0.0")
   :custom
   (modus-themes-bold-constructs t)
   (modus-themes-common-palette-overrides
@@ -150,13 +151,13 @@
   (modus-themes-italic-constructs t)
   (modus-themes-mixed-fonts t)
   :init
-  (defun my-modus-themes-custom-faces ()
+  (defun shiro-modus-themes-custom-faces ()
     (modus-themes-with-colors
       (custom-set-faces
        `(mode-line-active ((,c :box (:line-width 8 :color ,bg-mode-line-active))))
        `(mode-line-inactive ((,c :box (:line-width 8 :color ,bg-mode-line-inactive)))))))
   (modus-themes-include-derivatives-mode)
-  :config (add-hook 'modus-themes-after-load-theme-hook #'my-modus-themes-custom-faces))
+  :config (add-hook 'modus-themes-after-load-theme-hook #'shiro-modus-themes-custom-faces))
 
 ;; Required by `magit'.
 (use-package transient)
