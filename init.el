@@ -9,6 +9,8 @@
 (use-package emacs
   :ensure nil
   :custom
+  (auto-save-list-file-prefix (expand-file-name "auto-save-list/.saves-" user-emacs-directory))
+  (blink-cursor-mode nil)
   (enable-recursive-minibuffers t)
   (tab-width 4)
   (tab-always-indent 'complete)
@@ -16,6 +18,10 @@
   (undo-limit (shiro-convert-from-mebibytes-to-bytes 16))
   (undo-strong-limit (shiro-convert-from-mebibytes-to-bytes 32))
   (undo-outer-limit (shiro-convert-from-mebibytes-to-bytes 64)))
+
+(use-package autorevert
+  :ensure nil
+  :init (global-auto-revert-mode))
 
 (use-package comp-run
   :ensure nil
@@ -66,9 +72,25 @@
   :custom (org-hide-emphasis-markers t)
   :hook (org-mode-hook . variable-pitch-mode))
 
+(use-package pixel-scroll
+  :ensure nil
+  :init (pixel-scroll-precision-mode))
+
+(use-package recentf
+  :ensure nil
+  :init (recentf-mode))
+
 (use-package rust-ts-mode
   :ensure nil
   :mode "\\.rs\\'")
+
+(use-package savehist
+  :ensure nil
+  :init (savehist-mode))
+
+(use-package saveplace
+  :ensure nil
+  :init (save-place-mode))
 
 (use-package simple
   :ensure nil
@@ -79,6 +101,10 @@
   :init
   (column-number-mode)
   (line-number-mode))
+
+(use-package time
+  :ensure nil
+  :init (display-time-mode))
 
 (use-package treesit
   :ensure nil
@@ -422,15 +448,6 @@ mouse-3: Next buffer"
           mode-line-position
           mode-line-format-right-align
           display-time-string))
-
-;;; Modes
-
-(display-time-mode)
-(global-auto-revert-mode)
-(pixel-scroll-precision-mode)
-(recentf-mode)
-(savehist-mode)
-(save-place-mode)
 
 ;;; Fonts
 
