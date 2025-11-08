@@ -7,7 +7,6 @@
 ;;; Built-in
 
 (use-package emacs
-  :ensure nil
   :custom
   (auto-save-list-file-prefix (expand-file-name "auto-save-list/.saves-" user-emacs-directory))
   (blink-cursor-mode nil)
@@ -17,26 +16,30 @@
   (use-short-answers t)
   (undo-limit (shiro-convert-from-mebibytes-to-bytes 16))
   (undo-strong-limit (shiro-convert-from-mebibytes-to-bytes 32))
-  (undo-outer-limit (shiro-convert-from-mebibytes-to-bytes 64)))
+  (undo-outer-limit (shiro-convert-from-mebibytes-to-bytes 64))
+  :ensure nil)
 
 (use-package autorevert
-  :ensure nil
-  :init (global-auto-revert-mode))
+  :init (global-auto-revert-mode)
+  :ensure nil)
 
 (use-package comp-run
-  :ensure nil
-  :custom (native-comp-async-query-on-exit t))
+  :custom (native-comp-async-query-on-exit t)
+  :ensure nil)
 
 (use-package display-line-numbers
-  :ensure nil
+  :hook (prog-mode-hook . display-line-numbers-mode)
   :custom (display-line-numbers-type 'relative)
-  :hook (prog-mode-hook . display-line-numbers-mode))
+  :ensure nil)
 
 (use-package eglot
-  :ensure nil
-  :custom
-  (eglot-events-buffer-config '(:size 0))
-  (eglot-ignored-server-capabilities '(:documentFormattingProvider))
+  :config
+  (add-to-list 'eglot-server-programs
+               '((java-mode java-ts-mode) . ("jdtls" "--enable-preview")))
+  (add-to-list 'eglot-server-programs
+               '((kotlin-ts-mode) . ("kotlin-lsp" "--stdio")))
+  (add-to-list 'eglot-server-programs
+               '((qml-ts-mode) . ("qmlls6")))
   :hook
   (after-save-hook . eglot-format)
   (c-mode-hook . eglot-ensure)
@@ -45,80 +48,63 @@
   (python-mode-hook . eglot-ensure)
   (rust-ts-mode-hook . eglot-ensure)
   (qml-ts-mode-hook . eglot-ensure)
-  :config
-  (add-to-list 'eglot-server-programs
-               '((java-mode java-ts-mode) . ("jdtls" "--enable-preview")))
-  (add-to-list 'eglot-server-programs
-               '((kotlin-ts-mode) . ("kotlin-lsp" "--stdio")))
-  (add-to-list 'eglot-server-programs
-               '((qml-ts-mode) . ("qmlls6"))))
+  :custom
+  (eglot-events-buffer-config '(:size 0))
+  (eglot-ignored-server-capabilities '(:documentFormattingProvider))
+  :ensure nil)
 
 (use-package elec-pair
-  :ensure nil
-  :hook (prog-mode-hook . electric-pair-mode))
+  :hook (prog-mode-hook . electric-pair-mode)
+  :ensure nil)
 
 (use-package files
-  :ensure nil
   :custom
   (backup-by-copying t)
   (backup-directory-alist `(("." . ,(expand-file-name "backups/" user-emacs-directory))))
   (delete-old-versions t)
-  (version-control t))
+  (version-control t)
+  :ensure nil)
 
 (use-package flymake
-  :ensure nil
-  :hook (prog-mode-hook . flymake-mode))
+  :hook (prog-mode-hook . flymake-mode)
+  :ensure nil)
 
 (use-package org
-  :ensure nil
+  :hook (org-mode-hook . variable-pitch-mode)
   :custom (org-hide-emphasis-markers t)
-  :hook (org-mode-hook . variable-pitch-mode))
+  :ensure nil)
 
 (use-package pixel-scroll
-  :ensure nil
-  :init (pixel-scroll-precision-mode))
+  :init (pixel-scroll-precision-mode)
+  :ensure nil)
 
 (use-package recentf
-  :ensure nil
-  :init (recentf-mode))
+  :init (recentf-mode)
+  :ensure nil)
 
 (use-package rust-ts-mode
-  :ensure nil
-  :mode "\\.rs\\'")
+  :mode "\\.rs\\'"
+  :ensure nil)
 
 (use-package savehist
-  :ensure nil
-  :init (savehist-mode))
+  :init (savehist-mode)
+  :ensure nil)
 
 (use-package saveplace
-  :ensure nil
-  :init (save-place-mode))
+  :init (save-place-mode)
+  :ensure nil)
 
 (use-package simple
-  :ensure nil
+  :init
+  (column-number-mode)
+  (line-number-mode)
+  :hook (before-save-hook . delete-trailing-whitespace)
   :custom
   (indent-tabs-mode nil)
   (read-extended-command-predicate #'command-completion-default-include-p)
-  :hook (before-save-hook . delete-trailing-whitespace)
-  :init
-  (column-number-mode)
-  (line-number-mode))
+  :ensure nil)
 
 (use-package treesit
-  :ensure nil
-  :custom
-  (major-mode-remap-alist
-          '((c-mode . c-ts-mode)
-            (c-or-c++-mode . c-or-c++-ts-mode)
-            (c++-mode . c++-ts-mode)
-            (csharp-mode . csharp-ts-mode)
-            (css-mode . css-ts-mode)
-            (html-mode . html-ts-mode)
-            (java-mode . java-ts-mode)
-            (js-mode . js-ts-mode)
-            (python-mode . python-ts-mode)
-            (ruby-mode . ruby-ts-mode)))
-  (treesit-font-lock-level 4)
   :init (setopt treesit-language-source-alist
                 '((bash . ("https://github.com/tree-sitter/tree-sitter-bash" "v0.25.0"))
                   (c . ("https://github.com/tree-sitter/tree-sitter-c" "v0.24.1"))
@@ -137,17 +123,38 @@
                   (ruby . ("https://github.com/tree-sitter/tree-sitter-ruby" "v0.23.1"))
                   (rust . ("https://github.com/tree-sitter/tree-sitter-rust" "v0.24.0"))
                   (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.23.2" "tsx/src"))
-                  (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.23.2" "typescript/src")))))
+                  (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.23.2" "typescript/src"))))
+  :custom
+  (major-mode-remap-alist
+   '((c-mode . c-ts-mode)
+     (c-or-c++-mode . c-or-c++-ts-mode)
+     (c++-mode . c++-ts-mode)
+     (csharp-mode . csharp-ts-mode)
+     (css-mode . css-ts-mode)
+     (html-mode . html-ts-mode)
+     (java-mode . java-ts-mode)
+     (js-mode . js-ts-mode)
+     (python-mode . python-ts-mode)
+     (ruby-mode . ruby-ts-mode)))
+  (treesit-font-lock-level 4)
+  :ensure nil)
 
 (use-package which-key
-  :ensure nil
-  :init (which-key-mode))
+  :init (which-key-mode)
+  :ensure nil)
 
 ;;; Packages
 
 ;; Required by `ef-themes'.
 (use-package modus-themes
-  :ensure (:tag "5.0.0")
+  :init
+  (defun shiro-modus-themes-custom-faces (&optional theme)
+    (modus-themes-with-colors
+      (custom-set-faces
+       `(mode-line-active ((,c :box (:line-width 8 :color ,bg-mode-line-active))))
+       `(mode-line-inactive ((,c :box (:line-width 8 :color ,bg-mode-line-inactive)))))))
+  (modus-themes-include-derivatives-mode)
+  :config (add-hook 'modus-themes-after-load-theme-hook #'shiro-modus-themes-custom-faces)
   :custom
   (modus-themes-bold-constructs t)
   (modus-themes-common-palette-overrides
@@ -174,22 +181,14 @@
      (5 . (1.1))))
   (modus-themes-italic-constructs t)
   (modus-themes-mixed-fonts t)
-  :init
-  (defun shiro-modus-themes-custom-faces (&optional theme)
-    (modus-themes-with-colors
-      (custom-set-faces
-       `(mode-line-active ((,c :box (:line-width 8 :color ,bg-mode-line-active))))
-       `(mode-line-inactive ((,c :box (:line-width 8 :color ,bg-mode-line-inactive)))))))
-  (modus-themes-include-derivatives-mode)
-  :config (add-hook 'modus-themes-after-load-theme-hook #'shiro-modus-themes-custom-faces))
+  :ensure (:tag "5.0.0"))
 
 ;; Required by `magit'.
 (use-package transient)
 
 (use-package consult
-  :custom
-  (xref-show-xrefs-function #'consult-xref)
-  (xref-show-definitions-function #'consult-xref)
+  :init (advice-add #'register-preview :override #'consult-register-window)
+  :hook (completion-list-mode-hook . consult-preview-at-point-mode)
   :bind (("C-x M-:" . consult-complex-command)
          ([remap Info-search] . consult-info)
          ("C-x b" . consult-buffer)
@@ -225,16 +224,18 @@
          :map minibuffer-local-map
          ("M-r" . consult-history)
          ("M-s" . consult-history))
-  :hook (completion-list-mode-hook . consult-preview-at-point-mode)
-  :init (advice-add #'register-preview :override #'consult-register-window))
+  :custom
+  (xref-show-xrefs-function #'consult-xref)
+  (xref-show-definitions-function #'consult-xref))
 
 (use-package corfu
+  :init (global-corfu-mode)
   :custom
   (corfu-auto t)
-  (corfu-quit-no-match t)
-  :init (global-corfu-mode))
+  (corfu-quit-no-match t))
 
 (use-package ef-themes
+  :init (modus-themes-load-theme 'ef-trio-light)
   :custom
   (ef-trio-dark-palette-overrides
    '((primary primary80)
@@ -269,8 +270,7 @@
      (bg-mode-line-active primary-container)
      (fg-mode-line-active on-primary-container)
      (bg-region primary-container)
-     (fg-region on-primary-container)))
-  :init (modus-themes-load-theme 'ef-trio-light))
+     (fg-region on-primary-container))))
 
 (use-package kotlin-ts-mode
   :mode "\\.kt\\'")
@@ -292,20 +292,17 @@
 (use-package magit)
 
 (use-package marginalia
+  :init (marginalia-mode)
   :bind (:map minibuffer-local-map
-              ("M-A" . marginalia-cycle))
-  :init (marginalia-mode))
+              ("M-A" . marginalia-cycle)))
 
 (use-package meow
-  :custom (meow-use-clipboard t)
   :init (defun meow-setup ()
           (setopt meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
-
           (meow-motion-define-key
            '("<escape>" . ignore)
            '("j" . meow-next)
            '("k" . meow-prev))
-
           (meow-leader-define-key
            '("1" . meow-digit-argument)
            '("2" . meow-digit-argument)
@@ -320,7 +317,6 @@
            '("b" . consult-buffer)
            '("/" . meow-keypad-describe-key)
            '("?" . meow-cheatsheet))
-
           (meow-normal-define-key
            '("<escape>" . ignore)
            '("1" . meow-expand-1)
@@ -385,7 +381,8 @@
            '("." . meow-bounds-of-thing)))
   :config
   (meow-setup)
-  (meow-global-mode))
+  (meow-global-mode)
+  :custom (meow-use-clipboard t))
 
 (use-package orderless
   :custom
@@ -397,11 +394,11 @@
   :ensure (:host github :repo "xhcoding/qml-ts-mode"))
 
 (use-package vertico
+  :init (vertico-mode)
   :custom
   (vertico-cycle t)
   (vertico-resize t)
-  (vertico-scroll-margin (/ vertico-count 2))
-  :init (vertico-mode))
+  (vertico-scroll-margin (/ vertico-count 2)))
 
 ;;; Mode Line
 
