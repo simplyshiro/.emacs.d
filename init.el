@@ -34,7 +34,9 @@
 
 (use-package eglot
   :ensure nil
-  :custom (eglot-events-buffer-config '(:size 0))
+  :custom
+  (eglot-events-buffer-config '(:size 0))
+  (eglot-ignored-server-capabilities '(:documentFormattingProvider))
   :hook
   (after-save-hook . eglot-format)
   (c-mode-hook . eglot-ensure)
