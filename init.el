@@ -451,7 +451,7 @@ mouse-3: Next buffer"
 (defconst shiro-variable-pitch-font "Inter")
 
 (defun shiro-set-fonts (&optional frame)
-  "Set preferred fonts of FRAME."
+  "Set preferred fonts on FRAME."
   (when (member shiro-fixed-pitch-font (font-family-list))
     (set-face-attribute 'default frame :family shiro-fixed-pitch-font :height shiro-font-size)
     (set-face-attribute 'fixed-pitch frame :family shiro-fixed-pitch-font :height shiro-font-size))
