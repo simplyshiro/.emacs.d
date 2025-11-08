@@ -177,7 +177,7 @@
   (modus-themes-italic-constructs t)
   (modus-themes-mixed-fonts t)
   :init
-  (defun shiro-modus-themes-custom-faces ()
+  (defun shiro-modus-themes-custom-faces (&optional theme)
     (modus-themes-with-colors
       (custom-set-faces
        `(mode-line-active ((,c :box (:line-width 8 :color ,bg-mode-line-active))))
