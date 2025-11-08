@@ -102,10 +102,6 @@
   (column-number-mode)
   (line-number-mode))
 
-(use-package time
-  :ensure nil
-  :init (display-time-mode))
-
 (use-package treesit
   :ensure nil
   :custom
@@ -407,42 +403,43 @@
 
 ;;; Mode Line
 
-(setopt mode-line-buffer-identification
-        (propertize
-          " %b " 'face 'mode-line-buffer-id
-          'mouse-face 'mode-line-emphasis
-          'help-echo "Buffer name
+(defun shiro-setup-mode-line ()
+  "Customize the mode line format."
+  (setopt mode-line-buffer-identification
+          (propertize
+           " %b " 'face 'mode-line-buffer-id
+           'mouse-face 'mode-line-emphasis
+           'help-echo "Buffer name
 mouse-1: Previous buffer
 mouse-3: Next buffer"
-          'local-map mode-line-buffer-identification-keymap))
-(setopt mode-line-position-line-format '(" L%l "))
-(setopt mode-line-position-column-format '(" C%C "))
-(setopt mode-line-position-column-line-format '(" %l:%C "))
-(setopt mode-line-position
-        '((line-number-mode
-           (column-number-mode
-            (:eval mode-line-position-column-line-format)
-            (:eval mode-line-position-line-format))
-           (column-number-mode
-            (:eval mode-line-position-column-format)))))
-(setopt mode-line-right-align-edge 'right-margin)
-(setopt display-time-default-load-average nil)
-(setopt display-time-format " %H:%M ")
-(setopt mode-line-format
-        '("%e"
-          " λ "
-          (:eval (with-eval-after-load 'meow
-                   (meow-indicator)))
-          (:eval mode-line-buffer-identification)
-          (:eval (concat
-                  " (" (downcase
-                        (cond ((consp mode-name) (car mode-name))
-                              ((stringp mode-name) mode-name)
-                              (t "unknown")))
-                  " mode) "))
-          mode-line-position
-          mode-line-format-right-align
-          display-time-string))
+           'local-map mode-line-buffer-identification-keymap))
+  (setopt mode-line-position-line-format '(" L%l "))
+  (setopt mode-line-position-column-format '(" C%C "))
+  (setopt mode-line-position-column-line-format '(" %l:%C "))
+  (setopt mode-line-position
+          '((line-number-mode
+             (column-number-mode
+              (:eval mode-line-position-column-line-format)
+              (:eval mode-line-position-line-format))
+             (column-number-mode
+              (:eval mode-line-position-column-format)))))
+  (setopt mode-line-right-align-edge 'right-margin)
+  (setopt mode-line-format
+          '("%e"
+            " λ "
+            (:eval (with-eval-after-load 'meow
+                     (meow-indicator)))
+            (:eval mode-line-buffer-identification)
+            (:eval (concat
+                    " (" (downcase
+                          (cond ((consp mode-name) (car mode-name))
+                                ((stringp mode-name) mode-name)
+                                (t "unknown")))
+                    " mode) "))
+            mode-line-position
+            mode-line-format-right-align)))
+
+(shiro-setup-mode-line)
 
 ;;; Fonts
 
