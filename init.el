@@ -231,8 +231,7 @@
 (use-package corfu
   :init (global-corfu-mode)
   :custom
-  (corfu-auto t)
-  (corfu-quit-no-match t))
+  (corfu-auto t))
 
 (use-package ef-themes
   :init (modus-themes-load-theme 'ef-trio-light)
