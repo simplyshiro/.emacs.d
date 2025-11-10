@@ -14,9 +14,9 @@
   (tab-width 4)
   (tab-always-indent 'complete)
   (use-short-answers t)
-  (undo-limit (shiro-convert-from-mebibytes-to-bytes 16))
-  (undo-strong-limit (shiro-convert-from-mebibytes-to-bytes 32))
-  (undo-outer-limit (shiro-convert-from-mebibytes-to-bytes 64))
+  (undo-limit (shiro/convert-from-mib-to-b 16))
+  (undo-strong-limit (shiro/convert-from-mib-to-b 32))
+  (undo-outer-limit (shiro/convert-from-mib-to-b 64))
   :ensure nil)
 
 (use-package autorevert
@@ -146,13 +146,13 @@
 ;; Required by `ef-themes'.
 (use-package modus-themes
   :init
-  (defun shiro-modus-themes-custom-faces (&optional theme)
+  (defun shiro/modus-themes-custom-faces (&optional theme)
     (modus-themes-with-colors
       (custom-set-faces
        `(mode-line-active ((,c :box (:line-width 8 :color ,bg-mode-line-active))))
        `(mode-line-inactive ((,c :box (:line-width 8 :color ,bg-mode-line-inactive)))))))
   (modus-themes-include-derivatives-mode)
-  :config (add-hook 'modus-themes-after-load-theme-hook #'shiro-modus-themes-custom-faces)
+  :config (add-hook 'modus-themes-after-load-theme-hook #'shiro/modus-themes-custom-faces)
   :custom
   (modus-themes-bold-constructs t)
   (modus-themes-common-palette-overrides
@@ -185,13 +185,13 @@
 (use-package transient)
 
 (use-package cape
-  :init (defun shiro-prog-mode-capf ()
+  :init (defun shiro/prog-mode-capf ()
           (setq-local completion-at-point-functions
                       '(cape-dabbrev
                         cape-keyword
                         cape-elisp-symbol
                         cape-file)))
-  :hook (prog-mode-hook . shiro-prog-mode-capf)
+  :hook (prog-mode-hook . shiro/prog-mode-capf)
   :bind ("C-c p" . cape-prefix-map))
 
 (use-package consult
@@ -286,7 +286,7 @@
   :mode "\\.kt\\'")
 
 (use-package ligature
-  :init (defvar shiro-iosevka-ligatures
+  :init (defvar shiro/iosevka-ligatures
           '("<--" "<---" "<<-" "<-" "->" "->>" "-->" "--->"
             "<==" "<===" "<<=" "<=" "=>" "=>>" "==>" "===>"
             ">=" ">>=" "<->" "<-->" "<--->" "<---->" "<=>"
@@ -296,7 +296,7 @@
             "<|>" "|>" "+*" "=*" "=:" ":>" "/*" "*/" "+++"
             "<!--" "<!---"))
   :config
-  (ligature-set-ligatures 'prog-mode shiro-iosevka-ligatures)
+  (ligature-set-ligatures 'prog-mode shiro/iosevka-ligatures)
   (global-ligature-mode))
 
 (use-package magit)
@@ -448,20 +448,20 @@ mouse-3: Next buffer"
 
 ;;; Fonts
 
-(defconst shiro-font-size 105)
-(defconst shiro-fixed-pitch-font "Iosevka")
-(defconst shiro-variable-pitch-font "Inter")
+(defconst shiro/font-size 105)
+(defconst shiro/fixed-pitch-font "Iosevka")
+(defconst shiro/variable-pitch-font "Inter")
 
-(defun shiro-set-fonts (&optional frame)
-  (when (member shiro-fixed-pitch-font (font-family-list))
-    (set-face-attribute 'default frame :family shiro-fixed-pitch-font :height shiro-font-size)
-    (set-face-attribute 'fixed-pitch frame :family shiro-fixed-pitch-font :height shiro-font-size))
-  (when (member shiro-variable-pitch-font (font-family-list))
-    (set-face-attribute 'variable-pitch frame :family shiro-variable-pitch-font :height shiro-font-size)))
+(defun shiro/set-fonts (&optional frame)
+  (when (member shiro/fixed-pitch-font (font-family-list))
+    (set-face-attribute 'default frame :family shiro/fixed-pitch-font :height shiro/font-size)
+    (set-face-attribute 'fixed-pitch frame :family shiro/fixed-pitch-font :height shiro/font-size))
+  (when (member shiro/variable-pitch-font (font-family-list))
+    (set-face-attribute 'variable-pitch frame :family shiro/variable-pitch-font :height shiro/font-size)))
 
 (if (daemonp)
-    (add-hook 'server-after-make-frame-hook #'shiro-set-fonts)
-  (shiro-set-fonts))
+    (add-hook 'server-after-make-frame-hook #'shiro/set-fonts)
+  (shiro/set-fonts))
 
 (provide 'init)
 
