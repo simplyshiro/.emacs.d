@@ -41,7 +41,6 @@
   (add-to-list 'eglot-server-programs
                '((qml-ts-mode) . ("qmlls6")))
   :hook
-  (after-save-hook . eglot-format)
   (c-mode-hook . eglot-ensure)
   (java-mode-hook . eglot-ensure)
   (kotlin-ts-mode-hook . eglot-ensure)
@@ -50,7 +49,6 @@
   (qml-ts-mode-hook . eglot-ensure)
   :custom
   (eglot-events-buffer-config '(:size 0))
-  (eglot-ignored-server-capabilities '(:documentFormattingProvider))
   :ensure nil)
 
 (use-package elec-pair
