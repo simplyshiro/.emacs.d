@@ -184,6 +184,16 @@
 ;; Required by `magit'.
 (use-package transient)
 
+(use-package cape
+  :init (defun shiro-prog-mode-capf ()
+          (setq-local completion-at-point-functions
+                      '(cape-dabbrev
+                        cape-keyword
+                        cape-elisp-symbol
+                        cape-file)))
+  :hook (prog-mode-hook . shiro-prog-mode-capf)
+  :bind ("C-c p" . cape-prefix-map))
+
 (use-package consult
   :init (advice-add #'register-preview :override #'consult-register-window)
   :hook (completion-list-mode-hook . consult-preview-at-point-mode)
