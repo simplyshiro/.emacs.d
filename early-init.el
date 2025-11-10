@@ -4,17 +4,17 @@
 
 ;;; Code:
 
-(defun shiro-convert-from-mebibytes-to-bytes (mebibytes)
+(defun shiro/convert-from-mib-to-b (mebibytes)
   (* mebibytes (expt 2 20)))
 
-(defconst shiro-gc-cons-threshold (shiro-convert-from-mebibytes-to-bytes 64))
+(defconst shiro/gc-cons-threshold (shiro/convert-from-mib-to-b 64))
 
 (add-hook 'before-init-hook
           (lambda ()
             (setopt gc-cons-threshold most-positive-fixnum)))
 (add-hook 'emacs-startup-hook
           (lambda ()
-            (setopt gc-cons-threshold shiro-gc-cons-threshold)))
+            (setopt gc-cons-threshold shiro/gc-cons-threshold)))
 
 (setopt inhibit-startup-buffer-menu t)
 (setopt inhibit-startup-echo-area-message user-login-name)
