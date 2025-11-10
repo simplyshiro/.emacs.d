@@ -9,37 +9,27 @@
 
 (defconst shiro-gc-cons-threshold (shiro-convert-from-mebibytes-to-bytes 64))
 
-(defun shiro-configure-startup-hooks ()
-  (add-hook 'before-init-hook
-            (lambda ()
-              (setopt gc-cons-threshold most-positive-fixnum)))
-  (add-hook 'emacs-startup-hook
-            (lambda ()
-              (setopt gc-cons-threshold shiro-gc-cons-threshold))))
+(add-hook 'before-init-hook
+          (lambda ()
+            (setopt gc-cons-threshold most-positive-fixnum)))
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (setopt gc-cons-threshold shiro-gc-cons-threshold)))
 
-(defun shiro-configure-startup ()
-  (setopt initial-buffer-choice nil)
-  (setopt inhibit-startup-screen t)
-  (setopt inhibit-startup-echo-area-message user-login-name)
-  (setopt inhibit-startup-buffer-menu t)
-  (setopt initial-major-mode 'fundamental-mode)
-  (setopt initial-scratch-message nil))
-
-(defun shiro-disable-bars ()
-  (setopt menu-bar-mode nil)
-  (setopt scroll-bar-mode nil)
-  (setopt tool-bar-mode nil))
-
-(shiro-configure-startup-hooks)
-(shiro-configure-startup)
-(shiro-disable-bars)
-
+(setopt inhibit-startup-buffer-menu t)
+(setopt inhibit-startup-echo-area-message user-login-name)
+(setopt inhibit-startup-screen t)
+(setopt initial-buffer-choice nil)
+(setopt initial-major-mode 'fundamental-mode)
+(setopt initial-scratch-message nil)
+(setopt load-prefer-newer t)
+(setopt menu-bar-mode nil)
+(setopt package-native-compile t)
+(setopt scroll-bar-mode nil)
+(setopt tool-bar-mode nil)
 (setopt user-emacs-directory (expand-file-name "var/" user-emacs-directory))
 
-(setopt load-prefer-newer t)
-
 (setq package-enable-at-startup nil)
-(setopt package-native-compile t)
 
 (defvar elpaca-installer-version 0.11)
 (defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
@@ -86,8 +76,8 @@
 (elpaca elpaca-use-package
   (elpaca-use-package-mode))
 
-(setopt use-package-hook-name-suffix nil)
 (setopt use-package-always-ensure t)
+(setopt use-package-hook-name-suffix nil)
 
 (provide 'early-init)
 
