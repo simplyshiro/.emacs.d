@@ -229,9 +229,12 @@
   (xref-show-definitions-function #'consult-xref))
 
 (use-package corfu
-  :init (global-corfu-mode)
+  :init
+  (global-corfu-mode)
+  (corfu-popupinfo-mode)
   :custom
-  (corfu-auto t))
+  (corfu-auto t)
+  (corfu-popupinfo-delay '(0.2 . 1.0)))
 
 (use-package ef-themes
   :init (modus-themes-load-theme 'ef-trio-light)
