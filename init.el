@@ -306,6 +306,9 @@
   :bind (:map minibuffer-local-map
               ("M-A" . marginalia-cycle)))
 
+(use-package markdown-mode
+  :mode ("README\\.md\\'" . gfm-mode))
+
 (use-package meow
   :init (defun meow-setup ()
           (setopt meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
