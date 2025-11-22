@@ -4,10 +4,13 @@
 
 ;;; Code:
 
-(defun shiro/convert-from-mib-to-b (mebibytes)
-  (* mebibytes (expt 2 20)))
+(defconst shiro/gc-cons-threshold 67108864
+  "Value of `gc-cons-threshold' to set after startup.
+Equivalent to 64 mebibytes.")
 
-(defconst shiro/gc-cons-threshold (shiro/convert-from-mib-to-b 64))
+(defun shiro/convert-from-mib-to-b (mebibytes)
+  "Convert a number of MEBIBYTES to bytes."
+  (* mebibytes (expt 2 20)))
 
 (add-hook 'before-init-hook
           (lambda ()
