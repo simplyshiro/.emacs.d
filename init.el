@@ -178,8 +178,7 @@
      (4 . (1.2))
      (5 . (1.1))))
   (modus-themes-italic-constructs t)
-  (modus-themes-mixed-fonts t)
-  :ensure (:tag "5.0.0"))
+  (modus-themes-mixed-fonts t))
 
 ;; Required by `magit'.
 (use-package transient)
