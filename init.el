@@ -35,16 +35,16 @@
 (use-package eglot
   :config
   (add-to-list 'eglot-server-programs
-               '((java-mode java-ts-mode) . ("jdtls" "--enable-preview")))
+               '((java-ts-mode) . ("jdtls" "--enable-preview")))
   (add-to-list 'eglot-server-programs
                '((kotlin-ts-mode) . ("kotlin-lsp" "--stdio")))
   (add-to-list 'eglot-server-programs
                '((qml-ts-mode) . ("qmlls6")))
   :hook
-  (c-mode-hook . eglot-ensure)
-  (java-mode-hook . eglot-ensure)
+  (c-ts-mode-hook . eglot-ensure)
+  (java-ts-mode-hook . eglot-ensure)
   (kotlin-ts-mode-hook . eglot-ensure)
-  (python-mode-hook . eglot-ensure)
+  (python-ts-mode-hook . eglot-ensure)
   (rust-ts-mode-hook . eglot-ensure)
   (qml-ts-mode-hook . eglot-ensure)
   :custom
