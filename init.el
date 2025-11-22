@@ -17,6 +17,8 @@
   (undo-limit (shiro/convert-from-mib-to-b 16))
   (undo-strong-limit (shiro/convert-from-mib-to-b 32))
   (undo-outer-limit (shiro/convert-from-mib-to-b 64))
+  :config
+  (add-to-list 'exec-path (expand-file-name "~/.local/bin"))
   :ensure nil)
 
 (use-package autorevert
