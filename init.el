@@ -41,6 +41,8 @@
   (add-to-list 'eglot-server-programs
                '((kotlin-ts-mode) . ("kotlin-lsp" "--stdio")))
   (add-to-list 'eglot-server-programs
+               '((python-ts-mode) . ("ty" "server")))
+  (add-to-list 'eglot-server-programs
                '((qml-ts-mode) . ("qmlls6")))
   :hook
   (c-ts-mode-hook . eglot-ensure)
