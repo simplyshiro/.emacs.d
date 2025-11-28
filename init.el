@@ -107,6 +107,11 @@
   (read-extended-command-predicate #'command-completion-default-include-p)
   :ensure nil)
 
+(use-package text-mode
+  :custom
+  (text-mode-ispell-word-completion nil)
+  :ensure nil)
+
 (use-package treesit
   :init (setopt treesit-language-source-alist
                 '((bash . ("https://github.com/tree-sitter/tree-sitter-bash" "v0.25.0"))
