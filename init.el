@@ -44,6 +44,8 @@
                '((python-mode python-ts-mode) "ty" "server"))
   (add-to-list 'eglot-server-programs
                '(qml-ts-mode "qmlls6"))
+  (setopt completion-category-defaults nil)
+  (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster)
   :hook
   ((c-mode-hook c-ts-mode-hook) . eglot-ensure)
   ((csharp-mode-hook csharp-ts-mode-hook) . eglot-ensure)
@@ -418,7 +420,9 @@
   :custom
   (completion-styles '(orderless basic))
   (completion-category-defaults nil)
-  (completion-category-overrides '((file (styles basic partial-completion)))))
+  (completion-category-overrides '((eglot (styles orderless))
+                                   (eglot-capf (styles orderless))
+                                   (file (styles basic partial-completion)))))
 
 (use-package qml-ts-mode
   :ensure (:host github :repo "xhcoding/qml-ts-mode"))
