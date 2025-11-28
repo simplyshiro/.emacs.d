@@ -244,6 +244,13 @@
   :init
   (global-corfu-mode)
   (corfu-popupinfo-mode)
+  :hook
+  (eshell-mode-hook . (lambda ()
+                        (setq-local corfu-map
+                                    (define-keymap
+                                      :parent corfu-map
+                                      "RET" #'corfu-send))
+                        (setq-local corfu-auto nil)))
   :custom
   (corfu-auto t)
   (corfu-auto-delay 0.1)
