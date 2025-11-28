@@ -194,13 +194,12 @@
 (use-package transient)
 
 (use-package cape
-  :init (defun shiro/prog-mode-capf ()
-          (setq-local completion-at-point-functions
-                      '(cape-dabbrev
-                        cape-keyword
-                        cape-elisp-symbol
-                        cape-file)))
-  :hook (prog-mode-hook . shiro/prog-mode-capf)
+  :hook (emacs-lisp-mode-hook . (lambda ()
+                                  (setq-local completion-at-point-functions
+                                              (list (cape-capf-super
+                                                     #'cape-elisp-symbol
+                                                     #'cape-dabbrev
+                                                     #'cape-file)))))
   :bind ("C-c p" . cape-prefix-map))
 
 (use-package consult
