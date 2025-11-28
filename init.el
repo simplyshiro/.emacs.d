@@ -246,7 +246,9 @@
   (corfu-popupinfo-mode)
   :custom
   (corfu-auto t)
-  (corfu-popupinfo-delay '(0.2 . 1.0)))
+  (corfu-auto-delay 0.1)
+  (corfu-cycle t)
+  (corfu-popupinfo-delay '(0.1 . 1.0)))
 
 (use-package ef-themes
   :init (modus-themes-load-theme 'ef-trio-light)
