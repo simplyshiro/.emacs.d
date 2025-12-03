@@ -195,6 +195,9 @@
 ;; Required by `magit'.
 (use-package transient)
 
+(use-package apheleia
+  :init (apheleia-global-mode))
+
 (use-package cape
   :hook (emacs-lisp-mode-hook . (lambda ()
                                   (setq-local completion-at-point-functions
