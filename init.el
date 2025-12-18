@@ -30,8 +30,8 @@
   :ensure nil)
 
 (use-package display-line-numbers
-  :hook (prog-mode-hook . display-line-numbers-mode)
   :custom (display-line-numbers-type 'relative)
+  :config (global-display-line-numbers-mode)
   :ensure nil)
 
 (use-package eglot
