@@ -307,19 +307,19 @@
 (use-package kotlin-ts-mode
   :mode "\\.kt\\'")
 
-(use-package ligature
-  :init (defvar shiro/iosevka-ligatures
-          '("<--" "<---" "<<-" "<-" "->" "->>" "-->" "--->"
-            "<==" "<===" "<<=" "<=" "=>" "=>>" "==>" "===>"
-            ">=" ">>=" "<->" "<-->" "<--->" "<---->" "<=>"
-            "<==>" "<===>" "<====>" "::" ":::" "<~~" "</"
-            "</>" "/>" "~~>" "==" "!=" "<>" "===" "!=="
-            "!===" "<:" ":=" "*=" "*+" "<*" "<*>" "*>" "<|"
-            "<|>" "|>" "+*" "=*" "=:" ":>" "/*" "*/" "+++"
-            "<!--" "<!---"))
-  :config
-  (ligature-set-ligatures 'prog-mode shiro/iosevka-ligatures)
-  (global-ligature-mode))
+;; (use-package ligature
+;;   :init (defvar shiro/iosevka-ligatures
+;;           '("<--" "<---" "<<-" "<-" "->" "->>" "-->" "--->"
+;;             "<==" "<===" "<<=" "<=" "=>" "=>>" "==>" "===>"
+;;             ">=" ">>=" "<->" "<-->" "<--->" "<---->" "<=>"
+;;             "<==>" "<===>" "<====>" "::" ":::" "<~~" "</"
+;;             "</>" "/>" "~~>" "==" "!=" "<>" "===" "!=="
+;;             "!===" "<:" ":=" "*=" "*+" "<*" "<*>" "*>" "<|"
+;;             "<|>" "|>" "+*" "=*" "=:" ":>" "/*" "*/" "+++"
+;;             "<!--" "<!---"))
+;;   :config
+;;   (ligature-set-ligatures 'prog-mode shiro/iosevka-ligatures)
+;;   (global-ligature-mode))
 
 (use-package magit)
 
@@ -385,8 +385,8 @@ mouse-3: Next buffer"
 
 ;;; Fonts
 
-(defconst shiro/font-size 105)
-(defconst shiro/fixed-pitch-font "Iosevka")
+(defconst shiro/font-size 90)
+(defconst shiro/fixed-pitch-font "Spleen")
 (defconst shiro/variable-pitch-font "Inter")
 
 (defun shiro/set-fonts (&optional frame)
