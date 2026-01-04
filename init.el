@@ -386,7 +386,7 @@ mouse-3: Next buffer"
 
 (defconst shiro/font-size 90)
 (defconst shiro/fixed-pitch-font "Spleen")
-(defconst shiro/variable-pitch-font "Inter")
+(defconst shiro/variable-pitch-font "Google Sans")
 
 (defun shiro/set-fonts (&optional frame)
   (when (member shiro/fixed-pitch-font (font-family-list))
