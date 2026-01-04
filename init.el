@@ -372,7 +372,6 @@ mouse-3: Next buffer"
 (setopt mode-line-right-align-edge 'right-margin)
 (setopt mode-line-format
         '("%e"
-          " λ "
           (:eval mode-line-buffer-identification)
           (:eval (concat
                   " (" (downcase
