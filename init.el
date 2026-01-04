@@ -157,14 +157,7 @@
 
 ;; Required by `ef-themes'.
 (use-package modus-themes
-  :init
-  (defun shiro/modus-themes-custom-faces (&optional theme)
-    (modus-themes-with-colors
-      (custom-set-faces
-       `(mode-line-active ((,c :box (:line-width 8 :color ,bg-mode-line-active))))
-       `(mode-line-inactive ((,c :box (:line-width 8 :color ,bg-mode-line-inactive)))))))
-  (modus-themes-include-derivatives-mode)
-  :config (add-hook 'modus-themes-after-load-theme-hook #'shiro/modus-themes-custom-faces)
+  :init (modus-themes-include-derivatives-mode)
   :custom
   (modus-themes-bold-constructs t)
   (modus-themes-common-palette-overrides
@@ -341,6 +334,11 @@
 
 (use-package qml-ts-mode
   :ensure (:host github :repo "xhcoding/qml-ts-mode"))
+
+(use-package spacious-padding
+  :init (spacious-padding-mode)
+  :custom
+  (spacious-padding-widths '(:internal-border-width 16 :right-divider-width 1 :mode-line-width 8)))
 
 (use-package vertico
   :init (vertico-mode)
