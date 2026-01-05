@@ -352,7 +352,7 @@
 (setopt mode-line-buffer-identification
         (propertize
          " %b " 'face 'mode-line-buffer-id
-         'mouse-face 'mode-line-emphasis
+         'mouse-face 'mode-line-highlight
          'help-echo "Buffer name
 mouse-1: Previous buffer
 mouse-3: Next buffer"
