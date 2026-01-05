@@ -375,10 +375,11 @@ mouse-3: Next buffer"
           (:eval (when-let (vc vc-mode)
                    (list " " (substring vc 5) " ")))
           (:eval (concat
-                  " (" (downcase
-                        (cond ((consp mode-name) (car mode-name))
-                              ((stringp mode-name) mode-name)
-                              (t "unknown")))
+                  " ("
+                  (downcase
+                   (cond ((consp mode-name) (car mode-name))
+                         ((stringp mode-name) mode-name)
+                         (t "unknown")))
                   " mode) "))
           mode-line-position
           mode-line-format-right-align))
