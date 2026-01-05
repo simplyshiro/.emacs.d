@@ -370,7 +370,10 @@ mouse-3: Next buffer"
 (setopt mode-line-right-align-edge 'right-margin)
 (setopt mode-line-format
         '("%e"
+          " %% "
           (:eval mode-line-buffer-identification)
+          (:eval (when-let (vc vc-mode)
+                   (list " " (substring vc 5) " ")))
           (:eval (concat
                   " (" (downcase
                         (cond ((consp mode-name) (car mode-name))
