@@ -386,8 +386,8 @@ mouse-3: Next buffer"
 
 ;;; Fonts
 
-(defconst shiro/font-size 90)
-(defconst shiro/fixed-pitch-font "Spleen")
+(defconst shiro/font-size 120)
+(defconst shiro/fixed-pitch-font "Unifont")
 (defconst shiro/variable-pitch-font "Google Sans")
 
 (defun shiro/set-fonts (&optional frame)
