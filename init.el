@@ -1,22 +1,25 @@
-;;; init.el --- Init -*- lexical-binding: t; no-byte-compile: t; no-native-compile: t; -*-
-
+;;; init.el --- Init -*- lexical-binding: t; no-byte-compile: t; -*-
+;;
 ;;; Commentary:
-
+;;
 ;;; Code:
+
+(add-to-list 'load-path (expand-file-name "lisp/" user-emacs-directory))
+
+(require 'init-elpaca)
 
 ;;; Built-in
 
 (use-package emacs
   :custom
-  (auto-save-list-file-prefix (expand-file-name "auto-save-list/.saves-" user-emacs-directory))
   (blink-cursor-mode nil)
   (enable-recursive-minibuffers t)
   (tab-width 4)
   (tab-always-indent 'complete)
   (use-short-answers t)
-  (undo-limit (shiro/convert-from-mib-to-b 16))
-  (undo-strong-limit (shiro/convert-from-mib-to-b 32))
-  (undo-outer-limit (shiro/convert-from-mib-to-b 64))
+  (undo-limit (shiro-convert-from-mib-to-b 16))
+  (undo-strong-limit (shiro-convert-from-mib-to-b 32))
+  (undo-outer-limit (shiro-convert-from-mib-to-b 64))
   :config
   (add-to-list 'exec-path (expand-file-name "~/.local/bin"))
   :ensure nil)
@@ -65,7 +68,6 @@
 (use-package files
   :custom
   (backup-by-copying t)
-  (backup-directory-alist `(("." . ,(expand-file-name "backups/" user-emacs-directory))))
   (delete-old-versions t)
   (version-control t)
   :ensure nil)
@@ -300,20 +302,6 @@
 (use-package kotlin-ts-mode
   :mode "\\.kt\\'")
 
-;; (use-package ligature
-;;   :init (defvar shiro/iosevka-ligatures
-;;           '("<--" "<---" "<<-" "<-" "->" "->>" "-->" "--->"
-;;             "<==" "<===" "<<=" "<=" "=>" "=>>" "==>" "===>"
-;;             ">=" ">>=" "<->" "<-->" "<--->" "<---->" "<=>"
-;;             "<==>" "<===>" "<====>" "::" ":::" "<~~" "</"
-;;             "</>" "/>" "~~>" "==" "!=" "<>" "===" "!=="
-;;             "!===" "<:" ":=" "*=" "*+" "<*" "<*>" "*>" "<|"
-;;             "<|>" "|>" "+*" "=*" "=:" ":>" "/*" "*/" "+++"
-;;             "<!--" "<!---"))
-;;   :config
-;;   (ligature-set-ligatures 'prog-mode shiro/iosevka-ligatures)
-;;   (global-ligature-mode))
-
 (use-package magit)
 
 (use-package marginalia
@@ -386,20 +374,24 @@ mouse-3: Next buffer"
 
 ;;; Fonts
 
-(defconst shiro/font-size 120)
-(defconst shiro/fixed-pitch-font "Unifont")
-(defconst shiro/variable-pitch-font "Google Sans")
+(defconst shiro-font-height 105
+  "Equivalent to 14 pixel height.")
+(defconst shiro-fixed-pitch-font-family "Google Sans Code"
+  "Preferred monospaced font family.")
+(defconst shiro-variable-pitch-font-family "Google Sans"
+  "Preferred proportional font family.")
 
-(defun shiro/set-fonts (&optional frame)
-  (when (member shiro/fixed-pitch-font (font-family-list))
-    (set-face-attribute 'default frame :family shiro/fixed-pitch-font :height shiro/font-size)
-    (set-face-attribute 'fixed-pitch frame :family shiro/fixed-pitch-font :height shiro/font-size))
-  (when (member shiro/variable-pitch-font (font-family-list))
-    (set-face-attribute 'variable-pitch frame :family shiro/variable-pitch-font :height shiro/font-size)))
+(defun shiro-set-font-families (&optional frame)
+  "Set preferred font families on FRAME."
+  (when (member shiro-fixed-pitch-font-family (font-family-list))
+    (set-face-attribute 'default frame :family shiro-fixed-pitch-font-family :height shiro-font-height)
+    (set-face-attribute 'fixed-pitch frame :family shiro-fixed-pitch-font-family :height shiro-font-height))
+  (when (member shiro-variable-pitch-font-family (font-family-list))
+    (set-face-attribute 'variable-pitch frame :family shiro-variable-pitch-font-family :height shiro-font-height)))
 
 (if (daemonp)
-    (add-hook 'server-after-make-frame-hook #'shiro/set-fonts)
-  (shiro/set-fonts))
+    (add-hook 'server-after-make-frame-hook #'shiro-set-font-families)
+  (shiro-set-font-families))
 
 (provide 'init)
 
