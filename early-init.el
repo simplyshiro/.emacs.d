@@ -8,8 +8,7 @@
 ;;; Code:
 
 (add-hook 'before-init-hook
-          (lambda ()
-            (setopt gc-cons-threshold most-positive-fixnum)))
+          (lambda () (setopt gc-cons-threshold most-positive-fixnum)))
 
 (defun shiro-convert-from-mib-to-b (mebibytes)
   "Convert a number of MEBIBYTES to bytes."
