@@ -66,10 +66,10 @@
 (when (boundp 'pgtk-wait-for-event-timeout)
   (setopt pgtk-wait-for-event-timeout nil))
 
-(setopt menu-bar-mode nil)
-(setopt scroll-bar-mode nil)
-(setopt tool-bar-mode nil)
-(setopt tooltip-mode nil)
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+(tooltip-mode -1)
 
 (add-hook 'emacs-startup-hook
           (lambda ()
