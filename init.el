@@ -16,7 +16,6 @@
 
 (use-package emacs
   :custom
-  (blink-cursor-mode nil)
   (enable-recursive-minibuffers t)
   (tab-width 4)
   (tab-always-indent 'complete)
