@@ -7,6 +7,8 @@
 ;;
 ;;; Code:
 
+(blink-cursor-mode -1)
+
 (setopt display-line-numbers-type 'relative)
 (global-display-line-numbers-mode)
 
