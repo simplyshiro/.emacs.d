@@ -1,23 +1,57 @@
-;;; early-init.el --- Early Init -*- lexical-binding: t; no-byte-compile: t; no-native-compile: t; -*-
-
+;;; early-init.el --- Early Init -*- lexical-binding: t; no-byte-compile: t; -*-
+;;
+;; Author: simplyshiro
+;; URL: https://github.com/simplyshiro/.emacs.d
+;;
 ;;; Commentary:
-
+;;
 ;;; Code:
-
-(defconst shiro/gc-cons-threshold 67108864
-  "Value of `gc-cons-threshold' to set after startup.
-Equivalent to 64 mebibytes.")
-
-(defun shiro/convert-from-mib-to-b (mebibytes)
-  "Convert a number of MEBIBYTES to bytes."
-  (* mebibytes (expt 2 20)))
 
 (add-hook 'before-init-hook
           (lambda ()
             (setopt gc-cons-threshold most-positive-fixnum)))
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (setopt gc-cons-threshold shiro/gc-cons-threshold)))
+
+(defun shiro-convert-from-mib-to-b (mebibytes)
+  "Convert a number of MEBIBYTES to bytes."
+  (* mebibytes (expt 2 20)))
+
+(defvar shiro-variable-directory
+  (expand-file-name "var/" user-emacs-directory)
+  "Directory for variable files.")
+
+(setopt auto-save-list-file-prefix
+        (expand-file-name "auto-save-list/.saves-" shiro-variable-directory))
+(setopt backup-directory-alist
+        `(("." . ,(expand-file-name "backups/" shiro-variable-directory))))
+(when (featurep 'native-compile)
+  (startup-redirect-eln-cache
+   (expand-file-name "eln-cache/" shiro-variable-directory)))
+(setopt eshell-history-file-name
+        (expand-file-name "eshell/history" shiro-variable-directory))
+(setopt eshell-last-dir-ring-file-name
+        (expand-file-name "eshell/lastdir" shiro-variable-directory))
+(setopt custom-theme-directory
+        (expand-file-name "themes/" shiro-variable-directory))
+(setopt transient-history-file
+        (expand-file-name "transient/history.el" shiro-variable-directory))
+(setopt treesit-extra-load-path
+        (list (expand-file-name "tree-sitter/" shiro-variable-directory)))
+(setopt custom-file (expand-file-name "custom.el" shiro-variable-directory))
+(setopt savehist-file (expand-file-name "history" shiro-variable-directory))
+(setopt save-place-file (expand-file-name "places" shiro-variable-directory))
+(setopt project-list-file
+        (expand-file-name "projects" shiro-variable-directory))
+(setopt recentf-save-file
+        (expand-file-name "recentf" shiro-variable-directory))
+(setopt tramp-persistency-file-name
+        (expand-file-name "tramp" shiro-variable-directory))
+
+(setq package-enable-at-startup nil)
+
+(when (featurep 'native-compile)
+  (setopt package-native-compile t))
+
+(setopt load-prefer-newer t)
 
 (setopt inhibit-startup-buffer-menu t)
 (setopt inhibit-startup-echo-area-message user-login-name)
@@ -25,63 +59,18 @@ Equivalent to 64 mebibytes.")
 (setopt initial-buffer-choice nil)
 (setopt initial-major-mode 'fundamental-mode)
 (setopt initial-scratch-message nil)
-(setopt load-prefer-newer t)
+
+(when (boundp 'pgtk-wait-for-event-timeout)
+  (setopt pgtk-wait-for-event-timeout nil))
+
 (setopt menu-bar-mode nil)
-(setopt package-native-compile t)
-(setopt pgtk-wait-for-event-timeout 0.01)
 (setopt scroll-bar-mode nil)
 (setopt tool-bar-mode nil)
-(setopt user-emacs-directory (expand-file-name "var/" user-emacs-directory))
+(setopt tooltip-mode nil)
 
-(setq package-enable-at-startup nil)
-
-(defvar elpaca-installer-version 0.11)
-(defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
-(defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
-(defvar elpaca-repos-directory (expand-file-name "repos/" elpaca-directory))
-(defvar elpaca-order '(elpaca :repo "https://github.com/progfolio/elpaca.git"
-                              :ref nil :depth 1 :inherit ignore
-                              :files (:defaults "elpaca-test.el" (:exclude "extensions"))
-                              :build (:not elpaca--activate-package)))
-(let* ((repo  (expand-file-name "elpaca/" elpaca-repos-directory))
-       (build (expand-file-name "elpaca/" elpaca-builds-directory))
-       (order (cdr elpaca-order))
-       (default-directory repo))
-  (add-to-list 'load-path (if (file-exists-p build) build repo))
-  (unless (file-exists-p repo)
-    (make-directory repo t)
-    (when (<= emacs-major-version 28) (require 'subr-x))
-    (condition-case-unless-debug err
-        (if-let* ((buffer (pop-to-buffer-same-window "*elpaca-bootstrap*"))
-                  ((zerop (apply #'call-process `("git" nil ,buffer t "clone"
-                                                  ,@(when-let* ((depth (plist-get order :depth)))
-                                                      (list (format "--depth=%d" depth) "--no-single-branch"))
-                                                  ,(plist-get order :repo) ,repo))))
-                  ((zerop (call-process "git" nil buffer t "checkout"
-                                        (or (plist-get order :ref) "--"))))
-                  (emacs (concat invocation-directory invocation-name))
-                  ((zerop (call-process emacs nil buffer nil "-Q" "-L" "." "--batch"
-                                        "--eval" "(byte-recompile-directory \".\" 0 'force)")))
-                  ((require 'elpaca))
-                  ((elpaca-generate-autoloads "elpaca" repo)))
-            (progn (message "%s" (buffer-string)) (kill-buffer buffer))
-          (error "%s" (with-current-buffer buffer (buffer-string))))
-      ((error) (warn "%s" err) (delete-directory repo 'recursive))))
-  (unless (require 'elpaca-autoloads nil t)
-    (require 'elpaca)
-    (elpaca-generate-autoloads "elpaca" repo)
-    (let ((load-source-file-function nil)) (load "./elpaca-autoloads"))))
-(add-hook 'after-init-hook #'elpaca-process-queues)
-(elpaca `(,@elpaca-order))
-
-(when (eq system-type 'windows-nt)
-  (elpaca-no-symlink-mode))
-
-(elpaca elpaca-use-package
-  (elpaca-use-package-mode))
-
-(setopt use-package-always-ensure t)
-(setopt use-package-hook-name-suffix nil)
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (setopt gc-cons-threshold (shiro-convert-from-mib-to-b 64))))
 
 (provide 'early-init)
 
