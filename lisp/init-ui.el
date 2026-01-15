@@ -10,6 +10,10 @@
 (setopt display-line-numbers-type 'relative)
 (global-display-line-numbers-mode)
 
+;; Do not display line numbers in `eshell-mode'.
+(add-hook 'eshell-mode-hook
+          (lambda () (display-line-numbers-mode -1)))
+
 (pixel-scroll-precision-mode)
 
 ;; Required by `ef-themes'.
