@@ -113,12 +113,9 @@ mouse-3: Next buffer"
                    " mode) "))
           mode-line-position mode-line-format-right-align))
 
-(defvar shiro-font-height 105
-  "Preferred font size.")
-(defvar shiro-fixed-pitch-font-family "Google Sans Code"
-  "Preferred monospaced font family.")
-(defvar shiro-variable-pitch-font-family "Google Sans"
-  "Preferred proportional font family.")
+(defvar shiro-font-height 105)
+(defvar shiro-fixed-pitch-font-family "Google Sans Code")
+(defvar shiro-variable-pitch-font-family "Google Sans")
 
 (defun shiro-set-font-families (&optional frame)
   "Set preferred font families on FRAME."
