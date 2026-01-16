@@ -31,6 +31,8 @@
 
 (setopt auto-save-list-file-prefix
         (expand-file-name "auto-save-list/.saves-" shiro-variable-directory))
+(setopt eshell-aliases-file
+        (expand-file-name "eshell/alias" shiro-variable-directory))
 (setopt eshell-history-file-name
         (expand-file-name "eshell/history" shiro-variable-directory))
 (setopt eshell-last-dir-ring-file-name
