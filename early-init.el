@@ -24,6 +24,8 @@
   (startup-redirect-eln-cache
    (expand-file-name "eln-cache/" shiro-variable-directory)))
 
+(setopt eshell-directory-name
+        (expand-file-name "eshell/" shiro-variable-directory))
 (setopt custom-theme-directory
         (expand-file-name "themes/" shiro-variable-directory))
 (setopt treesit-extra-load-path
@@ -31,12 +33,6 @@
 
 (setopt auto-save-list-file-prefix
         (expand-file-name "auto-save-list/.saves-" shiro-variable-directory))
-(setopt eshell-aliases-file
-        (expand-file-name "eshell/alias" shiro-variable-directory))
-(setopt eshell-history-file-name
-        (expand-file-name "eshell/history" shiro-variable-directory))
-(setopt eshell-last-dir-ring-file-name
-        (expand-file-name "eshell/lastdir" shiro-variable-directory))
 (setopt transient-history-file
         (expand-file-name "transient/history.el" shiro-variable-directory))
 
