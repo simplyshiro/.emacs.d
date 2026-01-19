@@ -16,7 +16,6 @@
 
 (pixel-scroll-precision-mode)
 
-;; Required by `ef-themes'.
 (use-package modus-themes
   :custom
   (modus-themes-bold-constructs t)
