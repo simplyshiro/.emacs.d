@@ -52,8 +52,9 @@
 (elpaca elpaca-use-package
   (elpaca-use-package-mode))
 
-(setopt use-package-always-ensure t)
+(setopt use-package-always-defer t)
 (setopt use-package-hook-name-suffix nil)
+(setopt use-package-always-ensure t)
 
 (provide 'init-elpaca)
 
