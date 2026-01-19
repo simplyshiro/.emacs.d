@@ -107,27 +107,27 @@ mouse-3: Next buffer"
           flymake-mode-line-format
           mode-line-position mode-line-format-right-align))
 
-(defvar shiro-font-height 105)
-(defvar shiro-fixed-pitch-font-family "Google Sans Code")
-(defvar shiro-variable-pitch-font-family "Google Sans")
+(defvar-local shiro--font-height 105)
+(defvar-local shiro--fixed-pitch-font-family "Google Sans Code")
+(defvar-local shiro--variable-pitch-font-family "Google Sans")
 
-(defun shiro-set-font-families (&optional frame)
+(defun shiro--set-font-families (&optional frame)
   "Set preferred font families on FRAME."
-  (when (member shiro-fixed-pitch-font-family (font-family-list))
+  (when (member shiro--fixed-pitch-font-family (font-family-list))
     (set-face-attribute 'default frame
-                        :family shiro-fixed-pitch-font-family
-                        :height shiro-font-height)
+                        :family shiro--fixed-pitch-font-family
+                        :height shiro--font-height)
     (set-face-attribute 'fixed-pitch frame
-                        :family shiro-fixed-pitch-font-family
-                        :height shiro-font-height))
-  (when (member shiro-variable-pitch-font-family (font-family-list))
+                        :family shiro--fixed-pitch-font-family
+                        :height shiro--font-height))
+  (when (member shiro--variable-pitch-font-family (font-family-list))
     (set-face-attribute 'variable-pitch frame
-                        :family shiro-variable-pitch-font-family
-                        :height shiro-font-height)))
+                        :family shiro--variable-pitch-font-family
+                        :height shiro--font-height)))
 
 (if (daemonp)
-    (add-hook 'server-after-make-frame-hook #'shiro-set-font-families)
-  (shiro-set-font-families))
+    (add-hook 'server-after-make-frame-hook #'shiro--set-font-families)
+  (shiro--set-font-families))
 
 (use-package spacious-padding
   :config (spacious-padding-mode)
