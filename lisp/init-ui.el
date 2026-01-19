@@ -8,6 +8,7 @@
 ;;; Code:
 
 (use-package modus-themes
+  :config (modus-themes-include-derivatives-mode)
   :custom
   (modus-themes-bold-constructs t)
   (modus-themes-common-palette-overrides
@@ -33,10 +34,10 @@
      (4 . (1.2))
      (5 . (1.1))))
   (modus-themes-italic-constructs t)
-  (modus-themes-mixed-fonts t)
-  :config (modus-themes-include-derivatives-mode))
+  (modus-themes-mixed-fonts t))
 
 (use-package ef-themes
+  :config (modus-themes-load-theme 'ef-trio-light)
   :defer nil
   :custom
   (ef-trio-dark-palette-overrides
@@ -72,8 +73,7 @@
      (bg-mode-line-active primary-container)
      (fg-mode-line-active on-primary-container)
      (bg-region primary-container)
-     (fg-region on-primary-container)))
-  :config (modus-themes-load-theme 'ef-trio-light))
+     (fg-region on-primary-container))))
 
 (setopt mode-line-buffer-identification
         (propertize " %b " 'face 'mode-line-buffer-id
@@ -137,8 +137,8 @@ mouse-3: Next buffer"
    '(:internal-border-width 16 :right-divider-width 1 :mode-line-width 8)))
 
 (use-package display-line-numbers
-  :custom (display-line-numbers-type 'relative)
   :hook (prog-mode-hook . display-line-numbers-mode)
+  :custom (display-line-numbers-type 'relative)
   :ensure nil)
 
 (blink-cursor-mode -1)
