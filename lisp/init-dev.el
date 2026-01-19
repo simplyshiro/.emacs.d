@@ -36,15 +36,37 @@
   :ensure nil)
 
 (use-package flymake
-  :custom (flymake-mode-line-format
-           '(" " flymake-mode-line-counters " "))
+  :hook (prog-mode-hook . flymake-mode)
   :bind (:map flymake-mode-map
               ("M-n" . flymake-goto-next-error)
               ("M-p" . flymake-goto-prev-error))
-  :hook (prog-mode-hook . flymake-mode)
+  :custom (flymake-mode-line-format
+           '(" " flymake-mode-line-counters " "))
   :ensure nil)
 
 (use-package treesit
+  :config
+  (setopt treesit-language-source-alist
+          (mapcar (lambda (args) (apply #'shiro--treesit-generate-language-source args))
+                  '((bash "v0.25.1")
+                    (c "v0.24.1")
+                    (c-sharp "v0.23.1")
+                    (cpp "v0.23.4")
+                    (css "v0.25.0")
+                    (go "v0.25.0")
+                    (html "v0.23.2")
+                    (java "v0.23.5")
+                    (javascript "v0.25.0")
+                    (json "v0.24.8")
+                    (php "v0.24.2" nil "php/src")
+                    (python "v0.25.0")
+                    (ruby "v0.23.1")
+                    (rust "v0.24.0")
+                    (tsx "v0.23.2" "tree-sitter/tree-sitter-typescript" "tsx/src")
+                    (typescript "v0.23.2" "tree-sitter/tree-sitter-typescript" "typescript/src")
+                    ;; Unofficial `tree-sitter' parsers
+                    (kotlin "0.3.8" "fwcd/tree-sitter-kotlin")
+                    (qmljs "0.3.0" "yuja/tree-sitter-qmljs"))))
   :preface
   (defun shiro--treesit-generate-language-source (lang revision &optional repo source-dir)
     "Generate a list to use with `treesit-language-source-alist'.
@@ -70,32 +92,10 @@ in the repository in which the grammar's parser.c file resides."
      (js-mode . js-ts-mode)
      (python-mode . python-ts-mode)
      (ruby-mode . ruby-ts-mode)))
-  :config
-  (setopt treesit-language-source-alist
-          (mapcar (lambda (args) (apply #'shiro--treesit-generate-language-source args))
-                  '((bash "v0.25.1")
-                    (c "v0.24.1")
-                    (c-sharp "v0.23.1")
-                    (cpp "v0.23.4")
-                    (css "v0.25.0")
-                    (go "v0.25.0")
-                    (html "v0.23.2")
-                    (java "v0.23.5")
-                    (javascript "v0.25.0")
-                    (json "v0.24.8")
-                    (php "v0.24.2" nil "php/src")
-                    (python "v0.25.0")
-                    (ruby "v0.23.1")
-                    (rust "v0.24.0")
-                    (tsx "v0.23.2" "tree-sitter/tree-sitter-typescript" "tsx/src")
-                    (typescript "v0.23.2" "tree-sitter/tree-sitter-typescript" "typescript/src")
-                    ;; Unofficial `tree-sitter' parsers
-                    (kotlin "0.3.8" "fwcd/tree-sitter-kotlin")
-                    (qmljs "0.3.0" "yuja/tree-sitter-qmljs"))))
   :ensure nil)
 
 (use-package apheleia
-  :config (apheleia-global-mode 1))
+  :hook (prog-mode-hook . apheleia-mode))
 
 ;; `magit' requires the latest version of `transient'
 (use-package transient)
