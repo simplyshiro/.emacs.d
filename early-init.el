@@ -24,8 +24,6 @@
   (startup-redirect-eln-cache
    (expand-file-name "eln-cache/" shiro-variable-directory)))
 
-(setopt eshell-directory-name
-        (expand-file-name "eshell/" shiro-variable-directory))
 (setopt custom-theme-directory
         (expand-file-name "themes/" shiro-variable-directory))
 (setopt treesit-extra-load-path
