@@ -7,15 +7,6 @@
 ;;
 ;;; Code:
 
-(blink-cursor-mode -1)
-
-(use-package display-line-numbers
-  :custom (display-line-numbers-type 'relative)
-  :hook (prog-mode-hook . display-line-numbers-mode)
-  :ensure nil)
-
-(pixel-scroll-precision-mode)
-
 (use-package modus-themes
   :custom
   (modus-themes-bold-constructs t)
@@ -46,8 +37,8 @@
   :config (modus-themes-include-derivatives-mode))
 
 (use-package ef-themes
+  :defer nil
   :custom
-  ;; TODO make a custom `modus-themes' theme
   (ef-trio-dark-palette-overrides
    '((primary primary80)
      (primary-container primary30)
@@ -140,9 +131,18 @@ mouse-3: Next buffer"
 
 (use-package spacious-padding
   :config (spacious-padding-mode)
+  :defer nil
   :custom
   (spacious-padding-widths
    '(:internal-border-width 16 :right-divider-width 1 :mode-line-width 8)))
+
+(use-package display-line-numbers
+  :custom (display-line-numbers-type 'relative)
+  :hook (prog-mode-hook . display-line-numbers-mode)
+  :ensure nil)
+
+(blink-cursor-mode -1)
+(pixel-scroll-precision-mode)
 
 (provide 'init-ui)
 
