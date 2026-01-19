@@ -60,6 +60,9 @@
 (setopt initial-major-mode 'fundamental-mode)
 (setopt initial-scratch-message nil)
 
+(setopt frame-inhibit-implied-resize t)
+(setopt frame-resize-pixelwise t)
+
 (when (boundp 'pgtk-wait-for-event-timeout)
   (setopt pgtk-wait-for-event-timeout nil))
 
