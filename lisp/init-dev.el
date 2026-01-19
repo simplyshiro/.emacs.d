@@ -36,6 +36,8 @@
   :ensure nil)
 
 (use-package flymake
+  :custom (flymake-mode-line-format
+           '(" " flymake-mode-line-counters " "))
   :bind (:map flymake-mode-map
               ("M-n" . flymake-goto-next-error)
               ("M-p" . flymake-goto-prev-error))
