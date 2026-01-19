@@ -9,12 +9,10 @@
 
 (blink-cursor-mode -1)
 
-(setopt display-line-numbers-type 'relative)
-(global-display-line-numbers-mode)
-
-;; Do not display line numbers in `eshell-mode'.
-(add-hook 'eshell-mode-hook
-          (lambda () (display-line-numbers-mode -1)))
+(use-package display-line-numbers
+  :custom (display-line-numbers-type 'relative)
+  :hook (prog-mode-hook . display-line-numbers-mode)
+  :ensure nil)
 
 (pixel-scroll-precision-mode)
 
