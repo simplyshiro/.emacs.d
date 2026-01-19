@@ -20,8 +20,6 @@
 
 ;; Required by `ef-themes'.
 (use-package modus-themes
-  :init
-  (modus-themes-include-derivatives-mode)
   :custom
   (modus-themes-bold-constructs t)
   (modus-themes-common-palette-overrides
@@ -47,11 +45,10 @@
      (4 . (1.2))
      (5 . (1.1))))
   (modus-themes-italic-constructs t)
-  (modus-themes-mixed-fonts t))
+  (modus-themes-mixed-fonts t)
+  :config (modus-themes-include-derivatives-mode))
 
 (use-package ef-themes
-  :init
-  (modus-themes-load-theme 'ef-trio-light)
   :custom
   ;; TODO make a custom `modus-themes' theme
   (ef-trio-dark-palette-overrides
@@ -87,11 +84,13 @@
      (bg-mode-line-active primary-container)
      (fg-mode-line-active on-primary-container)
      (bg-region primary-container)
-     (fg-region on-primary-container))))
+     (fg-region on-primary-container)))
+  :config (modus-themes-load-theme 'ef-trio-light))
 
 (setopt mode-line-buffer-identification
-        (propertize " %b " 'face 'mode-line-buffer-id 'mouse-face
-                    'mode-line-highlight 'help-echo "Buffer name
+        (propertize " %b " 'face 'mode-line-buffer-id
+                    'mouse-face 'mode-line-highlight
+                    'help-echo "Buffer name
 mouse-1: Previous buffer
 mouse-3: Next buffer"
                     'local-map mode-line-buffer-identification-keymap))
@@ -108,8 +107,8 @@ mouse-3: Next buffer"
 (setopt mode-line-right-align-edge 'right-margin)
 (setopt mode-line-format
         '("%e" " %% " (:eval mode-line-buffer-identification)
-          (:eval
-           (when-let (vc vc-mode) (list " " (substring vc 5) " ")))
+          (:eval (when-let (vc vc-mode)
+                   (list " " (substring vc 5) " ")))
           (:eval
            (concat " ("
                    (downcase
@@ -126,24 +125,23 @@ mouse-3: Next buffer"
 (defun shiro-set-font-families (&optional frame)
   "Set preferred font families on FRAME."
   (when (member shiro-fixed-pitch-font-family (font-family-list))
-    (set-face-attribute 'default frame :family
-                        shiro-fixed-pitch-font-family :height
-                        shiro-font-height)
-    (set-face-attribute 'fixed-pitch frame :family
-                        shiro-fixed-pitch-font-family :height
-                        shiro-font-height))
+    (set-face-attribute 'default frame
+                        :family shiro-fixed-pitch-font-family
+                        :height shiro-font-height)
+    (set-face-attribute 'fixed-pitch frame
+                        :family shiro-fixed-pitch-font-family
+                        :height shiro-font-height))
   (when (member shiro-variable-pitch-font-family (font-family-list))
-    (set-face-attribute 'variable-pitch frame :family
-                        shiro-variable-pitch-font-family :height
-                        shiro-font-height)))
+    (set-face-attribute 'variable-pitch frame
+                        :family shiro-variable-pitch-font-family
+                        :height shiro-font-height)))
 
 (if (daemonp)
     (add-hook 'server-after-make-frame-hook #'shiro-set-font-families)
   (shiro-set-font-families))
 
 (use-package spacious-padding
-  :init
-  (spacious-padding-mode)
+  :config (spacious-padding-mode)
   :custom
   (spacious-padding-widths
    '(:internal-border-width 16 :right-divider-width 1 :mode-line-width 8)))
