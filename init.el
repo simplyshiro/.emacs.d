@@ -11,6 +11,7 @@
 
 (require 'init-elpaca)
 (require 'init-ui)
+(require 'init-dev)
 
 ;;; Built-in:
 
@@ -35,43 +36,11 @@
   :custom (native-comp-async-query-on-exit t)
   :ensure nil)
 
-(use-package eglot
-  :config
-  (add-to-list 'eglot-server-programs
-               '((java-mode java-ts-mode) "jdtls" "--enable-preview"))
-  (add-to-list 'eglot-server-programs
-               '(kotlin-ts-mode "kotlin-lsp" "--stdio"))
-  (add-to-list 'eglot-server-programs
-               '((python-mode python-ts-mode) "ty" "server"))
-  (add-to-list 'eglot-server-programs
-               '(qml-ts-mode "qmlls6"))
-  (setopt completion-category-defaults nil)
-  (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster)
-  :hook
-  ((c-mode-hook c-ts-mode-hook) . eglot-ensure)
-  ((csharp-mode-hook csharp-ts-mode-hook) . eglot-ensure)
-  ((java-mode-hook java-ts-mode-hook) . eglot-ensure)
-  (kotlin-ts-mode-hook . eglot-ensure)
-  ((python-mode-hook python-ts-mode-hook) . eglot-ensure)
-  (rust-ts-mode-hook . eglot-ensure)
-  (qml-ts-mode-hook . eglot-ensure)
-  :custom
-  (eglot-events-buffer-config '(:size 0))
-  :ensure nil)
-
-(use-package elec-pair
-  :hook (prog-mode-hook . electric-pair-mode)
-  :ensure nil)
-
 (use-package files
   :custom
   (backup-by-copying t)
   (delete-old-versions t)
   (version-control t)
-  :ensure nil)
-
-(use-package flymake
-  :hook (prog-mode-hook . flymake-mode)
   :ensure nil)
 
 (use-package org
@@ -81,10 +50,6 @@
 
 (use-package recentf
   :init (recentf-mode)
-  :ensure nil)
-
-(use-package rust-ts-mode
-  :mode "\\.rs\\'"
   :ensure nil)
 
 (use-package savehist
@@ -110,61 +75,11 @@
   (text-mode-ispell-word-completion nil)
   :ensure nil)
 
-(use-package treesit
-  :init (setopt treesit-language-source-alist
-                '((bash . ("https://github.com/tree-sitter/tree-sitter-bash" "v0.25.0"))
-                  (c . ("https://github.com/tree-sitter/tree-sitter-c" "v0.24.1"))
-                  (c-sharp . ("https://github.com/tree-sitter/tree-sitter-c-sharp" "v0.23.1"))
-                  (cpp . ("https://github.com/tree-sitter/tree-sitter-cpp" "v0.23.4"))
-                  (css . ("https://github.com/tree-sitter/tree-sitter-css" "v0.25.0"))
-                  (go . ("https://github.com/tree-sitter/tree-sitter-go" "v0.25.0"))
-                  (html . ("https://github.com/tree-sitter/tree-sitter-html" "v0.23.2"))
-                  (java . ("https://github.com/tree-sitter/tree-sitter-java" "v0.23.5"))
-                  (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript" "v0.25.0"))
-                  (json . ("https://github.com/tree-sitter/tree-sitter-json" "v0.24.8"))
-                  (kotlin . ("https://github.com/fwcd/tree-sitter-kotlin" "0.3.8"))
-                  (php . ("https://github.com/tree-sitter/tree-sitter-php" "v0.24.2" "php/src"))
-                  (python . ("https://github.com/tree-sitter/tree-sitter-python" "v0.25.0"))
-                  (qmljs . ("https://github.com/yuja/tree-sitter-qmljs" "0.3.0"))
-                  (ruby . ("https://github.com/tree-sitter/tree-sitter-ruby" "v0.23.1"))
-                  (rust . ("https://github.com/tree-sitter/tree-sitter-rust" "v0.24.0"))
-                  (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.23.2" "tsx/src"))
-                  (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.23.2" "typescript/src"))))
-  :custom
-  (major-mode-remap-alist
-   '((c-mode . c-ts-mode)
-     (c-or-c++-mode . c-or-c++-ts-mode)
-     (c++-mode . c++-ts-mode)
-     (csharp-mode . csharp-ts-mode)
-     (css-mode . css-ts-mode)
-     (html-mode . html-ts-mode)
-     (java-mode . java-ts-mode)
-     (js-mode . js-ts-mode)
-     (python-mode . python-ts-mode)
-     (ruby-mode . ruby-ts-mode)))
-  (treesit-font-lock-level 4)
-  :ensure nil)
-
 (use-package which-key
   :init (which-key-mode)
   :ensure nil)
 
 ;;; Packages:
-
-;; Required by `magit'.
-(use-package transient)
-
-(use-package apheleia
-  :init (apheleia-global-mode))
-
-(use-package cape
-  :hook (emacs-lisp-mode-hook . (lambda ()
-                                  (setq-local completion-at-point-functions
-                                              (list (cape-capf-super
-                                                     #'cape-elisp-symbol
-                                                     #'cape-dabbrev
-                                                     #'cape-file)))))
-  :bind ("C-c p" . cape-prefix-map))
 
 (use-package consult
   :init (advice-add #'register-preview :override #'consult-register-window)
@@ -225,29 +140,16 @@
   (corfu-cycle t)
   (corfu-popupinfo-delay '(0.1 . 1.0)))
 
-(use-package kotlin-ts-mode
-  :mode "\\.kt\\'")
-
-(use-package magit)
-
 (use-package marginalia
   :init (marginalia-mode)
   :bind (:map minibuffer-local-map
               ("M-A" . marginalia-cycle)))
 
-(use-package markdown-mode
-  :mode ("README\\.md\\'" . gfm-mode))
-
 (use-package orderless
   :custom
   (completion-styles '(orderless basic))
   (completion-category-defaults nil)
-  (completion-category-overrides '((eglot (styles orderless))
-                                   (eglot-capf (styles orderless))
-                                   (file (styles basic partial-completion)))))
-
-(use-package qml-ts-mode
-  :ensure (:host github :repo "xhcoding/qml-ts-mode"))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
 
 (use-package vertico
   :init (vertico-mode)
