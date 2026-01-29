@@ -22,10 +22,7 @@
      (neutral6 "#141218")
      (neutral-variant90 "#e7e0ec")
      (neutral-variant80 "#cac4d0")
-     (neutral-variant30 "#49454f")
-     (fringe unspecified)
-     (bg-line-number-inactive unspecified)
-     (bg-line-number-active unspecified)))
+     (neutral-variant30 "#49454f")))
   (modus-themes-headings
    '((0 . (2.0))
      (1 . (1.5))
