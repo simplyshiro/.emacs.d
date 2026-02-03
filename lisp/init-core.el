@@ -12,6 +12,7 @@
   (add-to-list 'exec-path (expand-file-name "~/.local/bin"))
 
   (column-number-mode)
+  (delete-selection-mode)
   (global-auto-revert-mode)
   (line-number-mode)
   (recentf-mode)
