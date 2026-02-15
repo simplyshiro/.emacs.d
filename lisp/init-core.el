@@ -1,10 +1,10 @@
 ;;; init-core.el --- Init Core -*- lexical-binding: t; no-byte-compile: t; -*-
-;;
+
 ;; Author: simplyshiro
 ;; URL: https://github.com/simplyshiro/.emacs.d
-;;
+
 ;;; Commentary:
-;;
+
 ;;; Code:
 
 (use-package emacs
