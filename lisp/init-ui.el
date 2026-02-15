@@ -35,8 +35,11 @@
 
 (use-package ef-themes
   :config
-  (require 'gsettings-color-scheme)
-  (gsettings-color-scheme-mode)
+  (if (featurep 'dbusbind)
+      (progn
+        (require 'gsettings-color-scheme)
+        (gsettings-color-scheme-mode))
+    (modus-themes-load-theme 'ef-light))
   :defer nil
   :custom
   (ef-trio-dark-palette-overrides
