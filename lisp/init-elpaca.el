@@ -1,10 +1,10 @@
 ;;; init-elpaca.el --- Init Elpaca -*- lexical-binding: t; no-byte-compile: t; -*-
-;;
+
 ;; Author: simplyshiro
 ;; URL: https://github.com/simplyshiro/.emacs.d
-;;
+
 ;;; Commentary:
-;;
+
 ;;; Code:
 
 (defvar elpaca-installer-version 0.11)
