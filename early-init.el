@@ -1,10 +1,10 @@
 ;;; early-init.el --- Early Init -*- lexical-binding: t; no-byte-compile: t; -*-
-;;
+
 ;; Author: simplyshiro
 ;; URL: https://github.com/simplyshiro/.emacs.d
-;;
+
 ;;; Commentary:
-;;
+
 ;;; Code:
 
 (add-hook 'before-init-hook
