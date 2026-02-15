@@ -34,7 +34,9 @@
   (modus-themes-mixed-fonts t))
 
 (use-package ef-themes
-  :config (modus-themes-load-theme 'ef-trio-light)
+  :config
+  (require 'gsettings-color-scheme)
+  (gsettings-color-scheme-mode)
   :defer nil
   :custom
   (ef-trio-dark-palette-overrides
