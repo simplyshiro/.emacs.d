@@ -113,7 +113,7 @@ mouse-3: Next buffer"
 (defvar-local shiro--fixed-pitch-font-family "Google Sans Code")
 (defvar-local shiro--variable-pitch-font-family "Google Sans")
 
-(defun shiro--set-font-families (&optional frame)
+(defun shiro-set-font-families (&optional frame)
   "Set preferred font families on FRAME."
   (when (member shiro--fixed-pitch-font-family (font-family-list))
     (set-face-attribute 'default frame
@@ -128,8 +128,8 @@ mouse-3: Next buffer"
                         :height shiro--font-height)))
 
 (if (daemonp)
-    (add-hook 'server-after-make-frame-hook #'shiro--set-font-families)
-  (shiro--set-font-families))
+    (add-hook 'server-after-make-frame-hook #'shiro-set-font-families)
+  (shiro-set-font-families))
 
 (use-package spacious-padding
   :config (spacious-padding-mode)
