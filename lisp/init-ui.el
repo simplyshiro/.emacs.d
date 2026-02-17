@@ -109,23 +109,37 @@ mouse-3: Next buffer"
           flymake-mode-line-format
           mode-line-position mode-line-format-right-align))
 
-(defvar-local shiro--font-height 105)
-(defvar-local shiro--fixed-pitch-font-family "Google Sans Code")
-(defvar-local shiro--variable-pitch-font-family "Google Sans")
+(defcustom shiro-font-height 105
+  "Font height to use."
+  :tag "shiro Font Height"
+  :group 'shiro
+  :type 'natnum)
+
+(defcustom shiro-fixed-pitch-font-family "Google Sans Code"
+  "Fixed-pitch font family to use."
+  :tag "shiro Fixed-Pitch Font Family"
+  :group 'shiro
+  :type 'string)
+
+(defcustom shiro-variable-pitch-font-family "Google Sans"
+  "Variable-pitch font family to use."
+  :tag "shiro Variable-Pitch Font Family"
+  :group 'shiro
+  :type 'string)
 
 (defun shiro-set-font-families (&optional frame)
-  "Set preferred font families on FRAME."
-  (when (member shiro--fixed-pitch-font-family (font-family-list))
+  "Set font families on FRAME."
+  (when (member shiro-fixed-pitch-font-family (font-family-list))
     (set-face-attribute 'default frame
-                        :family shiro--fixed-pitch-font-family
-                        :height shiro--font-height)
+                        :family shiro-fixed-pitch-font-family
+                        :height shiro-font-height)
     (set-face-attribute 'fixed-pitch frame
-                        :family shiro--fixed-pitch-font-family
-                        :height shiro--font-height))
-  (when (member shiro--variable-pitch-font-family (font-family-list))
+                        :family shiro-fixed-pitch-font-family
+                        :height shiro-font-height))
+  (when (member shiro-variable-pitch-font-family (font-family-list))
     (set-face-attribute 'variable-pitch frame
-                        :family shiro--variable-pitch-font-family
-                        :height shiro--font-height)))
+                        :family shiro-variable-pitch-font-family
+                        :height shiro-font-height)))
 
 (if (daemonp)
     (add-hook 'server-after-make-frame-hook #'shiro-set-font-families)
