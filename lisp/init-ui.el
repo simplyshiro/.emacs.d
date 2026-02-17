@@ -33,13 +33,23 @@
   (modus-themes-italic-constructs t)
   (modus-themes-mixed-fonts t))
 
+(defcustom shiro-theme 'ef-light
+  "Theme to use when `gsettings-color-scheme-mode' is nil."
+  :group 'shiro
+  :type 'symbol)
+
 (use-package ef-themes
   :config
   (if (featurep 'dbusbind)
       (progn
         (require 'gsettings-color-scheme)
         (gsettings-color-scheme-mode))
-    (modus-themes-load-theme 'ef-light))
+    (cond
+     ((and (fboundp 'modus-themes--modus-theme-p)
+           (modus-themes--modus-theme-p shiro-theme))
+      (if (fboundp 'modus-themes-load-theme)
+          (modus-themes-load-theme shiro-theme)
+        (load-theme shiro-theme :no-confirm)))))
   :defer nil
   :custom
   (ef-trio-dark-palette-overrides
