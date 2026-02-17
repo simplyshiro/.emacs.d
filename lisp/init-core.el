@@ -7,6 +7,12 @@
 
 ;;; Code:
 
+(defgroup shiro nil
+  "Custom options for shiro's `init.el'."
+  :tag "shiro"
+  :group 'emacs
+  :prefix "shiro-")
+
 (use-package emacs
   :config
   (add-to-list 'exec-path (expand-file-name "~/.local/bin"))
