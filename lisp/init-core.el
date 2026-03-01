@@ -102,14 +102,16 @@
   (xref-show-definitions-function #'consult-xref))
 
 (use-package corfu
+  :init (global-corfu-mode)
   :config (corfu-popupinfo-mode)
-  :hook (prog-mode-hook . corfu-mode)
   :custom
   (corfu-scroll-margin (/ corfu-count 2))
   (corfu-cycle t)
   (corfu-auto t)
-  (corfu-auto-delay 0.01)
-  (corfu-popupinfo-delay '(0.01 . 1.0)))
+  (corfu-auto-delay 0.001)
+  (corfu-auto-prefix 0)
+  (corfu-popupinfo-delay '(0.001 . 0.002))
+  (corfu-quit-no-match t))
 
 (use-package marginalia
   :init (marginalia-mode)
