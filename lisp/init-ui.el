@@ -156,8 +156,7 @@ mouse-3: Next buffer"
   (shiro-set-font-families))
 
 (use-package spacious-padding
-  :config (spacious-padding-mode)
-  :defer nil
+  :init (spacious-padding-mode)
   :custom
   (spacious-padding-widths
    '(:internal-border-width 16 :right-divider-width 1 :mode-line-width 8)))
