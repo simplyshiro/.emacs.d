@@ -17,7 +17,6 @@
   (add-to-list 'eglot-server-programs
                '((python-mode python-ts-mode) "rass" "python"))
   (add-to-list 'eglot-server-programs '(qml-ts-mode "qmlls6"))
-
   ;; Use `orderless' filtering for `eglot' completions
   (add-to-list 'completion-category-overrides
                '((eglot (styles orderless))
