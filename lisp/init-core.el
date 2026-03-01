@@ -31,6 +31,7 @@
   (delete-old-versions t)
   (enable-recursive-minibuffers t)
   (indent-tabs-mode nil)
+  (minibuffer-prompt-properties '(read-only t cursor-intangible t face minibuffer-prompt))
   (read-extended-command-predicate #'command-completion-default-include-p)
   (tab-always-indent 'complete)
   (tab-width 4)
