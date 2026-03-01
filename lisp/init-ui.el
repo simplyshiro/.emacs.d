@@ -116,7 +116,7 @@ mouse-3: Next buffer"
                           ((stringp mode-name) mode-name)
                           (t "unknown")))
                    " mode) "))
-          flymake-mode-line-format
+          (flymake-mode flymake-mode-line-format)
           mode-line-position mode-line-format-right-align))
 
 (defcustom shiro-font-height 105
