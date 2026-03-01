@@ -43,8 +43,7 @@
   :ensure nil)
 
 (use-package vertico
-  :config (vertico-mode)
-  :defer nil
+  :init (vertico-mode)
   :custom
   (vertico-scroll-margin (/ vertico-count 2))
   (vertico-resize t)
@@ -113,10 +112,9 @@
   (corfu-popupinfo-delay '(0.01 . 1.0)))
 
 (use-package marginalia
-  :config (marginalia-mode)
+  :init (marginalia-mode)
   :bind (:map minibuffer-local-map
-              ("M-A" . marginalia-cycle))
-  :defer nil)
+              ("M-A" . marginalia-cycle)))
 
 (use-package embark
   :config (add-to-list 'display-buffer-alist
