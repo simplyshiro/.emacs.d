@@ -40,7 +40,8 @@
 
 (use-package ef-themes
   :config
-  (if (featurep 'dbusbind)
+  (if (and (featurep 'dbusbind)
+           (not (string-match-p "microsoft" (shell-command-to-string "uname -a"))))
       (progn
         (require 'gsettings-color-scheme)
         (gsettings-color-scheme-mode))
