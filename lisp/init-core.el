@@ -111,7 +111,7 @@
   (corfu-cycle t)
   (corfu-auto t)
   (corfu-auto-delay 0.001)
-  (corfu-auto-prefix 0)
+  (corfu-auto-prefix 1)
   (corfu-popupinfo-delay '(0.001 . 0.002))
   (corfu-quit-no-match t))
 
