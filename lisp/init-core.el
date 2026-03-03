@@ -29,6 +29,7 @@
   :custom
   (backup-by-copying t)
   (delete-old-versions t)
+  (dired-kill-when-opening-new-dired-buffer t)
   (enable-recursive-minibuffers t)
   (indent-tabs-mode nil)
   (minibuffer-prompt-properties '(read-only t cursor-intangible t face minibuffer-prompt))
