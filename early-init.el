@@ -62,7 +62,7 @@
 (setopt frame-resize-pixelwise t)
 
 (when (boundp 'pgtk-wait-for-event-timeout)
-  (setopt pgtk-wait-for-event-timeout nil))
+  (setopt pgtk-wait-for-event-timeout 0.001))
 
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
