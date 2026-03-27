@@ -113,7 +113,7 @@
   (corfu-auto t)
   (corfu-auto-delay 0.001)
   (corfu-auto-prefix 1)
-  (corfu-popupinfo-delay '(0.001 . 0.002))
+  (corfu-popupinfo-delay '(0.001 . 1.0))
   (corfu-quit-no-match t))
 
 (use-package marginalia
