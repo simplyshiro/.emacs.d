@@ -71,7 +71,7 @@
 
 (add-hook 'emacs-startup-hook
           (lambda ()
-            (setopt gc-cons-threshold (shiro-convert-from-mib-to-b 64))))
+            (setopt gc-cons-threshold (shiro-convert-from-mib-to-b 1))))
 
 (provide 'early-init)
 
