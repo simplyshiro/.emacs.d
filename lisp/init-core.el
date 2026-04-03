@@ -100,7 +100,6 @@
          ("M-r" . consult-history))
   :custom
   (consult-narrow-key "<")
-  (register-preview-delay 0.001)
   (xref-show-xrefs-function #'consult-xref)
   (xref-show-definitions-function #'consult-xref))
 
