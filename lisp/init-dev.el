@@ -60,7 +60,7 @@
                     (php "v0.24.2" nil "php/src")
                     (python "v0.25.0")
                     (ruby "v0.23.1")
-                    (rust "v0.24.0")
+                    (rust "v0.24.2")
                     (tsx "v0.23.2" "tree-sitter/tree-sitter-typescript" "tsx/src")
                     (typescript "v0.23.2" "tree-sitter/tree-sitter-typescript" "typescript/src")
                     ;; Unofficial `tree-sitter' parsers
