@@ -109,9 +109,9 @@
   :custom
   (corfu-auto t)
   (corfu-auto-delay 0.001)
-  (corfu-auto-prefix 1)
-  (corfu-popupinfo-delay '(0.001 . 1.0))
+  (corfu-auto-prefix 0)
   (corfu-cycle t)
+  (corfu-popupinfo-delay '(0.01 . 0.004))
   (corfu-preselect 'prompt)
   (corfu-scroll-margin (/ corfu-count 2))
   (corfu-quit-no-match t))
