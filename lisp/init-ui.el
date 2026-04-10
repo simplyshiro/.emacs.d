@@ -119,13 +119,13 @@ mouse-3: Next buffer"
   :group 'shiro
   :type 'natnum)
 
-(defcustom shiro-fixed-pitch-font-family "Google Sans Code"
+(defcustom shiro-fixed-pitch-font-family "Monospace"
   "Fixed-pitch font family to use."
   :tag "shiro Fixed-Pitch Font Family"
   :group 'shiro
   :type 'string)
 
-(defcustom shiro-variable-pitch-font-family "Google Sans"
+(defcustom shiro-variable-pitch-font-family "Sans"
   "Variable-pitch font family to use."
   :tag "shiro Variable-Pitch Font Family"
   :group 'shiro
