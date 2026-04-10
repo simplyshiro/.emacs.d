@@ -156,7 +156,6 @@ mouse-3: Next buffer"
    '(:internal-border-width 16 :right-divider-width 1 :mode-line-width 8)))
 
 (use-package display-line-numbers
-  :hook (prog-mode-hook . display-line-numbers-mode)
   :custom (display-line-numbers-type 'relative)
   :ensure nil)
 
