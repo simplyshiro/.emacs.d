@@ -20,12 +20,12 @@
   :group 'ef-themes
   :prefix "gsettings-color-scheme-")
 
-(defcustom gsettings-color-scheme-light-theme 'ef-trio-light
+(defcustom gsettings-color-scheme-light-theme 'modus-operandi
   "Theme to use when `color-scheme' is set to `prefer-light'."
   :type 'symbol
   :group 'gsettings-color-scheme)
 
-(defcustom gsettings-color-scheme-dark-theme 'ef-trio-dark
+(defcustom gsettings-color-scheme-dark-theme 'modus-vivendi
   "Theme to use when `color-scheme' is set to `prefer-dark'."
   :type 'symbol
   :group 'gsettings-color-scheme)
