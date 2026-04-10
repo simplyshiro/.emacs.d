@@ -7,79 +7,21 @@
 
 ;;; Code:
 
-(defcustom shiro-theme 'modus-operandi
-  "Theme to use when `gsettings-color-scheme-mode' is nil."
-  :group 'shiro
-  :type 'symbol)
+(use-package doric-themes
+  :config (doric-themes-load-theme 'doric-light)
+  :defer nil)
+
+(use-package ef-themes
+  :defer nil)
 
 (use-package modus-themes
-  :config (modus-themes-include-derivatives-mode)
   :custom
   (modus-themes-bold-constructs t)
-  (modus-themes-common-palette-overrides
-   '((primary90 "#eaddff")
-     (primary80 "#d0bcff")
-     (primary40 "#6750a4")
-     (primary30 "#4f378b")
-     (neutral98 "#fef7ff")
-     (neutral90 "#e6e0e9")
-     (neutral10 "#1d1b20")
-     (neutral6 "#141218")
-     (neutral-variant90 "#e7e0ec")
-     (neutral-variant80 "#cac4d0")
-     (neutral-variant30 "#49454f")))
   (modus-themes-italic-constructs t)
   (modus-themes-mixed-fonts t))
 
-(use-package ef-themes
-  :config
-  (if (and (featurep 'dbusbind)
-           (not (string-match-p "microsoft" (shell-command-to-string "uname -a"))))
-      (progn
-        (require 'gsettings-color-scheme)
-        (gsettings-color-scheme-mode))
-    (cond
-     ((and (fboundp 'modus-themes--modus-theme-p)
-           (modus-themes--modus-theme-p shiro-theme))
-      (if (fboundp 'modus-themes-load-theme)
-          (modus-themes-load-theme shiro-theme)
-        (load-theme shiro-theme :no-confirm)))))
-  :defer nil
-  :custom
-  (ef-trio-dark-palette-overrides
-   '((primary primary80)
-     (primary-container primary30)
-     (on-primary-container primary90)
-     (surface neutral6)
-     (on-surface neutral90)
-     (surface-variant neutral-variant30)
-     (on-surface-variant neutral-variant80)
-     (cursor primary)
-     (bg-main surface)
-     (bg-alt surface-variant)
-     (fg-main on-surface)
-     (fg-dim on-surface-variant)
-     (bg-mode-line-active primary-container)
-     (fg-mode-line-active on-primary-container)
-     (bg-region primary-container)
-     (fg-region on-primary-container)))
-  (ef-trio-light-palette-overrides
-   '((primary primary40)
-     (primary-container primary90)
-     (on-primary-container primary30)
-     (surface neutral98)
-     (on-surface neutral10)
-     (surface-variant neutral-variant90)
-     (on-surface-variant neutral-variant30)
-     (cursor primary)
-     (bg-main surface)
-     (bg-alt surface-variant)
-     (fg-main on-surface)
-     (fg-dim on-surface-variant)
-     (bg-mode-line-active primary-container)
-     (fg-mode-line-active on-primary-container)
-     (bg-region primary-container)
-     (fg-region on-primary-container))))
+(use-package standard-themes
+  :defer nil)
 
 (setopt mode-line-buffer-identification
         (propertize " %b " 'face 'mode-line-buffer-id
