@@ -118,18 +118,12 @@ in the repository in which the grammar's parser.c file resides."
   :mode "\\.rs\\'"
   :ensure nil)
 
-(use-package eat
-  :hook (eat-mode-hook . (lambda ()
-                           (display-line-numbers-mode -1))))
+(use-package eat)
 
 (use-package ielm
-  :preface
-  (defun shiro--setup-ielm-mode ()
-    "Setup `inferior-emacs-lisp-mode'."
-    (setq-local comint-input-ring-file-name
-                (expand-file-name "ielm-history.eld" shiro-variable-directory))
-    (display-line-numbers-mode -1))
-  :hook (ielm-mode-hook . shiro--setup-ielm-mode)
+  :hook (ielm-mode-hook . (lambda ()
+                            (setq-local comint-input-ring-file-name
+                                        (expand-file-name "ielm-history.eld" shiro-variable-directory))))
   :ensure nil)
 
 (provide 'init-dev)
