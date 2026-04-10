@@ -94,7 +94,9 @@ in the repository in which the grammar's parser.c file resides."
   :ensure nil)
 
 (use-package apheleia
-  :hook (prog-mode-hook . apheleia-mode))
+  :config (apheleia-global-mode)
+  :hook (rust-ts-mode-hook . (lambda ()
+                               (apheleia-mode -1))))
 
 ;; `magit' requires the latest version of `transient'
 (use-package transient)
