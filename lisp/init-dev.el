@@ -17,6 +17,8 @@
   (add-to-list 'eglot-server-programs
                '((python-base-mode) "rass" "python"))
   (add-to-list 'eglot-server-programs '(qml-ts-mode "qmlls6"))
+  (add-to-list 'eglot-server-programs
+               '((rust-mode rust-ts-mode) "rust-analyzer" :initializationOptions (:check (:command "clippy"))))
   ;; Use `orderless' filtering for `eglot' completions
   (add-to-list 'completion-category-overrides
                '((eglot (styles orderless))
