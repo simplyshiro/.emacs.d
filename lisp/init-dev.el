@@ -15,7 +15,7 @@
                '((java-mode java-ts-mode) "jdtls" "--enable-preview"))
   (add-to-list 'eglot-server-programs '(kotlin-ts-mode "kotlin-lsp" "--stdio"))
   (add-to-list 'eglot-server-programs
-               '((python-mode python-ts-mode) "rass" "python"))
+               '((python-base-mode) "rass" "python"))
   (add-to-list 'eglot-server-programs '(qml-ts-mode "qmlls6"))
   ;; Use `orderless' filtering for `eglot' completions
   (add-to-list 'completion-category-overrides
