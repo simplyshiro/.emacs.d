@@ -26,6 +26,8 @@
 
 (setopt custom-theme-directory
         (expand-file-name "themes/" shiro-variable-directory))
+(setopt treesit--install-language-grammar-out-dir-history
+        (list (expand-file-name "tree-sitter/" shiro-variable-directory)))
 (setopt treesit-extra-load-path
         (list (expand-file-name "tree-sitter/" shiro-variable-directory)))
 
