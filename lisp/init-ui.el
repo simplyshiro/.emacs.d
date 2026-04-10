@@ -7,6 +7,11 @@
 
 ;;; Code:
 
+(defcustom shiro-theme 'modus-operandi
+  "Theme to use when `gsettings-color-scheme-mode' is nil."
+  :group 'shiro
+  :type 'symbol)
+
 (use-package modus-themes
   :config (modus-themes-include-derivatives-mode)
   :custom
@@ -25,11 +30,6 @@
      (neutral-variant30 "#49454f")))
   (modus-themes-italic-constructs t)
   (modus-themes-mixed-fonts t))
-
-(defcustom shiro-theme 'ef-light
-  "Theme to use when `gsettings-color-scheme-mode' is nil."
-  :group 'shiro
-  :type 'symbol)
 
 (use-package ef-themes
   :config
