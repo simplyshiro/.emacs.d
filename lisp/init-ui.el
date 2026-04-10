@@ -133,17 +133,15 @@ mouse-3: Next buffer"
 
 (defun shiro-set-font-families (&optional frame)
   "Set font families on FRAME."
-  (when (member shiro-fixed-pitch-font-family (font-family-list))
-    (set-face-attribute 'default frame
-                        :family shiro-fixed-pitch-font-family
-                        :height shiro-font-height)
-    (set-face-attribute 'fixed-pitch frame
-                        :family shiro-fixed-pitch-font-family
-                        :height shiro-font-height))
-  (when (member shiro-variable-pitch-font-family (font-family-list))
-    (set-face-attribute 'variable-pitch frame
-                        :family shiro-variable-pitch-font-family
-                        :height shiro-font-height)))
+  (set-face-attribute 'default frame
+                      :family shiro-fixed-pitch-font-family
+                      :height shiro-font-height)
+  (set-face-attribute 'fixed-pitch frame
+                      :family shiro-fixed-pitch-font-family
+                      :height shiro-font-height)
+  (set-face-attribute 'variable-pitch frame
+                      :family shiro-variable-pitch-font-family
+                      :height shiro-font-height))
 
 (if (daemonp)
     (add-hook 'server-after-make-frame-hook #'shiro-set-font-families)
