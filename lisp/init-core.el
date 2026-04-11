@@ -24,7 +24,7 @@
   (save-place-mode)
   (savehist-mode)
   (which-key-mode)
-  (windmove-default-keybindings 'control)
+  (windmove-default-keybindings 'meta)
   :hook (before-save-hook . delete-trailing-whitespace)
   :custom
   (backup-by-copying t)
