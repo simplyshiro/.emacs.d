@@ -16,7 +16,7 @@
   :group 'emacs
   :prefix "shiro-")
 
-(defun shiro-convert-from-mib-to-b (mebibytes)
+(defun shiro-convert-mib-to-b (mebibytes)
   "Convert a number of MEBIBYTES to bytes."
   (* mebibytes (expt 1024 2)))
 
@@ -82,7 +82,7 @@
 
 (add-hook 'emacs-startup-hook
           (lambda ()
-            (setopt gc-cons-threshold (shiro-convert-from-mib-to-b 1))))
+            (setopt gc-cons-threshold (shiro-convert-mib-to-b 1))))
 
 (provide 'early-init)
 
