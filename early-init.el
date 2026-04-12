@@ -18,7 +18,7 @@
 
 (defun shiro-convert-from-mib-to-b (mebibytes)
   "Convert a number of MEBIBYTES to bytes."
-  (* mebibytes (expt 2 20)))
+  (* mebibytes (expt 1024 2)))
 
 (defcustom shiro-variable-directory (expand-file-name "var/" user-emacs-directory)
   "Directory to store variable files."
