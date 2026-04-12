@@ -20,8 +20,11 @@
   "Convert a number of MEBIBYTES to bytes."
   (* mebibytes (expt 2 20)))
 
-(defvar shiro-variable-directory
-  (expand-file-name "var/" user-emacs-directory))
+(defcustom shiro-variable-directory (expand-file-name "var/" user-emacs-directory)
+  "Directory to store variable files."
+  :tag "shiro Variable Directory"
+  :group 'shiro
+  :type 'directory)
 
 (setopt backup-directory-alist
         `(("." . ,(expand-file-name "backups/" shiro-variable-directory))))
