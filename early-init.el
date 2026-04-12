@@ -10,6 +10,12 @@
 (add-hook 'before-init-hook
           (lambda () (setopt gc-cons-threshold most-positive-fixnum)))
 
+(defgroup shiro nil
+  "Custom options for shiro's `init.el'."
+  :tag "shiro"
+  :group 'emacs
+  :prefix "shiro-")
+
 (defun shiro-convert-from-mib-to-b (mebibytes)
   "Convert a number of MEBIBYTES to bytes."
   (* mebibytes (expt 2 20)))
