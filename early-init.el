@@ -7,8 +7,11 @@
 
 ;;; Code:
 
-(add-hook 'before-init-hook
-          (lambda () (setopt gc-cons-threshold most-positive-fixnum)))
+(defvar shiro--gc-cons-threshold gc-cons-threshold)
+(defvar shiro--gc-cons-percentage gc-cons-percentage)
+
+(setq gc-cons-threshold most-positive-fixnum)
+(setq gc-cons-percentage 1.0)
 
 (defgroup shiro nil
   "Custom options for shiro's `init.el'."
@@ -80,9 +83,12 @@
 (tool-bar-mode -1)
 (tooltip-mode -1)
 
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (setopt gc-cons-threshold (shiro-convert-mib-to-b 1))))
+(defun shiro-restore-gc-values ()
+  "Restore garbage collection values."
+  (setq gc-cons-threshold shiro--gc-cons-threshold)
+  (setq gc-cons-percentage shiro--gc-cons-percentage))
+
+(add-hook 'emacs-startup-hook #'shiro-restore-gc-values most-positive-fixnum)
 
 (provide 'early-init)
 
