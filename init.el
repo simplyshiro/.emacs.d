@@ -7,7 +7,7 @@
 
 ;;; Code:
 
-(add-to-list 'load-path (expand-file-name "lisp/" user-emacs-directory))
+(add-to-list 'load-path (expand-file-name "lisp/" root-emacs-directory))
 
 (require 'init-elpaca)
 (require 'init-core)
