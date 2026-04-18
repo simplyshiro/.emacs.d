@@ -9,10 +9,10 @@
 
 (use-package doric-themes
   :config (doric-themes-load-theme 'doric-light)
-  :defer nil)
+  :demand t)
 
 (use-package ef-themes
-  :defer nil)
+  :demand t)
 
 (use-package modus-themes
   :custom
@@ -21,7 +21,7 @@
   (modus-themes-mixed-fonts t))
 
 (use-package standard-themes
-  :defer nil)
+  :demand t)
 
 (setopt mode-line-buffer-identification
         (propertize " %b " 'face 'mode-line-buffer-id
