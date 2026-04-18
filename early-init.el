@@ -32,9 +32,8 @@
 (setopt backup-directory-alist
         `(("." . ,(expand-file-name "backups/" shiro-variable-directory))))
 
-(when (featurep 'native-compile)
-  (startup-redirect-eln-cache
-   (expand-file-name "eln-cache/" shiro-variable-directory)))
+(startup-redirect-eln-cache
+ (expand-file-name "eln-cache/" shiro-variable-directory))
 
 (setopt custom-theme-directory
         (expand-file-name "themes/" shiro-variable-directory))
@@ -59,9 +58,6 @@
         (expand-file-name "tramp" shiro-variable-directory))
 
 (setq package-enable-at-startup nil)
-
-(when (featurep 'native-compile)
-  (setopt package-native-compile t))
 
 (setopt load-prefer-newer t)
 
