@@ -55,24 +55,16 @@ mouse-3: Next buffer"
           (flymake-mode flymake-mode-line-format)
           mode-line-position mode-line-format-right-align))
 
-(defcustom shiro-font-height 105
-  "Font height to use."
-  :tag "shiro Font Height"
-  :group 'shiro
-  :type 'natnum)
-
-(defun shiro-set-font-families (&optional frame)
+(defun shiro-set-font (&optional frame)
   "Set font families on FRAME."
-  (set-face-attribute 'default frame
-                      :height shiro-font-height)
-  (set-face-attribute 'fixed-pitch frame
-                      :height shiro-font-height)
-  (set-face-attribute 'variable-pitch frame
-                      :height shiro-font-height))
+  (let ((font-height 105))
+    (set-face-attribute 'default frame :height font-height)
+    (set-face-attribute 'fixed-pitch frame :height font-height)
+    (set-face-attribute 'variable-pitch frame :height font-height)))
 
 (if (daemonp)
-    (add-hook 'server-after-make-frame-hook #'shiro-set-font-families)
-  (shiro-set-font-families))
+    (add-hook 'server-after-make-frame-hook #'shiro-set-font)
+  (shiro-set-font))
 
 (use-package spacious-padding
   :init (spacious-padding-mode)
