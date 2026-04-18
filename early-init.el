@@ -13,12 +13,6 @@
 (setq gc-cons-threshold most-positive-fixnum)
 (setq gc-cons-percentage 1.0)
 
-(defgroup shiro nil
-  "Custom options for shiro's `init.el'."
-  :tag "shiro"
-  :group 'emacs
-  :prefix "shiro-")
-
 (defvar root-emacs-directory user-emacs-directory)
 (setq user-emacs-directory (expand-file-name "var/" root-emacs-directory))
 
