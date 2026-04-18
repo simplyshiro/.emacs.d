@@ -120,12 +120,6 @@ in the repository in which the grammar's parser.c file resides."
 
 (use-package eat)
 
-(use-package ielm
-  :hook (ielm-mode-hook . (lambda ()
-                            (setq-local comint-input-ring-file-name
-                                        (expand-file-name "ielm-history.eld" shiro-variable-directory))))
-  :ensure nil)
-
 (provide 'init-dev)
 
 ;;; init-dev.el ends here
