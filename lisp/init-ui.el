@@ -23,25 +23,25 @@
 (use-package standard-themes
   :demand t)
 
-(setopt mode-line-buffer-identification
+(setq-default mode-line-buffer-identification
         (propertize " %b " 'face 'mode-line-buffer-id
                     'mouse-face 'mode-line-highlight
                     'help-echo "Buffer name
 mouse-1: Previous buffer
 mouse-3: Next buffer"
                     'local-map mode-line-buffer-identification-keymap))
-(setopt mode-line-position-line-format '(" L%l "))
-(setopt mode-line-position-column-format '(" C%C "))
-(setopt mode-line-position-column-line-format '(" %l:%C "))
-(setopt mode-line-position
+(setq mode-line-position-line-format '(" L%l "))
+(setq mode-line-position-column-format '(" C%C "))
+(setq mode-line-position-column-line-format '(" %l:%C "))
+(setq mode-line-position
         '((line-number-mode
            (column-number-mode
             (:eval mode-line-position-column-line-format)
             (:eval mode-line-position-line-format))
            (column-number-mode
             (:eval mode-line-position-column-format)))))
-(setopt mode-line-right-align-edge 'right-margin)
-(setopt mode-line-format
+(setq mode-line-right-align-edge 'right-margin)
+(setq-default mode-line-format
         '("%e" " %% " (:eval mode-line-buffer-identification)
           (:eval (when-let (vc vc-mode)
                    (list " " (substring vc 5) " ")))
