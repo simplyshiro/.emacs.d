@@ -47,7 +47,7 @@
 
 (use-package treesit
   :config
-  (setopt treesit-language-source-alist
+  (setq treesit-language-source-alist
           (mapcar (lambda (args) (apply #'shiro--treesit-generate-language-source args))
                   '((bash "v0.25.1")
                     (c "v0.24.1")
