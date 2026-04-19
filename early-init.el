@@ -15,6 +15,8 @@
 
 (defvar root-emacs-directory user-emacs-directory)
 (setq user-emacs-directory (expand-file-name "var/" root-emacs-directory))
+(setq auto-save-list-file-prefix
+      (expand-file-name "auto-save-list/.saves-" user-emacs-directory))
 
 (setq package-enable-at-startup nil)
 
