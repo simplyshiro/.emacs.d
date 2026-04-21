@@ -40,12 +40,12 @@
 (tool-bar-mode -1)
 (tooltip-mode -1)
 
-(defun shiro-restore-gc-values ()
-  "Restore garbage collection values."
+(defun shiro-restore-gc-cons-values ()
+  "Restore `gc-cons-threshold' and `gc-cons-percentage' to their defaults."
   (setq gc-cons-threshold shiro--gc-cons-threshold)
   (setq gc-cons-percentage shiro--gc-cons-percentage))
 
-(add-hook 'emacs-startup-hook #'shiro-restore-gc-values most-positive-fixnum)
+(add-hook 'emacs-startup-hook #'shiro-restore-gc-cons-values most-positive-fixnum)
 
 (provide 'early-init)
 
