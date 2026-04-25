@@ -26,8 +26,8 @@
   :hook
   ((c-mode-hook c-ts-mode-hook) . eglot-ensure)
   ((csharp-mode-hook csharp-ts-mode-hook) . eglot-ensure)
-  ((css-mode-hook css-ts-mode-hook) . eglot-ensure)
   ((html-mode-hook html-ts-mode-hook) . eglot-ensure)
+  (css-base-mode . eglot-ensure)
   ((java-mode-hook java-ts-mode-hook) . eglot-ensure)
   (js-base-mode-hook . eglot-ensure)
   (kotlin-ts-mode-hook . eglot-ensure)
