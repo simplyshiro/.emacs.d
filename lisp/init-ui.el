@@ -30,8 +30,8 @@
   (let ((buffer-modified (buffer-modified-p))
         (window-selected (mode-line-window-selected-p)))
     (cond ((and buffer-modified window-selected)
-           '(italic mode-line-emphasis))
-          (window-selected 'mode-line-emphasis)
+           '(italic mode-line-buffer-id))
+          (window-selected 'mode-line-buffer-id)
           (buffer-modified '(italic mode-line-inactive))
           (t 'mode-line-inactive))))
 (defvar-local shiro-mode-line-buffer-name
