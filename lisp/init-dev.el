@@ -83,9 +83,9 @@ in the repository in which the grammar's parser.c file resides."
   :custom
   (treesit-font-lock-level 4)
   (major-mode-remap-alist
-   '((c-mode . c-ts-mode)
+   '((c++-mode . c++-ts-mode)
+     (c-mode . c-ts-mode)
      (c-or-c++-mode . c-or-c++-ts-mode)
-     (c++-mode . c++-ts-mode)
      (csharp-mode . csharp-ts-mode)
      (css-mode . css-ts-mode)
      (html-mode . html-ts-mode)
