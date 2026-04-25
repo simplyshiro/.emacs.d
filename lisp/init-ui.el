@@ -23,37 +23,61 @@
 (use-package standard-themes
   :demand t)
 
-(setq-default mode-line-buffer-identification
-        (propertize " %b " 'face 'mode-line-buffer-id
-                    'mouse-face 'mode-line-highlight
-                    'help-echo "Buffer name
-mouse-1: Previous buffer
-mouse-3: Next buffer"
-                    'local-map mode-line-buffer-identification-keymap))
-(setq mode-line-position-line-format '(" L%l "))
-(setq mode-line-position-column-format '(" C%C "))
-(setq mode-line-position-column-line-format '(" %l:%C "))
-(setq mode-line-position
-        '((line-number-mode
-           (column-number-mode
-            (:eval mode-line-position-column-line-format)
-            (:eval mode-line-position-line-format))
-           (column-number-mode
-            (:eval mode-line-position-column-format)))))
-(setq mode-line-right-align-edge 'right-margin)
+(defvar-local shiro-mode-line-symbol " % ")
+
+(defun shiro--mode-line-buffer-name-face ()
+  "Return the appropriate face for `shiro-mode-line-buffer-name'."
+  (let ((buffer-modified (buffer-modified-p))
+        (window-selected (mode-line-window-selected-p)))
+    (cond ((and buffer-modified window-selected)
+           '(italic mode-line-emphasis))
+          (window-selected 'mode-line-emphasis)
+          (buffer-modified '(italic mode-line-inactive))
+          (t 'mode-line-inactive))))
+(defvar-local shiro-mode-line-buffer-name
+    '(:eval (let* ((name (buffer-name))
+                   (file-name (buffer-file-name))
+                   (help (concat "File name"
+                                 (when file-name
+                                   (concat "\npath: " file-name)))))
+              (propertize (format " %s " name)
+                          'face (shiro--mode-line-buffer-name-face)
+                          'mouse-face 'mode-line-highlight
+                          'help-echo help))))
+(put 'shiro-mode-line-buffer-name 'risky-local-variable t)
+
+(defvar-local shiro-mode-line-vc-branch
+    '(:eval (when-let* ((file (buffer-file-name))
+                        (branch (vc-git--symbolic-ref file))
+                        (revision (vc-working-revision file))
+                        (rev-short (substring revision 0 7))
+                        (help (concat "Branch name\nrevision: " rev-short)))
+              (propertize (format " %s " branch)
+                          'mouse-face 'mode-line-highlight
+                          'help-echo help))))
+(put 'shiro-mode-line-vc-branch 'risky-local-variable t)
+
+(defvar-local shiro-mode-line-major-mode
+    '(:eval (format " %s " (downcase (symbol-name major-mode)))))
+(put 'shiro-mode-line-major-mode 'risky-local-variable t)
+
+(defvar-local shiro-mode-line-position
+    '((line-number-mode
+       (column-number-mode
+        (" %l" (column-number-indicator-zero-based ":%C" ":%c"))
+        " L%l")
+       (column-number-mode
+        (column-number-indicator-zero-based " C%C" " C%c")))
+      " "))
+(put 'shiro-mode-line-position 'risky-local-variable t)
+
 (setq-default mode-line-format
-        '("%e" " %% " (:eval mode-line-buffer-identification)
-          (:eval (when-let (vc vc-mode)
-                   (list " " (substring vc 5) " ")))
-          (:eval
-           (concat " ("
-                   (downcase
-                    (cond ((consp mode-name) (car mode-name))
-                          ((stringp mode-name) mode-name)
-                          (t "unknown")))
-                   " mode) "))
-          (flymake-mode flymake-mode-line-format)
-          mode-line-position mode-line-format-right-align))
+              '("%e" shiro-mode-line-symbol
+                shiro-mode-line-buffer-name
+                shiro-mode-line-major-mode
+                shiro-mode-line-vc-branch
+                mode-line-format-right-align
+                shiro-mode-line-position))
 
 (defun shiro-set-font (&optional frame)
   "Set font families on FRAME."
