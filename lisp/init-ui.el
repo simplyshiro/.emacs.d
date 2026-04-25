@@ -71,6 +71,7 @@
       " "))
 (put 'shiro-mode-line-position 'risky-local-variable t)
 
+(setq mode-line-right-align-edge 'right-margin)
 (setq-default mode-line-format
               '("%e" shiro-mode-line-symbol
                 shiro-mode-line-buffer-name
