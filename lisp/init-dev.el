@@ -26,8 +26,8 @@
   :hook
   ((c-mode-hook c-ts-mode-hook) . eglot-ensure)
   ((csharp-mode-hook csharp-ts-mode-hook) . eglot-ensure)
-  ((html-mode-hook html-ts-mode-hook) . eglot-ensure)
   (css-base-mode . eglot-ensure)
+  ((html-mode-hook html-ts-mode-hook mhtml-mode-hook) . eglot-ensure)
   ((java-mode-hook java-ts-mode-hook) . eglot-ensure)
   (js-base-mode-hook . eglot-ensure)
   (kotlin-ts-mode-hook . eglot-ensure)
@@ -91,6 +91,7 @@ in the repository in which the grammar's parser.c file resides."
      (html-mode . html-ts-mode)
      (java-mode . java-ts-mode)
      (js-mode . js-ts-mode)
+     (mhtml-mode . html-ts-mode)
      (python-mode . python-ts-mode)
      (ruby-mode . ruby-ts-mode)))
   :ensure nil)
