@@ -19,7 +19,6 @@
   (add-to-list 'eglot-server-programs '(qml-ts-mode "qmlls6"))
   (add-to-list 'eglot-server-programs
                '((rust-mode rust-ts-mode) "rust-analyzer" :initializationOptions (:check (:command "clippy"))))
-  ;; Use `orderless' filtering for `eglot' completions
   (add-to-list 'completion-category-overrides
                '((eglot (styles orderless))
                  (eglot-capf (styles orderless))))
@@ -93,7 +92,6 @@
   :hook (rust-ts-mode-hook . (lambda ()
                                (apheleia-mode -1))))
 
-;; `magit' requires the latest version of `transient'
 (use-package transient)
 
 (use-package magit)
