@@ -71,16 +71,9 @@
                   (qmljs "0.3.0" "yuja/tree-sitter-qmljs"))))
   :preface
   (defun shiro--treesit-generate-language-source (lang revision &optional repo source-dir)
-    "Generate a list to use with `treesit-language-source-alist'.
-LANG is the language symbol.  REPO is the GitHub repository.  REVISION is the
-Git tag or branch of the desired version.  SOURCE-DIR is the relative directory
-in the repository in which the grammar's parser.c file resides."
-    (list lang
-          (concat "https://github.com/"
-                  (or repo (concat "tree-sitter/tree-sitter-"
-                                   (symbol-name lang))))
-          revision
-          source-dir))
+    (let ((url (format "https://github.com/%s"
+                       (or repo (format "tree-sitter/tree-sitter-%s" lang)))))
+      (delq nil (list lang url revision source-dir))))
   :custom
   (treesit-font-lock-level 4)
   (major-mode-remap-alist
