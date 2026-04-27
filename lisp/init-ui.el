@@ -104,10 +104,10 @@
    '(:internal-border-width 16 :right-divider-width 1 :mode-line-width 8)))
 
 (use-package display-line-numbers
-  :preface (defun disable-display-line-numbers-mode ()
+  :preface (defun shiro--disable-display-line-numbers-mode ()
              "Disable `display-line-numbers-mode'."
              (display-line-numbers-mode -1))
-  :hook ((eat-mode-hook ielm-mode-hook) . disable-display-line-numbers-mode)
+  :hook ((eat-mode-hook ielm-mode-hook) . shiro--disable-display-line-numbers-mode)
   :custom (display-line-numbers-type 'relative)
   :ensure nil)
 
