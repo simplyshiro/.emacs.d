@@ -25,7 +25,7 @@
 
 (defvar-local shiro-mode-line-symbol " % ")
 
-(defun shiro--mode-line-buffer-name-face ()
+(defun shiro-mode-line-buffer-name-face ()
   "Return the appropriate face for `shiro-mode-line-buffer-name'."
   (let ((buffer-modified (buffer-modified-p))
         (window-selected (mode-line-window-selected-p)))
@@ -41,7 +41,7 @@
                                  (when file-name
                                    (concat "\npath: " file-name)))))
               (propertize (format " %s " name)
-                          'face (shiro--mode-line-buffer-name-face)
+                          'face (shiro-mode-line-buffer-name-face)
                           'mouse-face 'mode-line-highlight
                           'help-echo help))))
 (put 'shiro-mode-line-buffer-name 'risky-local-variable t)
