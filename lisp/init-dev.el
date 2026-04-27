@@ -120,7 +120,8 @@ in the repository in which the grammar's parser.c file resides."
   :mode "\\.rs\\'"
   :ensure nil)
 
-(use-package eat)
+(use-package eat
+  :custom (eat-kill-buffer-on-exit t))
 
 (provide 'init-dev)
 
