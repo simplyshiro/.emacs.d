@@ -23,7 +23,9 @@
 (use-package standard-themes
   :demand t)
 
-(defvar-local shiro-mode-line-symbol " % ")
+(defvar-local shiro-mode-line-symbol
+    '((buffer-read-only " %% " " * ")))
+(put 'shiro-mode-line-symbol 'risky-local-variable t)
 
 (defun shiro-mode-line-buffer-name-face ()
   "Return the appropriate face for `shiro-mode-line-buffer-name'."
