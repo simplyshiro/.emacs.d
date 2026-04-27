@@ -42,8 +42,6 @@
   :bind (:map flymake-mode-map
               ("M-n" . flymake-goto-next-error)
               ("M-p" . flymake-goto-prev-error))
-  :custom (flymake-mode-line-format
-           '(" " flymake-mode-line-counters " "))
   :ensure nil)
 
 (use-package treesit
