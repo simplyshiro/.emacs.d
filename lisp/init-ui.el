@@ -109,7 +109,6 @@
              "Disable `display-line-numbers-mode'."
              (display-line-numbers-mode -1))
   :hook ((eat-mode-hook ielm-mode-hook) . shiro--disable-display-line-numbers-mode)
-  :custom (display-line-numbers-type 'relative)
   :ensure nil)
 
 (blink-cursor-mode -1)
