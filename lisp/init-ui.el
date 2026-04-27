@@ -95,6 +95,7 @@
   :init (spacious-padding-mode)
   :config
   (defun shiro--mode-line-update-right-align-edge ()
+    "Update `right-align-edge' based on `spacious-padding-mode'."
     (setq mode-line-right-align-edge
           (if spacious-padding-mode 'window 'right-margin)))
   (shiro--mode-line-update-right-align-edge)
