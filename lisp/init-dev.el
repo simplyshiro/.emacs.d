@@ -88,9 +88,7 @@
   :ensure nil)
 
 (use-package apheleia
-  :config (apheleia-global-mode)
-  :hook (rust-ts-mode-hook . (lambda ()
-                               (apheleia-mode -1))))
+  :config (apheleia-global-mode))
 
 (use-package transient)
 
