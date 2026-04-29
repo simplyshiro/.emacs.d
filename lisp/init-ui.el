@@ -116,6 +116,8 @@
 (blink-cursor-mode -1)
 (pixel-scroll-precision-mode)
 
+(setq tab-bar-show 1)
+
 (provide 'init-ui)
 
 ;;; init-ui.el ends here
