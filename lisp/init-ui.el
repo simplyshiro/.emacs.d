@@ -39,7 +39,7 @@
 (defvar-local shiro-mode-line-buffer-name
     '(:eval (let* ((name (buffer-name))
                    (file-name (buffer-file-name))
-                   (help (concat "File name"
+                   (help (concat "Buffer name"
                                  (when file-name
                                    (concat "\npath: " file-name)))))
               (propertize (format " %s " name)
