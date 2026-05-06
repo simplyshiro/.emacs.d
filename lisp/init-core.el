@@ -46,6 +46,8 @@
   (version-control t)
   :ensure nil)
 
+(use-package compat)
+
 (use-package vertico
   :init (vertico-mode)
   :custom
