@@ -30,6 +30,7 @@
   ((java-mode-hook java-ts-mode-hook) . eglot-ensure)
   (js-base-mode-hook . eglot-ensure)
   (kotlin-ts-mode-hook . eglot-ensure)
+  (lua-ts-mode-hook . eglot-ensure)
   (python-base-mode-hook . eglot-ensure)
   (rust-ts-mode-hook . eglot-ensure)
   (qml-ts-mode-hook . eglot-ensure)
@@ -65,12 +66,14 @@
                   (typescript "v0.23.2" "tree-sitter/tree-sitter-typescript" "typescript/src")
                   ;; Unofficial `tree-sitter' parsers
                   (kotlin "0.3.8" "fwcd/tree-sitter-kotlin")
+                  (lua "v0.5.0" "tree-sitter-grammars/tree-sitter-lua")
                   (qmljs "0.3.0" "yuja/tree-sitter-qmljs"))))
   :preface
   (defun shiro--treesit-generate-language-source (lang revision &optional repo source-dir)
     (let ((url (format "https://github.com/%s"
                        (or repo (format "tree-sitter/tree-sitter-%s" lang)))))
       (delq nil (list lang url revision source-dir))))
+  :mode ("\\.lua\\'" . lua-ts-mode)
   :custom
   (treesit-font-lock-level 4)
   (major-mode-remap-alist
