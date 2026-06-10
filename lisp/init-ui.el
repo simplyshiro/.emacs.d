@@ -84,9 +84,14 @@
 
 (defun shiro-set-font (&optional frame)
   "Set font families on FRAME."
-  (let ((font-height 105))
-    (set-face-attribute 'default frame :height font-height)
-    (set-face-attribute 'fixed-pitch frame :height font-height)
+  (let* ((fixed-pitch-font-family "Unifont")
+         (fixed-pitch-font (format "%s:pixelsize=16:antialias=false" fixed-pitch-font-family))
+         (font-height 120))
+    (if (find-font (font-spec :family fixed-pitch-font-family))
+        (progn (set-face-attribute 'default frame :font fixed-pitch-font)
+               (set-face-attribute 'fixed-pitch frame :font fixed-pitch-font))
+      (set-face-attribute 'default frame :height font-height)
+      (set-face-attribute 'fixed-pitch frame :height font-height))
     (set-face-attribute 'variable-pitch frame :height font-height)))
 
 (if (daemonp)
