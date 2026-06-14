@@ -24,6 +24,9 @@
   (which-key-mode)
   (windmove-default-keybindings 'meta)
   :hook (before-save-hook . delete-trailing-whitespace)
+  :bind (([remap capitalize-word] . capitalize-dwim)
+         ([remap downcase-word] . downcase-dwim)
+         ([remap upcase-word] . upcase-dwim))
   :custom
   (backup-by-copying t)
   (backup-by-copying-when-linked t)
