@@ -123,6 +123,16 @@
 
 (setq tab-bar-show 1)
 
+(defun shiro-pulse-line (&rest _)
+  "Pulse the current line."
+  (pulse-momentary-highlight-one-line (point)))
+
+(dolist (command '(other-window
+                   recenter-top-bottom
+                   scroll-down-command
+                   scroll-up-command))
+  (advice-add command :after #'shiro-pulse-line))
+
 (provide 'init-ui)
 
 ;;; init-ui.el ends here
