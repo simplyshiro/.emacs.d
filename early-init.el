@@ -19,6 +19,7 @@
       (expand-file-name "auto-save-list/.saves-" user-emacs-directory))
 (setq backup-directory-alist
       `(("." . ,(expand-file-name "backups/" user-emacs-directory))))
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
 (setq package-enable-at-startup nil)
 
