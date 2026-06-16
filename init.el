@@ -14,6 +14,8 @@
 (require 'init-ui)
 (require 'init-dev)
 
+(load custom-file t t)
+
 (provide 'init)
 
 ;;; init.el ends here
