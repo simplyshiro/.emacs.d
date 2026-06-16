@@ -7,6 +7,12 @@
 
 ;;; Code:
 
+(defgroup shiro nil
+  "Customization variables for shiro's `init.el'."
+  :tag "shiro"
+  :group 'emacs
+  :prefix "shiro-")
+
 (add-to-list 'load-path (expand-file-name "lisp/" root-emacs-directory))
 
 (require 'init-elpaca)
