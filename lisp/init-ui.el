@@ -13,11 +13,13 @@
   :type 'symbol
   :group 'shiro)
 
-(add-hook 'elpaca-after-init-hook
-          (lambda ()
-            (unless (custom-theme-enabled-p shiro-theme)
-              (mapc #'disable-theme custom-enabled-themes)
-              (load-theme shiro-theme :no-confirm))))
+(defun shiro--load-theme ()
+  "Load `shiro-theme'."
+  (unless (custom-theme-enabled-p shiro-theme)
+    (mapc #'disable-theme custom-enabled-themes)
+    (load-theme shiro-theme :no-confirm)))
+
+(add-hook 'elpaca-after-init-hook #'shiro--load-theme)
 
 (use-package doric-themes
   :demand t)
