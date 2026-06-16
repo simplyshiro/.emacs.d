@@ -7,8 +7,19 @@
 
 ;;; Code:
 
+(defcustom shiro-theme 'doric-light
+  "Theme to load on startup."
+  :tag "shiro Theme"
+  :type 'symbol
+  :group 'shiro)
+
+(add-hook 'elpaca-after-init-hook
+          (lambda ()
+            (unless (custom-theme-enabled-p shiro-theme)
+              (mapc #'disable-theme custom-enabled-themes)
+              (load-theme shiro-theme :no-confirm))))
+
 (use-package doric-themes
-  :config (doric-themes-load-theme 'doric-light)
   :demand t)
 
 (use-package ef-themes
