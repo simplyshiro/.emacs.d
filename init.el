@@ -20,7 +20,7 @@
 (require 'init-ui)
 (require 'init-dev)
 
-(load custom-file t t)
+(load custom-file 'noerror 'nomessage)
 
 (provide 'init)
 
