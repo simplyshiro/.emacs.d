@@ -30,23 +30,24 @@
       `(("." . ,(expand-file-name "backups/" user-emacs-directory))))
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
-(setq inhibit-startup-buffer-menu t)
-(setq inhibit-startup-echo-area-message user-login-name)
-(setq inhibit-startup-screen t)
-(setq initial-buffer-choice nil)
-(setq initial-major-mode 'fundamental-mode)
-(setq initial-scratch-message nil)
+(unless noninteractive
+  (setq inhibit-startup-buffer-menu t)
+  (setq inhibit-startup-echo-area-message user-login-name)
+  (setq inhibit-startup-screen t)
+  (setq initial-buffer-choice nil)
+  (setq initial-major-mode 'fundamental-mode)
+  (setq initial-scratch-message nil)
 
-(setq frame-inhibit-implied-resize t)
-(setq frame-resize-pixelwise t)
+  (when (boundp 'pgtk-wait-for-event-timeout)
+    (setq pgtk-wait-for-event-timeout 0.001))
 
-(when (boundp 'pgtk-wait-for-event-timeout)
-  (setq pgtk-wait-for-event-timeout 0.001))
+  (setq frame-inhibit-implied-resize t)
+  (setq frame-resize-pixelwise t)
 
-(menu-bar-mode -1)
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
-(tooltip-mode -1)
+  (menu-bar-mode -1)
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1)
+  (tooltip-mode -1))
 
 (setq package-enable-at-startup nil)
 
