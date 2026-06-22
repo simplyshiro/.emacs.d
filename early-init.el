@@ -23,6 +23,21 @@
 
 (add-hook 'emacs-startup-hook #'shiro-restore-gc-cons-values 110)
 
+(defvar shiro--file-name-handler-alist
+  (default-toplevel-value 'file-name-handler-alist))
+
+(setq file-name-handler-alist nil)
+
+(defun shiro-restore-file-name-handler-alist ()
+  "Restore `file-name-handler-alist'."
+  (set-default-toplevel-value 'file-name-handler-alist
+                              (delete-dups
+                               (append file-name-handler-alist
+                                       shiro--file-name-handler-alist))))
+
+(unless noninteractive
+  (add-hook 'emacs-startup-hook #'shiro-restore-file-name-handler-alist 105))
+
 (setq load-prefer-newer t)
 
 (defvar root-emacs-directory user-emacs-directory)
