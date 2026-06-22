@@ -43,11 +43,11 @@
   (setq initial-major-mode 'fundamental-mode)
   (setq initial-scratch-message nil)
 
-  (when (boundp 'pgtk-wait-for-event-timeout)
-    (setq pgtk-wait-for-event-timeout 0.001))
-
   (setq frame-inhibit-implied-resize t)
   (setq frame-resize-pixelwise t)
+
+  (when (boundp 'pgtk-wait-for-event-timeout)
+    (setq pgtk-wait-for-event-timeout 0.001))
 
   (menu-bar-mode -1)
   (scroll-bar-mode -1)
