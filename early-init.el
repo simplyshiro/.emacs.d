@@ -76,6 +76,8 @@
 
   (tooltip-mode -1)
 
+  (setq use-dialog-box nil)
+  (setq use-file-dialog nil))
 
 (setq package-enable-at-startup nil)
 
