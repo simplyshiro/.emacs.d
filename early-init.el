@@ -33,17 +33,7 @@
       `(("." . ,(expand-file-name "backups/" user-emacs-directory))))
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
-(defun shiro-pipe-max-size ()
-  "Return `/proc/sys/fs/pipe-max-size' as a number on GNU/Linux systems.
-Otherwise, return 1 MiB (1,048,576 B) as a default fallback."
-  (if (and (eq system-type 'gnu/linux)
-           (file-readable-p "/proc/sys/fs/pipe-max-size"))
-      (with-temp-buffer
-        (insert-file-contents "/proc/sys/fs/pipe-max-size")
-        (string-to-number (buffer-string)))
-    (* 1024 1024)))
-
-(setq read-process-output-max (shiro-pipe-max-size))
+(setq read-process-output-max (expt 1024 2))
 
 (unless noninteractive
   (setq inhibit-startup-buffer-menu t)
