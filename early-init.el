@@ -64,10 +64,18 @@
   (when (boundp 'pgtk-wait-for-event-timeout)
     (setq pgtk-wait-for-event-timeout 0.001))
 
-  (menu-bar-mode -1)
-  (scroll-bar-mode -1)
-  (tool-bar-mode -1)
-  (tooltip-mode -1))
+  (push '(menu-bar-lines . 0) default-frame-alist)
+  (setq menu-bar-mode nil)
+
+  (push '(horizontal-scroll-bars) default-frame-alist)
+  (push '(vertical-scroll-bars) default-frame-alist)
+  (setq scroll-bar-mode nil)
+
+  (push '(tool-bar-lines . 0) default-frame-alist)
+  (setq tool-bar-mode nil)
+
+  (tooltip-mode -1)
+
 
 (setq package-enable-at-startup nil)
 
