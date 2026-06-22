@@ -63,6 +63,11 @@
   (setq frame-inhibit-implied-resize t)
   (setq frame-resize-pixelwise t)
 
+  (setq-default bidi-display-reordering 'left-to-right)
+  (setq-default bidi-paragraph-direction 'left-to-right)
+
+  (setq bidi-inhibit-bpa t)
+
   (when (boundp 'pgtk-wait-for-event-timeout)
     (setq pgtk-wait-for-event-timeout 0.001))
 
