@@ -60,6 +60,10 @@
 
   (advice-add 'display-startup-echo-area-message :override #'ignore)
 
+  (setq inhibit-compacting-font-caches t)
+
+  (setq inhibit-x-resources t)
+
   (setq frame-inhibit-implied-resize t)
   (setq frame-resize-pixelwise t)
 
