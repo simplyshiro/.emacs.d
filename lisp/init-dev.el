@@ -34,7 +34,12 @@
   (python-base-mode-hook . eglot-ensure)
   (rust-ts-mode-hook . eglot-ensure)
   (qml-ts-mode-hook . eglot-ensure)
-  :custom (eglot-autoshutdown t)
+  :custom
+  (eglot-autoshutdown t)
+  (eglot-events-buffer-config '(:size 0 :format short))
+  (eglot-extend-to-xref t)
+  (eglot-report-progress nil)
+  (eglot-sync-connect nil)
   :ensure nil)
 
 (use-package flymake
