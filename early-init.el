@@ -58,6 +58,8 @@
   (setq initial-major-mode 'fundamental-mode)
   (setq initial-scratch-message nil)
 
+  (advice-add 'display-startup-echo-area-message :override #'ignore)
+
   (setq frame-inhibit-implied-resize t)
   (setq frame-resize-pixelwise t)
 
