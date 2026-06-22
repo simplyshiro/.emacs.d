@@ -54,7 +54,7 @@
   (setq inhibit-startup-buffer-menu t)
   (setq inhibit-startup-echo-area-message user-login-name)
   (setq inhibit-startup-screen t)
-  (setq initial-buffer-choice nil)
+  (setq initial-buffer-choice t)
   (setq initial-major-mode 'fundamental-mode)
   (setq initial-scratch-message nil)
 
