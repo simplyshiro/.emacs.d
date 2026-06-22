@@ -13,6 +13,15 @@
 (setq gc-cons-threshold most-positive-fixnum)
 (setq gc-cons-percentage 1.0)
 
+(defun shiro-restore-gc-cons-values ()
+  "Restore `gc-cons-threshold' and `gc-cons-percentage' to their defaults."
+  (setq gc-cons-threshold shiro--gc-cons-threshold)
+  (setq gc-cons-percentage shiro--gc-cons-percentage))
+
+(add-hook 'emacs-startup-hook #'shiro-restore-gc-cons-values most-positive-fixnum)
+
+(setq load-prefer-newer t)
+
 (defvar root-emacs-directory user-emacs-directory)
 (setq user-emacs-directory (expand-file-name "var/" root-emacs-directory))
 (setq auto-save-list-file-prefix
@@ -20,10 +29,6 @@
 (setq backup-directory-alist
       `(("." . ,(expand-file-name "backups/" user-emacs-directory))))
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-
-(setq package-enable-at-startup nil)
-
-(setq load-prefer-newer t)
 
 (setq inhibit-startup-buffer-menu t)
 (setq inhibit-startup-echo-area-message user-login-name)
@@ -43,12 +48,7 @@
 (tool-bar-mode -1)
 (tooltip-mode -1)
 
-(defun shiro-restore-gc-cons-values ()
-  "Restore `gc-cons-threshold' and `gc-cons-percentage' to their defaults."
-  (setq gc-cons-threshold shiro--gc-cons-threshold)
-  (setq gc-cons-percentage shiro--gc-cons-percentage))
-
-(add-hook 'emacs-startup-hook #'shiro-restore-gc-cons-values most-positive-fixnum)
+(setq package-enable-at-startup nil)
 
 (provide 'early-init)
 
