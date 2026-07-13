@@ -115,8 +115,7 @@
   :mode "\\.rs\\'"
   :ensure nil)
 
-(use-package eat
-  :custom (eat-kill-buffer-on-exit t))
+(use-package ghostel)
 
 (provide 'init-dev)
 
