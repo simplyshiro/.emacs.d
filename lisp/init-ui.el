@@ -37,7 +37,9 @@
   :demand t)
 
 (defvar-local shiro-mode-line-symbol
-    '((buffer-read-only " %% " " * ")))
+    '(:eval (cond (buffer-read-only " %% ")
+                  ((buffer-modified-p) " * ")
+                  (t " - "))))
 (put 'shiro-mode-line-symbol 'risky-local-variable t)
 
 (defun shiro-mode-line-buffer-name-face ()
