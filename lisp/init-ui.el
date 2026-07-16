@@ -73,7 +73,9 @@
 (put 'shiro-mode-line-vc-branch 'risky-local-variable t)
 
 (defvar-local shiro-mode-line-major-mode
-    '(:eval (format " %s " (downcase (symbol-name major-mode)))))
+    '(:eval (propertize (format " %s " (downcase (symbol-name major-mode)))
+                        'mouse-face 'mode-line-highlight
+                        'help-echo "Major mode")))
 (put 'shiro-mode-line-major-mode 'risky-local-variable t)
 
 (defvar-local shiro-mode-line-position
