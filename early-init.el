@@ -47,7 +47,8 @@
       `(("." . ,(expand-file-name "backups/" user-emacs-directory))))
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
-(setq read-process-output-max (expt 1024 2))
+(when (eq system-type 'gnu/linux)
+  (setq read-process-output-max (expt 1024 2)))
 
 (unless noninteractive
   (setq inhibit-startup-buffer-menu t)
