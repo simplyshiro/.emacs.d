@@ -7,6 +7,12 @@
 
 ;;; Code:
 
+(defgroup shiro nil
+  "Customization variables for shiro's `init.el'."
+  :tag "shiro"
+  :group 'emacs
+  :prefix "shiro-")
+
 (defun shiro-convert-mib-to-b (mebibytes)
   "Convert a number of MEBIBYTES to bytes."
   (* mebibytes (expt 1024 2)))
