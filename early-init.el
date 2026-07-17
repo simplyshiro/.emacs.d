@@ -9,7 +9,6 @@
 
 (defvar shiro--gc-cons-threshold
   (default-toplevel-value 'gc-cons-threshold))
-
 (defvar shiro--gc-cons-percentage
   (default-toplevel-value 'gc-cons-percentage))
 
