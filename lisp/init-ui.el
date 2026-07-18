@@ -63,6 +63,11 @@
                           'help-echo help))))
 (put 'shiro-mode-line-buffer-name 'risky-local-variable t)
 
+(defvar-local shiro-mode-line-vc-branch-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map [mode-line mouse-1] #'magit-status)
+    (define-key map [mode-line mouse-3] #'magit-log-current)
+    map))
 (defvar-local shiro-mode-line-vc-branch
     '(:eval (when-let* ((file (buffer-file-name))
                         (branch (ignore-errors (vc-git--symbolic-ref file)))
@@ -70,11 +75,14 @@
                         (rev-short (if (> (length revision) 7)
                                        (substring revision 0 7)
                                      revision))
-                        (help (concat "Branch name\nrevision: " rev-short)))
+                        (help (format "Branch name\nrevision: %s
+mouse-1: Show the status of the current Git repository
+mouse-3: Show log for the current branch" rev-short)))
               (propertize (format " %s " branch)
                           'face 'italic
                           'mouse-face 'mode-line-highlight
-                          'help-echo help))))
+                          'help-echo help
+                          'local-map shiro-mode-line-vc-branch-map))))
 (put 'shiro-mode-line-vc-branch 'risky-local-variable t)
 
 (defvar-local shiro-mode-line-major-mode
