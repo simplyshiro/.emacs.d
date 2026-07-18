@@ -72,6 +72,7 @@
                                      revision))
                         (help (concat "Branch name\nrevision: " rev-short)))
               (propertize (format " %s " branch)
+                          'face 'italic
                           'mouse-face 'mode-line-highlight
                           'help-echo help))))
 (put 'shiro-mode-line-vc-branch 'risky-local-variable t)
