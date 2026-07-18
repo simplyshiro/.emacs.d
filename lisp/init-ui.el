@@ -65,9 +65,11 @@
 
 (defvar-local shiro-mode-line-vc-branch
     '(:eval (when-let* ((file (buffer-file-name))
-                        (branch (vc-git--symbolic-ref file))
-                        (revision (vc-working-revision file))
-                        (rev-short (substring revision 0 7))
+                        (branch (ignore-errors (vc-git--symbolic-ref file)))
+                        (revision (ignore-errors (vc-working-revision file)))
+                        (rev-short (if (> (length revision) 7)
+                                       (substring revision 0 7)
+                                     revision))
                         (help (concat "Branch name\nrevision: " rev-short)))
               (propertize (format " %s " branch)
                           'mouse-face 'mode-line-highlight
