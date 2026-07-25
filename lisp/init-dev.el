@@ -115,13 +115,11 @@
   :mode "\\.rs\\'"
   :ensure nil)
 
-(unless (getenv "TERMUX_VERSION")
+(if (getenv "TERMUX_VERSION")
+    (use-package eat
+      :custom (eat-kill-buffer-on-exit t))
   (use-package ghostel
     :custom (ghostel-shell-integration nil)))
-
-(when (getenv "TERMUX_VERSION")
-  (use-package eat
-    :custom (eat-kill-buffer-on-exit t)))
 
 (provide 'init-dev)
 
