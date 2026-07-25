@@ -108,12 +108,12 @@ mouse-3: Show log for the current branch" rev-short)))
 
 (setq mode-line-right-align-edge 'right-margin)
 (setq-default mode-line-format
-              '("%e" shiro-mode-line-symbol
+              '(" %e" shiro-mode-line-symbol
                 shiro-mode-line-buffer-name
                 shiro-mode-line-major-mode
                 shiro-mode-line-vc-branch
                 mode-line-format-right-align
-                shiro-mode-line-position))
+                shiro-mode-line-position " "))
 
 (defun shiro-set-font (&optional frame)
   "Set font families on FRAME."
