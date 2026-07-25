@@ -116,7 +116,8 @@
   :ensure nil)
 
 (unless (getenv "TERMUX_VERSION")
-  (use-package ghostel))
+  (use-package ghostel
+    :custom (ghostel-shell-integration nil)))
 
 (when (getenv "TERMUX_VERSION")
   (use-package eat
