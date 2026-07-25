@@ -58,10 +58,9 @@
 (defvar-local shiro-mode-line-buffer-name
     '(:eval (let* ((name (buffer-name))
                    (file-name (buffer-file-name))
-                   (help (concat "Buffer name"
-                                 (when file-name
-                                   (concat "\npath: " file-name))
-                                 "\nmouse-1: Switch buffer")))
+                   (path-string (if file-name (format "\npath: %s" file-name) ""))
+                   (help (format "Buffer name%s
+mouse-1: Switch buffer" path-string)))
               (propertize (format " %s " name)
                           'face (shiro-mode-line-buffer-name-face)
                           'mouse-face 'mode-line-highlight
