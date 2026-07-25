@@ -36,10 +36,23 @@
 (use-package standard-themes
   :demand t)
 
+(defvar-local shiro-mode-line-symbol-map
+    (let ((map (make-sparse-keymap)))
+      (define-key map [mode-line mouse-1] #'read-only-mode)
+      map))
 (defvar-local shiro-mode-line-symbol
-    '(:eval (cond (buffer-read-only " %% ")
-                  ((buffer-modified-p) " * ")
-                  (t " - "))))
+    '(:eval (let* ((symbol (cond (buffer-read-only " %% ")
+                                 ((buffer-modified-p) " * ")
+                                 (t " - ")))
+                   (status (cond (buffer-read-only "Buffer is read-only")
+                                 ((buffer-modified-p) "Buffer is modified")
+                                 (t "Buffer is unmodified")))
+                   (help (format "%s
+mouse-1: Toggle read-only mode" status)))
+              (propertize symbol
+                          'mouse-face 'mode-line-highlight
+                          'help-echo help
+                          'local-map shiro-mode-line-symbol-map))))
 (put 'shiro-mode-line-symbol 'risky-local-variable t)
 
 (defun shiro-mode-line-buffer-name-face ()
