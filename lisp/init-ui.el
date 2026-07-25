@@ -69,10 +69,10 @@ mouse-1: Switch buffer" path-string)))
 (put 'shiro-mode-line-buffer-name 'risky-local-variable t)
 
 (defvar-local shiro-mode-line-vc-branch-map
-  (let ((map (make-sparse-keymap)))
-    (define-key map [mode-line mouse-1] #'magit-status)
-    (define-key map [mode-line mouse-3] #'magit-log-current)
-    map))
+    (let ((map (make-sparse-keymap)))
+      (define-key map [mode-line mouse-1] #'magit-status)
+      (define-key map [mode-line mouse-3] #'magit-log-current)
+      map))
 (defvar-local shiro-mode-line-vc-branch
     '(:eval (when-let* ((file (buffer-file-name))
                         (branch (ignore-errors (vc-git--symbolic-ref file)))
