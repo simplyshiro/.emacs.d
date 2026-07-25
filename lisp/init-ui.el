@@ -51,16 +51,22 @@
           (window-selected 'mode-line-buffer-id)
           (buffer-modified '(italic mode-line-inactive))
           (t 'mode-line-inactive))))
+(defvar-local shiro-mode-line-buffer-map
+    (let ((map (make-sparse-keymap)))
+      (define-key map [mode-line mouse-1] #'consult-buffer)
+      map))
 (defvar-local shiro-mode-line-buffer-name
     '(:eval (let* ((name (buffer-name))
                    (file-name (buffer-file-name))
                    (help (concat "Buffer name"
                                  (when file-name
-                                   (concat "\npath: " file-name)))))
+                                   (concat "\npath: " file-name))
+                                 "\nmouse-1: Switch buffer")))
               (propertize (format " %s " name)
                           'face (shiro-mode-line-buffer-name-face)
                           'mouse-face 'mode-line-highlight
-                          'help-echo help))))
+                          'help-echo help
+                          'local-map shiro-mode-line-buffer-map))))
 (put 'shiro-mode-line-buffer-name 'risky-local-variable t)
 
 (defvar-local shiro-mode-line-vc-branch-map
