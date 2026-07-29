@@ -19,9 +19,7 @@
   (add-to-list 'eglot-server-programs '(qml-ts-mode "qmlls6"))
   (add-to-list 'eglot-server-programs
                '((rust-mode rust-ts-mode) "rust-analyzer" :initializationOptions (:check (:command "clippy"))))
-  (add-to-list 'completion-category-overrides
-               '((eglot (styles orderless))
-                 (eglot-capf (styles orderless))))
+  (setq completion-category-defaults nil)
   :hook
   ((c-mode-hook c-ts-mode-hook) . eglot-ensure)
   ((csharp-mode-hook csharp-ts-mode-hook) . eglot-ensure)
