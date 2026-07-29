@@ -18,7 +18,10 @@
                '((python-base-mode) "rass" "python"))
   (add-to-list 'eglot-server-programs '(qml-ts-mode "qmlls6"))
   (add-to-list 'eglot-server-programs
-               '((rust-mode rust-ts-mode) "rust-analyzer" :initializationOptions (:check (:command "clippy"))))
+               '((rust-mode rust-ts-mode)
+                 "rust-analyzer" :initializationOptions
+                 (:check
+                  (:command "clippy"))))
   (setq completion-category-defaults nil)
   :hook
   ((c-mode-hook c-ts-mode-hook) . eglot-ensure)
