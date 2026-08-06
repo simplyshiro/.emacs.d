@@ -158,7 +158,6 @@ mouse-3: Show log for the current branch" rev-short)))
   :ensure nil)
 
 (blink-cursor-mode -1)
-(pixel-scroll-precision-mode)
 
 (setq tab-bar-show 1)
 
