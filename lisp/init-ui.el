@@ -132,7 +132,6 @@ mouse-3: Show log for the current branch" rev-short)))
   "Set font families on FRAME."
   (let ((font-height 105))
     (set-face-attribute 'default frame :height font-height)
-    (set-face-attribute 'fixed-pitch frame :height font-height)
     (set-face-attribute 'variable-pitch frame :height font-height)))
 
 (if (daemonp)
