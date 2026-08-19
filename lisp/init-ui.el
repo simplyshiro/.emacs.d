@@ -160,7 +160,6 @@ mouse-3: Show log for the current branch" rev-short)))
 
 (setq tab-bar-show 1)
 
-;; https://karthinks.com/software/batteries-included-with-emacs/
 (defun shiro-pulse-line (&rest _)
   "Pulse the current line."
   (pulse-momentary-highlight-one-line (point)))
