@@ -130,7 +130,7 @@ mouse-3: Show log for the current branch" rev-short)))
 
 (defun shiro-set-font (&optional frame)
   "Set font families on FRAME."
-  (let ((font-height 105))
+  (let ((font-height 120))
     (set-face-attribute 'default frame :height font-height :weight 'medium)
     (set-face-attribute 'variable-pitch frame :height font-height :weight 'normal)))
 
