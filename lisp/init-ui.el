@@ -1,4 +1,4 @@
-;;; init-ui.el --- Init UI -*- lexical-binding: t; no-byte-compile: t; -*-
+;;; init-ui.el --- Init UI -*- lexical-binding: t; -*-
 
 ;; Author: simplyshiro
 ;; URL: https://github.com/simplyshiro/.emacs.d
