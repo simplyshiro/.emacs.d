@@ -1,4 +1,4 @@
-;;; init-dev.el --- Init Dev -*- lexical-binding: t; no-byte-compile: t; -*-
+;;; init-dev.el --- Init Dev -*- lexical-binding: t; -*-
 
 ;; Author: simplyshiro
 ;; URL: https://github.com/simplyshiro/.emacs.d
