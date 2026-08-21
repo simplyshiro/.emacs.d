@@ -1,4 +1,4 @@
-;;; init-elpaca.el --- Init Elpaca -*- lexical-binding: t; no-byte-compile: t; -*-
+;;; init-elpaca.el --- Init Elpaca -*- lexical-binding: t; -*-
 
 ;; Author: simplyshiro
 ;; URL: https://github.com/simplyshiro/.emacs.d
