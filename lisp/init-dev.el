@@ -120,6 +120,7 @@
     (use-package eat
       :custom (eat-kill-buffer-on-exit t))
   (use-package ghostel
+    :commands (ghostel-download-module)
     :custom (ghostel-shell-integration nil)))
 
 (provide 'init-dev)
