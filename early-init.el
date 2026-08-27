@@ -37,8 +37,6 @@
 (unless noninteractive
   (add-hook 'emacs-startup-hook #'shiro-restore-file-name-handler-alist 105))
 
-(setq load-prefer-newer t)
-
 (defvar root-emacs-directory user-emacs-directory)
 (setq user-emacs-directory (expand-file-name "var/" root-emacs-directory))
 (setq auto-save-list-file-prefix
