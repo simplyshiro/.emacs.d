@@ -52,6 +52,12 @@ mouse-1: Switch buffer" path-string)))
                           'local-map shiro-mode-line-buffer-map))))
 (put 'shiro-mode-line-buffer-name 'risky-local-variable t)
 
+(defvar-local shiro-mode-line-major-mode
+    '(:eval (propertize (format " %s " (downcase (symbol-name major-mode)))
+                        'mouse-face 'mode-line-highlight
+                        'help-echo "Major mode")))
+(put 'shiro-mode-line-major-mode 'risky-local-variable t)
+
 (defvar-local shiro-mode-line-vc-branch-map
     (let ((map (make-sparse-keymap)))
       (define-key map [mode-line mouse-1] #'magit-status)
@@ -73,12 +79,6 @@ mouse-3: Show log for the current branch" rev-short)))
                           'help-echo help
                           'local-map shiro-mode-line-vc-branch-map))))
 (put 'shiro-mode-line-vc-branch 'risky-local-variable t)
-
-(defvar-local shiro-mode-line-major-mode
-    '(:eval (propertize (format " %s " (downcase (symbol-name major-mode)))
-                        'mouse-face 'mode-line-highlight
-                        'help-echo "Major mode")))
-(put 'shiro-mode-line-major-mode 'risky-local-variable t)
 
 (defvar-local shiro-mode-line-position
     '((line-number-mode
