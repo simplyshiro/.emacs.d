@@ -16,14 +16,14 @@
   (default-toplevel-value 'gc-cons-percentage)
   "Default value of `gc-cons-percentage' before startup.")
 
-;; Defer garbage collection during startup.
-(setq gc-cons-threshold most-positive-fixnum)
-(setq gc-cons-percentage 1.0)
-
 (defun shiro-restore-gc-cons-values ()
   "Restore `gc-cons-threshold' and `gc-cons-percentage' to their default values."
   (setq gc-cons-threshold shiro--gc-cons-threshold)
   (setq gc-cons-percentage shiro--gc-cons-percentage))
+
+;; Defer garbage collection during startup.
+(setq gc-cons-threshold most-positive-fixnum)
+(setq gc-cons-percentage 1.0)
 
 (add-hook 'emacs-startup-hook #'shiro-restore-gc-cons-values 110)
 
@@ -33,15 +33,15 @@
   (default-toplevel-value 'file-name-handler-alist)
   "Default value of `file-name-handler-alist' before startup.")
 
-;; Clear file name handlers during startup.
-(setq file-name-handler-alist nil)
-
 (defun shiro-restore-file-name-handler-alist ()
   "Restore `file-name-handler-alist' to the default value."
   (set-default-toplevel-value 'file-name-handler-alist
                               (delete-dups
                                (append file-name-handler-alist
                                        shiro--file-name-handler-alist))))
+
+;; Clear file name handlers during startup.
+(setq file-name-handler-alist nil)
 
 (unless noninteractive
   (add-hook 'emacs-startup-hook #'shiro-restore-file-name-handler-alist 105))
