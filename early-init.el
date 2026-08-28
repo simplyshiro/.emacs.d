@@ -48,6 +48,8 @@
 (when (eq system-type 'gnu/linux)
   (setq read-process-output-max (expt 1024 2)))
 
+(setq package-enable-at-startup nil)
+
 (unless noninteractive
   (setq inhibit-startup-buffer-menu t)
   (setq inhibit-startup-echo-area-message user-login-name)
@@ -59,7 +61,6 @@
   (advice-add 'display-startup-echo-area-message :override #'ignore)
 
   (setq inhibit-compacting-font-caches t)
-
   (setq inhibit-x-resources t)
 
   (setq frame-inhibit-implied-resize t)
@@ -67,7 +68,6 @@
 
   (setq-default bidi-display-reordering 'left-to-right)
   (setq-default bidi-paragraph-direction 'left-to-right)
-
   (setq bidi-inhibit-bpa t)
 
   (when (boundp 'pgtk-wait-for-event-timeout)
@@ -87,8 +87,6 @@
 
   (setq use-dialog-box nil)
   (setq use-file-dialog nil))
-
-(setq package-enable-at-startup nil)
 
 (provide 'early-init)
 
