@@ -48,7 +48,7 @@
 (setq package-enable-at-startup nil)
 
 (when (eq system-type 'gnu/linux)
-  (setq read-process-output-max (expt 1024 2)))
+  (setq read-process-output-max 1048576))
 
 (unless noninteractive
   (setq inhibit-startup-buffer-menu t)
