@@ -7,6 +7,8 @@
 
 ;;; Code:
 
+;;; Garbage Collection
+
 (defvar shiro--gc-cons-threshold
   (default-toplevel-value 'gc-cons-threshold)
   "Default value of `gc-cons-threshold' before startup.")
@@ -25,6 +27,8 @@
 
 (add-hook 'emacs-startup-hook #'shiro-restore-gc-cons-values 110)
 
+;;; File Name Handler
+
 (defvar shiro--file-name-handler-alist
   (default-toplevel-value 'file-name-handler-alist)
   "Default value of `file-name-handler-alist' before startup.")
@@ -42,6 +46,8 @@
 (unless noninteractive
   (add-hook 'emacs-startup-hook #'shiro-restore-file-name-handler-alist 105))
 
+;;; Files and Directories
+
 (defvar root-emacs-directory user-emacs-directory)
 (setq user-emacs-directory (expand-file-name "var/" root-emacs-directory))
 (setq auto-save-list-file-prefix
@@ -50,12 +56,18 @@
       `(("." . ,(expand-file-name "backups/" user-emacs-directory))))
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
+;;; Package Management
+
 ;; Disable `package.el' in favor of Elpaca.
 (setq package-enable-at-startup nil)
+
+;;; Process Settings
 
 ;; Set to the default value of `/proc/sys/fs/pipe-max-size' on Linux.
 (when (eq system-type 'gnu/linux)
   (setq read-process-output-max 1048576)) ; or 1 MiB
+
+;;; Miscellaneous Settings
 
 (unless noninteractive
   (setq inhibit-startup-buffer-menu t)
@@ -79,6 +91,8 @@
 
   (when (boundp 'pgtk-wait-for-event-timeout)
     (setq pgtk-wait-for-event-timeout 0.001)))
+
+;;; UI Elements
 
 (unless noninteractive
   (push '(menu-bar-lines . 0) default-frame-alist)
