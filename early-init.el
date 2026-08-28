@@ -77,8 +77,9 @@
   (setq bidi-inhibit-bpa t)
 
   (when (boundp 'pgtk-wait-for-event-timeout)
-    (setq pgtk-wait-for-event-timeout 0.001))
+    (setq pgtk-wait-for-event-timeout 0.001)))
 
+(unless noninteractive
   (push '(menu-bar-lines . 0) default-frame-alist)
   (setq menu-bar-mode nil)
 
