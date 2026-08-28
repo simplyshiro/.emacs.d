@@ -8,9 +8,11 @@
 ;;; Code:
 
 (defvar shiro--gc-cons-threshold
-  (default-toplevel-value 'gc-cons-threshold))
+  (default-toplevel-value 'gc-cons-threshold)
+  "Default value of `gc-cons-threshold' before startup.")
 (defvar shiro--gc-cons-percentage
-  (default-toplevel-value 'gc-cons-percentage))
+  (default-toplevel-value 'gc-cons-percentage)
+  "Default value of `gc-cons-percentage' before startup.")
 
 (setq gc-cons-threshold most-positive-fixnum)
 (setq gc-cons-percentage 1.0)
@@ -23,7 +25,8 @@
 (add-hook 'emacs-startup-hook #'shiro-restore-gc-cons-values 110)
 
 (defvar shiro--file-name-handler-alist
-  (default-toplevel-value 'file-name-handler-alist))
+  (default-toplevel-value 'file-name-handler-alist)
+  "Default value of `file-name-handler-alist' before startup.")
 
 (setq file-name-handler-alist nil)
 
