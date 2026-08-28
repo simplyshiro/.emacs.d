@@ -29,6 +29,7 @@
   (default-toplevel-value 'file-name-handler-alist)
   "Default value of `file-name-handler-alist' before startup.")
 
+;; Clear file name handlers during startup.
 (setq file-name-handler-alist nil)
 
 (defun shiro-restore-file-name-handler-alist ()
