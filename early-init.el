@@ -14,6 +14,7 @@
   (default-toplevel-value 'gc-cons-percentage)
   "Default value of `gc-cons-percentage' before startup.")
 
+;; Defer garbage collection during startup.
 (setq gc-cons-threshold most-positive-fixnum)
 (setq gc-cons-percentage 1.0)
 
@@ -48,10 +49,12 @@
       `(("." . ,(expand-file-name "backups/" user-emacs-directory))))
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
+;; Disable `package.el' in favor of Elpaca.
 (setq package-enable-at-startup nil)
 
+;; Set to the default value of `/proc/sys/fs/pipe-max-size' on Linux.
 (when (eq system-type 'gnu/linux)
-  (setq read-process-output-max 1048576))
+  (setq read-process-output-max 1048576)) ; or 1 MiB
 
 (unless noninteractive
   (setq inhibit-startup-buffer-menu t)
