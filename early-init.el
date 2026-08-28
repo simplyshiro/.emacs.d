@@ -32,7 +32,7 @@
 (setq file-name-handler-alist nil)
 
 (defun shiro-restore-file-name-handler-alist ()
-  "Restore `file-name-handler-alist'."
+  "Restore `file-name-handler-alist' to the default value."
   (set-default-toplevel-value 'file-name-handler-alist
                               (delete-dups
                                (append file-name-handler-alist
