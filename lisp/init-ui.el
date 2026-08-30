@@ -36,8 +36,6 @@
 (use-package standard-themes
   :demand t)
 
-(require 'init-mode-line)
-
 (defun shiro-set-font (&optional frame)
   "Set font families on FRAME."
   (let ((font-height 120))
