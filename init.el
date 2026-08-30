@@ -11,6 +11,7 @@
 
 (require 'init-elpaca)
 (require 'init-core)
+(require 'init-mode-line)
 (require 'init-ui)
 (require 'init-dev)
 
