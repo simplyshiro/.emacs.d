@@ -14,9 +14,6 @@
 (use-package corfu
   :init (global-corfu-mode)
   :config
-  (setq corfu-auto t)
-  (setq corfu-auto-delay 0.001)
-  (setq corfu-auto-prefix 0)
   (setq corfu-cycle t)
   (setq corfu-preselect 'prompt)
   (setq corfu-scroll-margin (/ corfu-count 2))
