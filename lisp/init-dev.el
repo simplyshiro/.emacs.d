@@ -23,6 +23,11 @@
                  (:check
                   (:command "clippy"))))
   (setq completion-category-defaults nil)
+  (setq eglot-autoshutdown t)
+  (setq eglot-events-buffer-config '(:size 0 :format short))
+  (setq eglot-extend-to-xref t)
+  (setq eglot-report-progress nil)
+  (setq eglot-sync-connect nil)
   :hook
   ((c-mode-hook c-ts-mode-hook) . eglot-ensure)
   ((csharp-mode-hook csharp-ts-mode-hook) . eglot-ensure)
@@ -35,12 +40,6 @@
   (python-base-mode-hook . eglot-ensure)
   (rust-ts-mode-hook . eglot-ensure)
   (qml-ts-mode-hook . eglot-ensure)
-  :custom
-  (eglot-autoshutdown t)
-  (eglot-events-buffer-config '(:size 0 :format short))
-  (eglot-extend-to-xref t)
-  (eglot-report-progress nil)
-  (eglot-sync-connect nil)
   :ensure nil)
 
 (use-package flymake
@@ -52,6 +51,19 @@
 
 (use-package treesit
   :config
+  (setq major-mode-remap-alist
+        '((c++-mode . c++-ts-mode)
+          (c-mode . c-ts-mode)
+          (c-or-c++-mode . c-or-c++-ts-mode)
+          (csharp-mode . csharp-ts-mode)
+          (css-mode . css-ts-mode)
+          (html-mode . html-ts-mode)
+          (java-mode . java-ts-mode)
+          (js-mode . js-ts-mode)
+          (mhtml-mode . html-ts-mode)
+          (python-mode . python-ts-mode)
+          (ruby-mode . ruby-ts-mode)))
+  (setq treesit-font-lock-level 4)
   (setq treesit-language-source-alist
         (mapcar (lambda (args) (apply #'shiro--treesit-generate-language-source args))
                 '((bash "v0.25.1")
@@ -80,20 +92,6 @@
                        (or repo (format "tree-sitter/tree-sitter-%s" lang)))))
       (delq nil (list lang url revision source-dir))))
   :mode ("\\.lua\\'" . lua-ts-mode)
-  :custom
-  (treesit-font-lock-level 4)
-  (major-mode-remap-alist
-   '((c++-mode . c++-ts-mode)
-     (c-mode . c-ts-mode)
-     (c-or-c++-mode . c-or-c++-ts-mode)
-     (csharp-mode . csharp-ts-mode)
-     (css-mode . css-ts-mode)
-     (html-mode . html-ts-mode)
-     (java-mode . java-ts-mode)
-     (js-mode . js-ts-mode)
-     (mhtml-mode . html-ts-mode)
-     (python-mode . python-ts-mode)
-     (ruby-mode . ruby-ts-mode)))
   :ensure nil)
 
 (use-package apheleia
@@ -118,10 +116,10 @@
 
 (if (getenv "TERMUX_VERSION")
     (use-package eat
-      :custom (eat-kill-buffer-on-exit t))
+      :config (setq eat-kill-buffer-on-exit t))
   (use-package ghostel
-    :commands (ghostel-download-module)
-    :custom (ghostel-shell-integration nil)))
+    :config (setq ghostel-shell-integration nil)
+    :commands (ghostel-download-module)))
 
 (provide 'init-dev)
 
