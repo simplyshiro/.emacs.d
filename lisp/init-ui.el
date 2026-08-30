@@ -28,10 +28,10 @@
   :demand t)
 
 (use-package modus-themes
-  :custom
-  (modus-themes-bold-constructs t)
-  (modus-themes-italic-constructs t)
-  (modus-themes-mixed-fonts t))
+  :config
+  (setq modus-themes-bold-constructs t)
+  (setq modus-themes-italic-constructs t)
+  (setq modus-themes-mixed-fonts t))
 
 (use-package standard-themes
   :demand t)
@@ -50,14 +50,15 @@
 
 (use-package spacious-padding
   :init (spacious-padding-mode)
-  :config (shiro--mode-line-update-right-align-edge)
+  :config
+  (setq spacious-padding-widths
+        '(:internal-border-width 16 :right-divider-width 1 :mode-line-width 8))
+  (shiro--mode-line-update-right-align-edge)
   :preface (defun shiro--mode-line-update-right-align-edge ()
              "Update `right-align-edge' based on `spacious-padding-mode'."
              (setq mode-line-right-align-edge
                    (if spacious-padding-mode 'window 'right-margin)))
-  :hook (spacious-padding-mode-hook . shiro--mode-line-update-right-align-edge)
-  :custom (spacious-padding-widths
-           '(:internal-border-width 16 :right-divider-width 1 :mode-line-width 8)))
+  :hook (spacious-padding-mode-hook . shiro--mode-line-update-right-align-edge))
 
 (use-package display-line-numbers
   :preface (defun shiro--disable-display-line-numbers-mode ()
