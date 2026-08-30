@@ -15,7 +15,7 @@
 
 (defun shiro-convert-mib-to-b (mebibytes)
   "Convert a number of MEBIBYTES to bytes."
-  (* mebibytes (expt 1024 2)))
+  (* mebibytes 1048576))
 
 (use-package emacs
   :config
