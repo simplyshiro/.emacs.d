@@ -14,6 +14,7 @@
 (require 'init-mode-line)
 (require 'init-themes)
 (require 'init-ui)
+(require 'init-completion)
 (require 'init-dev)
 
 (load custom-file 'noerror 'nomessage)
