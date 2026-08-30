@@ -19,15 +19,14 @@
 
 (use-package spacious-padding
   :init (spacious-padding-mode)
-  :config
-  (setq spacious-padding-widths
-        '(:internal-border-width 16 :right-divider-width 1 :mode-line-width 8))
-  (shiro--mode-line-update-right-align-edge)
+  :config (shiro--mode-line-update-right-align-edge)
   :preface (defun shiro--mode-line-update-right-align-edge ()
              "Update `right-align-edge' based on `spacious-padding-mode'."
              (setq mode-line-right-align-edge
                    (if spacious-padding-mode 'window 'right-margin)))
-  :hook (spacious-padding-mode-hook . shiro--mode-line-update-right-align-edge))
+  :hook (spacious-padding-mode-hook . shiro--mode-line-update-right-align-edge)
+  :custom (spacious-padding-widths
+           '(:internal-border-width 16 :right-divider-width 1 :mode-line-width 8)))
 
 (use-package display-line-numbers
   :preface (defun shiro--disable-display-line-numbers-mode ()
