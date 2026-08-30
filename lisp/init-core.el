@@ -55,6 +55,7 @@
   (undo-strong-limit (shiro-convert-mib-to-b 32))
   (use-short-answers t)
   (version-control t)
+  (view-read-only t)
   :ensure nil)
 
 (use-package compat)
