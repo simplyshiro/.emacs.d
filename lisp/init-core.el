@@ -29,46 +29,49 @@
   (savehist-mode)
   (which-key-mode)
   (windmove-default-keybindings 'meta)
+  (setq backup-by-copying t)
+  (setq backup-by-copying-when-linked t)
+  (setq create-lockfiles nil)
+  (setq delete-old-versions t)
+  (setq dired-kill-when-opening-new-dired-buffer t)
+  (setq eldoc-echo-area-use-multiline-p nil)
+  (setq enable-recursive-minibuffers t)
+  (setq indent-tabs-mode nil)
+  (setq make-backup-files nil)
+  (setq minibuffer-prompt-properties '(read-only t cursor-intangible t face minibuffer-prompt))
+  (setq read-extended-command-predicate #'command-completion-default-include-p)
+  (setq remote-file-name-inhibit-locks t)
+  (setq tab-always-indent 'complete)
+  (setq tab-width 4)
+  (setq text-mode-ispell-word-completion nil)
+  (setq tramp-use-scp-direct-remote-copying t)
+  (setq undo-limit (shiro-convert-mib-to-b 16))
+  (setq undo-outer-limit (shiro-convert-mib-to-b 64))
+  (setq undo-strong-limit (shiro-convert-mib-to-b 32))
+  (setq use-short-answers t)
+  (setq version-control t)
+  (setq view-read-only t)
   :hook (before-save-hook . delete-trailing-whitespace)
   :bind (([remap capitalize-word] . capitalize-dwim)
          ([remap downcase-word] . downcase-dwim)
          ([remap upcase-word] . upcase-dwim))
-  :custom
-  (backup-by-copying t)
-  (backup-by-copying-when-linked t)
-  (create-lockfiles nil)
-  (delete-old-versions t)
-  (dired-kill-when-opening-new-dired-buffer t)
-  (eldoc-echo-area-use-multiline-p nil)
-  (enable-recursive-minibuffers t)
-  (indent-tabs-mode nil)
-  (make-backup-files nil)
-  (minibuffer-prompt-properties '(read-only t cursor-intangible t face minibuffer-prompt))
-  (read-extended-command-predicate #'command-completion-default-include-p)
-  (remote-file-name-inhibit-locks t)
-  (tab-always-indent 'complete)
-  (tab-width 4)
-  (text-mode-ispell-word-completion nil)
-  (tramp-use-scp-direct-remote-copying t)
-  (undo-limit (shiro-convert-mib-to-b 16))
-  (undo-outer-limit (shiro-convert-mib-to-b 64))
-  (undo-strong-limit (shiro-convert-mib-to-b 32))
-  (use-short-answers t)
-  (version-control t)
-  (view-read-only t)
   :ensure nil)
 
 (use-package compat)
 
 (use-package vertico
   :init (vertico-mode)
-  :custom
-  (vertico-scroll-margin (/ vertico-count 2))
-  (vertico-resize t)
-  (vertico-cycle t))
+  :config
+  (setq vertico-cycle t)
+  (setq vertico-resize t)
+  (setq vertico-scroll-margin (/ vertico-count 2)))
 
 (use-package consult
-  :config (advice-add #'register-preview :override #'consult-register-window)
+  :config
+  (advice-add #'register-preview :override #'consult-register-window)
+  (setq consult-narrow-key "<")
+  (setq xref-show-definitions-function #'consult-xref)
+  (setq xref-show-xrefs-function #'consult-xref)
   :bind (("M-g o" . consult-outline)
          ("M-g m" . consult-mark)
          ("M-g k" . consult-global-mark)
@@ -113,24 +116,21 @@
          ("M-s e" . consult-isearch-history)
          :map minibuffer-local-map
          ("M-s" . consult-history)
-         ("M-r" . consult-history))
-  :custom
-  (consult-narrow-key "<")
-  (xref-show-xrefs-function #'consult-xref)
-  (xref-show-definitions-function #'consult-xref))
+         ("M-r" . consult-history)))
 
 (use-package corfu
   :init (global-corfu-mode)
-  :config (corfu-popupinfo-mode)
-  :custom
-  (corfu-auto t)
-  (corfu-auto-delay 0.001)
-  (corfu-auto-prefix 0)
-  (corfu-cycle t)
-  (corfu-popupinfo-delay '(0.01 . 0.004))
-  (corfu-preselect 'prompt)
-  (corfu-scroll-margin (/ corfu-count 2))
-  (corfu-quit-no-match t))
+  :config
+  (setq corfu-auto t)
+  (setq corfu-auto-delay 0.001)
+  (setq corfu-auto-prefix 0)
+  (setq corfu-cycle t)
+  (setq corfu-preselect 'prompt)
+  (setq corfu-scroll-margin (/ corfu-count 2))
+  (setq corfu-quit-no-match t)
+
+  (corfu-popupinfo-mode)
+  (setq corfu-popupinfo-delay '(0.01 . 0.004)))
 
 (use-package marginalia
   :init (marginalia-mode)
@@ -150,10 +150,10 @@
   :hook (embark-collect-mode-hook . consult-preview-at-point-mode))
 
 (use-package orderless
-  :custom
-  (completion-styles '(orderless basic))
-  (completion-category-defaults nil)
-  (completion-category-overrides '((file (styles partial-completion)))))
+  :config
+  (setq completion-styles '(orderless basic))
+  (setq completion-category-defaults nil)
+  (setq completion-category-overrides '((file (styles partial-completion)))))
 
 (provide 'init-core)
 
