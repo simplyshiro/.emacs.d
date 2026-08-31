@@ -7,11 +7,11 @@
 
 ;;; Code:
 
-(defvar-local shiro--mode-line-symbol-map
+(defvar shiro--mode-line-symbol-map
     (let ((map (make-sparse-keymap)))
       (define-key map [mode-line mouse-1] #'read-only-mode)
       map))
-(defvar-local shiro-mode-line-symbol
+(defvar shiro-mode-line-symbol
     '(:eval (let* ((symbol (cond (buffer-read-only " %% ")
                                  ((buffer-modified-p) " * ")
                                  (t " - ")))
@@ -35,11 +35,11 @@ mouse-1: Toggle read-only mode" status)))
           (window-selected 'mode-line-buffer-id)
           (buffer-modified '(italic mode-line-inactive))
           (t 'mode-line-inactive))))
-(defvar-local shiro--mode-line-buffer-map
+(defvar shiro--mode-line-buffer-map
     (let ((map (make-sparse-keymap)))
       (define-key map [mode-line mouse-1] #'consult-buffer)
       map))
-(defvar-local shiro-mode-line-buffer-name
+(defvar shiro-mode-line-buffer-name
     '(:eval (let* ((name (buffer-name))
                    (file-name (buffer-file-name))
                    (path-string (if file-name (format "\npath: %s" file-name) ""))
@@ -52,18 +52,18 @@ mouse-1: Switch buffer" path-string)))
                           'local-map shiro--mode-line-buffer-map))))
 (put 'shiro-mode-line-buffer-name 'risky-local-variable t)
 
-(defvar-local shiro-mode-line-major-mode
+(defvar shiro-mode-line-major-mode
     '(:eval (propertize (format " %s " (downcase (symbol-name major-mode)))
                         'mouse-face 'mode-line-highlight
                         'help-echo "Major mode")))
 (put 'shiro-mode-line-major-mode 'risky-local-variable t)
 
-(defvar-local shiro--mode-line-vc-branch-map
+(defvar shiro--mode-line-vc-branch-map
     (let ((map (make-sparse-keymap)))
       (define-key map [mode-line mouse-1] #'magit-status)
       (define-key map [mode-line mouse-3] #'magit-log-current)
       map))
-(defvar-local shiro-mode-line-vc-branch
+(defvar shiro-mode-line-vc-branch
     '(:eval (when-let* ((file (buffer-file-name))
                         (branch (ignore-errors (vc-git--symbolic-ref file)))
                         (revision (ignore-errors (vc-working-revision file)))
@@ -80,7 +80,7 @@ mouse-3: Show log for the current branch" rev-short)))
                           'local-map shiro--mode-line-vc-branch-map))))
 (put 'shiro-mode-line-vc-branch 'risky-local-variable t)
 
-(defvar-local shiro-mode-line-position
+(defvar shiro-mode-line-position
     '((line-number-mode
        (column-number-mode
         (" %l" (column-number-indicator-zero-based ":%C" ":%c"))
