@@ -46,6 +46,7 @@
 (defun shiro-pulse-line (&rest _)
   "Pulse the current line."
   (pulse-momentary-highlight-one-line (point)))
+
 (dolist (command '(other-window
                    recenter-top-bottom
                    scroll-down-command
