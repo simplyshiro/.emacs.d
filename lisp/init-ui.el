@@ -28,12 +28,16 @@
   :custom (spacious-padding-widths
            '(:internal-border-width 16 :right-divider-width 1 :mode-line-width 8)))
 
-(use-package display-line-numbers
-  :preface (defun shiro--disable-display-line-numbers-mode ()
-             "Disable `display-line-numbers-mode'."
-             (display-line-numbers-mode -1))
-  :hook ((eat-mode-hook ielm-mode-hook) . shiro--disable-display-line-numbers-mode)
-  :ensure nil)
+(defun shiro--disable-display-line-numbers-mode ()
+  "Disable `display-line-numbers-mode'."
+  (display-line-numbers-mode -1))
+
+(global-display-line-numbers-mode)
+
+(dolist (hook '(eat-mode-hook
+                ghostel-mode-hook
+                ielm-mode-hook))
+  (add-hook hook #'shiro--disable-display-line-numbers-mode))
 
 (blink-cursor-mode -1)
 
