@@ -22,6 +22,11 @@
   (setq corfu-scroll-margin (/ corfu-count 2))
   (setq corfu-quit-no-match t)
 
+  ;; Enable instant auto completion.
+  (setq corfu-auto t)
+  (setq corfu-auto-delay 0.001)
+  (setq corfu-auto-prefix 0)
+
   ;; Display candidate documentation popups with a 1 ms delay.
   (corfu-popupinfo-mode)
   (setq corfu-popupinfo-delay 0.001))
