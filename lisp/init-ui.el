@@ -40,6 +40,7 @@
 
 (global-display-line-numbers-mode)
 
+;; Disable line numbers on terminal and REPL buffers.
 (dolist (hook '(eat-mode-hook
                 ghostel-mode-hook
                 ielm-mode-hook))
