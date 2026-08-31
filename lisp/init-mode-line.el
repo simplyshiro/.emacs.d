@@ -7,7 +7,7 @@
 
 ;;; Code:
 
-(defvar-local shiro-mode-line-symbol-map
+(defvar-local shiro--mode-line-symbol-map
     (let ((map (make-sparse-keymap)))
       (define-key map [mode-line mouse-1] #'read-only-mode)
       map))
@@ -23,10 +23,10 @@ mouse-1: Toggle read-only mode" status)))
               (propertize symbol
                           'mouse-face 'mode-line-highlight
                           'help-echo help
-                          'local-map shiro-mode-line-symbol-map))))
+                          'local-map shiro--mode-line-symbol-map))))
 (put 'shiro-mode-line-symbol 'risky-local-variable t)
 
-(defun shiro-mode-line-buffer-name-face ()
+(defun shiro--mode-line-buffer-name-face ()
   "Return the appropriate face for `shiro-mode-line-buffer-name'."
   (let ((buffer-modified (buffer-modified-p))
         (window-selected (mode-line-window-selected-p)))
@@ -35,7 +35,7 @@ mouse-1: Toggle read-only mode" status)))
           (window-selected 'mode-line-buffer-id)
           (buffer-modified '(italic mode-line-inactive))
           (t 'mode-line-inactive))))
-(defvar-local shiro-mode-line-buffer-map
+(defvar-local shiro--mode-line-buffer-map
     (let ((map (make-sparse-keymap)))
       (define-key map [mode-line mouse-1] #'consult-buffer)
       map))
@@ -46,10 +46,10 @@ mouse-1: Toggle read-only mode" status)))
                    (help (format "Buffer name%s
 mouse-1: Switch buffer" path-string)))
               (propertize (format " %s " name)
-                          'face (shiro-mode-line-buffer-name-face)
+                          'face (shiro--mode-line-buffer-name-face)
                           'mouse-face 'mode-line-highlight
                           'help-echo help
-                          'local-map shiro-mode-line-buffer-map))))
+                          'local-map shiro--mode-line-buffer-map))))
 (put 'shiro-mode-line-buffer-name 'risky-local-variable t)
 
 (defvar-local shiro-mode-line-major-mode
@@ -58,7 +58,7 @@ mouse-1: Switch buffer" path-string)))
                         'help-echo "Major mode")))
 (put 'shiro-mode-line-major-mode 'risky-local-variable t)
 
-(defvar-local shiro-mode-line-vc-branch-map
+(defvar-local shiro--mode-line-vc-branch-map
     (let ((map (make-sparse-keymap)))
       (define-key map [mode-line mouse-1] #'magit-status)
       (define-key map [mode-line mouse-3] #'magit-log-current)
@@ -77,7 +77,7 @@ mouse-3: Show log for the current branch" rev-short)))
                           'face 'italic
                           'mouse-face 'mode-line-highlight
                           'help-echo help
-                          'local-map shiro-mode-line-vc-branch-map))))
+                          'local-map shiro--mode-line-vc-branch-map))))
 (put 'shiro-mode-line-vc-branch 'risky-local-variable t)
 
 (defvar-local shiro-mode-line-position
