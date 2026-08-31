@@ -95,8 +95,6 @@
 (use-package apheleia
   :config (apheleia-global-mode))
 
-(use-package transient)
-
 (use-package magit)
 
 (use-package kotlin-ts-mode
