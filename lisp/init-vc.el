@@ -11,7 +11,8 @@
 
 (use-package diff-hl
   :init (global-diff-hl-mode)
-  :config (setq diff-hl-draw-borders nil))
+  :config (setq diff-hl-draw-borders nil)
+  :hook (magit-post-refresh-hook . diff-hl-magit-post-refresh))
 
 (provide 'init-vc)
 
