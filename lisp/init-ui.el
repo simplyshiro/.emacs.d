@@ -7,6 +7,8 @@
 
 ;;; Code:
 
+;;; Fonts
+
 (defun shiro-set-font (&optional frame)
   "Set fonts on FRAME."
   (let ((font-height 120))
@@ -16,6 +18,8 @@
 (if (daemonp)
     (add-hook 'server-after-make-frame-hook #'shiro-set-font)
   (shiro-set-font))
+
+;;; Padding
 
 (use-package spacious-padding
   :init (spacious-padding-mode)
@@ -28,6 +32,8 @@
   :custom (spacious-padding-widths
            '(:internal-border-width 16 :right-divider-width 1 :mode-line-width 8)))
 
+;;; Line Numbers
+
 (defun shiro--disable-display-line-numbers-mode ()
   "Disable `display-line-numbers-mode'."
   (display-line-numbers-mode -1))
@@ -38,6 +44,8 @@
                 ghostel-mode-hook
                 ielm-mode-hook))
   (add-hook hook #'shiro--disable-display-line-numbers-mode))
+
+;;; Miscellaneous
 
 ;; Only show the tab bar when there is more than one tab.
 (setq tab-bar-show 1)
