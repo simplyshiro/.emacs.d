@@ -10,11 +10,15 @@
 (add-to-list 'load-path (expand-file-name "lisp/" root-emacs-directory))
 
 (require 'init-elpaca)
+
 (require 'init-core)
-(require 'init-mode-line)
-(require 'init-themes)
+
 (require 'init-ui)
+(require 'init-themes)
+(require 'init-mode-line)
+
 (require 'init-completion)
+
 (require 'init-dev)
 (require 'init-terminal)
 
