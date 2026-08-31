@@ -40,7 +40,8 @@
   :init (setq completion-styles '(orderless basic))
   :config
   (setq completion-category-defaults nil)
-  (setq completion-category-overrides '((file (styles partial-completion))))
+  (setq completion-category-overrides '((eglot-capf (styles orderless))
+                                        (file (styles partial-completion))))
   (setq completion-pcm-leading-wildcard t))
 
 (provide 'init-completion)
