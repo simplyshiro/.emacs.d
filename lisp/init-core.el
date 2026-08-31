@@ -13,9 +13,15 @@
   :group 'emacs
   :prefix "shiro-")
 
-(defun shiro-convert-mib-to-b (mebibytes)
-  "Convert a number of MEBIBYTES to bytes."
-  (* mebibytes 1048576))
+(defun shiro-convert-to-bytes (value unit)
+  "Convert VALUE in UNIT to bytes.
+UNIT must be a keyword symbol like `:kib', `:mib', or `:gib'."
+  (let ((multiplier (pcase unit
+                      (:kib 1024)
+                      (:mib 1048576)
+                      (:gib 1073741824)
+                      (_ (error "Unsupported unit: %s" unit)))))
+    (* value multiplier)))
 
 (use-package emacs
   :config
@@ -45,9 +51,9 @@
   (setq-default tab-width 4)
   (setq text-mode-ispell-word-completion nil)
   (setq tramp-use-scp-direct-remote-copying t)
-  (setq undo-limit (shiro-convert-mib-to-b 16))
-  (setq undo-outer-limit (shiro-convert-mib-to-b 64))
-  (setq undo-strong-limit (shiro-convert-mib-to-b 32))
+  (setq undo-limit (shiro-convert-to-bytes 16 :mib))
+  (setq undo-outer-limit (shiro-convert-to-bytes 64 :mib))
+  (setq undo-strong-limit (shiro-convert-to-bytes 32 :mib))
   (setq use-short-answers t)
   (setq version-control t)
   (setq view-read-only t)
