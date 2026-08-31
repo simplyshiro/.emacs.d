@@ -80,7 +80,7 @@
                   (rust "v0.24.2")
                   (tsx "v0.23.2" "tree-sitter/tree-sitter-typescript" "tsx/src")
                   (typescript "v0.23.2" "tree-sitter/tree-sitter-typescript" "typescript/src")
-                  ;; Unofficial `tree-sitter' Parsers
+                  ;; Unofficial `tree-sitter' Grammars
                   (kotlin "0.3.8" "fwcd/tree-sitter-kotlin")
                   (lua "v0.5.0" "tree-sitter-grammars/tree-sitter-lua")
                   (qmljs "0.3.0" "yuja/tree-sitter-qmljs"))))
