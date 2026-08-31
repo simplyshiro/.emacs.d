@@ -39,6 +39,7 @@
                 ielm-mode-hook))
   (add-hook hook #'shiro--disable-display-line-numbers-mode))
 
+;; Only show the tab bar when there is more than one tab.
 (setq tab-bar-show 1)
 
 (blink-cursor-mode -1)
@@ -47,6 +48,7 @@
   "Pulse the current line."
   (pulse-momentary-highlight-one-line (point)))
 
+;; Pulse the current line after scrolling, recentering, or switching windows.
 (dolist (command '(other-window
                    recenter-top-bottom
                    scroll-down-command
