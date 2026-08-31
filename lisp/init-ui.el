@@ -39,9 +39,9 @@
                 ielm-mode-hook))
   (add-hook hook #'shiro--disable-display-line-numbers-mode))
 
-(blink-cursor-mode -1)
-
 (setq tab-bar-show 1)
+
+(blink-cursor-mode -1)
 
 (defun shiro-pulse-line (&rest _)
   "Pulse the current line."
