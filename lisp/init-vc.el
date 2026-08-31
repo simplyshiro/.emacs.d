@@ -10,7 +10,8 @@
 (use-package magit)
 
 (use-package diff-hl
-  :init (global-diff-hl-mode))
+  :init (global-diff-hl-mode)
+  :config (setq diff-hl-draw-borders nil))
 
 (provide 'init-vc)
 
