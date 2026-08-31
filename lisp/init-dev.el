@@ -112,13 +112,6 @@
   :mode "\\.rs\\'"
   :ensure nil)
 
-(if (getenv "TERMUX_VERSION")
-    (use-package eat
-      :config (setq eat-kill-buffer-on-exit t))
-  (use-package ghostel
-    :config (setq ghostel-shell-integration nil)
-    :commands (ghostel-download-module)))
-
 (provide 'init-dev)
 
 ;;; init-dev.el ends here
