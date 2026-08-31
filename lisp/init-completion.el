@@ -25,6 +25,17 @@
   (corfu-popupinfo-mode)
   (setq corfu-popupinfo-delay '(0.01 . 0.004)))
 
+(use-package cape
+  :init
+  (add-hook 'completion-at-point-functions #'cape-dabbrev)
+  (add-hook 'completion-at-point-functions #'cape-file)
+  (add-hook 'completion-at-point-functions #'cape-elisp-block)
+  :preface (defun shiro--setup-elisp-capf ()
+             "Set `cape-elisp-symbol' as the sole entry in `completion-at-point-functions'."
+             (setq-local completion-at-point-functions '(cape-elisp-symbol)))
+  :hook ((emacs-lisp-mode-hook ielm-mode-hook) . shiro--setup-elisp-capf)
+  :bind ("C-c p" . cape-prefix-map))
+
 (use-package orderless
   :init (setq completion-styles '(orderless basic))
   :config
