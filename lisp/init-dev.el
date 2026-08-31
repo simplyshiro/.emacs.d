@@ -25,6 +25,7 @@
   (setq eglot-extend-to-xref t)
   (setq eglot-report-progress nil)
   (setq eglot-sync-connect nil)
+  (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster)
   :hook
   ((c-mode-hook c-ts-mode-hook) . eglot-ensure)
   ((csharp-mode-hook csharp-ts-mode-hook) . eglot-ensure)
