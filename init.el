@@ -20,6 +20,7 @@
 (require 'init-completion)
 
 (require 'init-dev)
+(require 'init-vc)
 (require 'init-terminal)
 
 (load custom-file 'noerror 'nomessage)
