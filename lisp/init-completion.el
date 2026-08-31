@@ -1,5 +1,8 @@
 ;;; init-completion.el --- Init Completion -*- lexical-binding: t; -*-
 
+;; Author: simplyshiro
+;; URL: https://github.com/simplyshiro/.emacs.d
+
 ;;; Commentary:
 
 ;;; Code:
