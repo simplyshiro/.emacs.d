@@ -23,7 +23,7 @@
   (setq corfu-quit-no-match t)
 
   (corfu-popupinfo-mode)
-  (setq corfu-popupinfo-delay '(0.01 . 0.004)))
+  (setq corfu-popupinfo-delay 0.001))
 
 (use-package cape
   :init
