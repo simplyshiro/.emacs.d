@@ -22,6 +22,7 @@
   (setq corfu-scroll-margin (/ corfu-count 2))
   (setq corfu-quit-no-match t)
 
+  ;; Display candidate documentation popups with a 1 ms delay.
   (corfu-popupinfo-mode)
   (setq corfu-popupinfo-delay 0.001))
 
