@@ -26,8 +26,8 @@
   (setq corfu-popupinfo-delay '(0.01 . 0.004)))
 
 (use-package orderless
+  :init (setq completion-styles '(orderless basic))
   :config
-  (setq completion-styles '(orderless basic))
   (setq completion-category-defaults nil)
   (setq completion-category-overrides '((file (styles partial-completion))))
   (setq completion-pcm-leading-wildcard t))
