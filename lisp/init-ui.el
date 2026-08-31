@@ -34,17 +34,7 @@
 
 ;;; Line Numbers
 
-(defun shiro--disable-display-line-numbers-mode ()
-  "Disable `display-line-numbers-mode'."
-  (display-line-numbers-mode -1))
-
-(global-display-line-numbers-mode)
-
-;; Disable line numbers on terminal and REPL buffers.
-(dolist (hook '(eat-mode-hook
-                ghostel-mode-hook
-                ielm-mode-hook))
-  (add-hook hook #'shiro--disable-display-line-numbers-mode))
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
 ;;; Miscellaneous
 
