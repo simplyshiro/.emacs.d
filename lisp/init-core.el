@@ -63,8 +63,6 @@ UNIT must be a keyword symbol like `:kib', `:mib', or `:gib'."
          ([remap upcase-word] . upcase-dwim))
   :ensure nil)
 
-(use-package compat)
-
 (use-package consult
   :config
   (advice-add #'register-preview :override #'consult-register-window)
