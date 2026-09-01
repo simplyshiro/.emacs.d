@@ -123,7 +123,7 @@ the repository."
   :ensure nil)
 
 (use-package apheleia
-  :config (apheleia-global-mode))
+  :init (apheleia-global-mode))
 
 (use-package markdown-mode
   :mode ("README\\.md\\'" . gfm-mode))
