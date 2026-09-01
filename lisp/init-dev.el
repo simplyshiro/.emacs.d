@@ -100,7 +100,7 @@ the repository."
 
 (setq treesit-font-lock-level 4)
 
-;; Remap modes to their respective Tree-sitter mode.
+;; Remap major modes to their respective Tree-sitter mode.
 (setq major-mode-remap-alist
       '((c++-mode . c++-ts-mode)
         (c-or-c++-mode . c-or-c++-ts-mode)
