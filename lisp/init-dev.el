@@ -115,12 +115,14 @@ the repository."
         (python-mode . python-ts-mode)
         (ruby-mode . ruby-ts-mode)))
 
-(use-package flymake
-  :hook (prog-mode-hook . flymake-mode)
-  :bind (:map flymake-mode-map
-              ("M-n" . flymake-goto-next-error)
-              ("M-p" . flymake-goto-prev-error))
-  :ensure nil)
+;;; Diagnostics
+
+(add-hook 'prog-mode-hook #'flymake-mode)
+
+(with-eval-after-load 'flymake
+  (dolist (bind '(("M-n" . flymake-goto-next-error)
+                  ("M-p" . flymake-goto-prev-error)))
+    (keymap-set flymake-mode-map (car bind) (cdr bind))))
 
 (use-package apheleia
   :init (apheleia-global-mode))
