@@ -9,36 +9,45 @@
 
 (add-hook 'prog-mode-hook #'electric-pair-mode)
 
-(use-package eglot
-  :config
+;;; Language Server Protocol (LSP) Client
+
+(with-eval-after-load 'eglot
+  ;; Servers
   (add-to-list 'eglot-server-programs
                '((java-mode java-ts-mode) "jdtls" "--enable-preview"))
   (add-to-list 'eglot-server-programs '(kotlin-ts-mode "kotlin-lsp" "--stdio"))
-  (add-to-list 'eglot-server-programs
-               '((python-base-mode) "rass" "python"))
+  (add-to-list 'eglot-server-programs '(python-base-mode "rass" "python"))
   (add-to-list 'eglot-server-programs '(qml-ts-mode "qmlls6"))
   (add-to-list 'eglot-server-programs
-               '((rust-mode rust-ts-mode) "rust-analyzer"
-                 :initializationOptions (:check (:command "clippy"))))
+               '(rust-ts-mode "rust-analyzer" :initializationOptions
+                              (:check (:command "clippy"))))
+
+  ;; Settings
   (setq eglot-autoshutdown t)
-  (setq eglot-events-buffer-config '(:size 0 :format short))
   (setq eglot-extend-to-xref t)
+
+  ;; Performance Optimizations
+  (setq eglot-events-buffer-config '(:size 0 :format short))
   (setq eglot-report-progress nil)
   (setq eglot-sync-connect nil)
-  (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster)
-  :hook
-  ((c-mode-hook c-ts-mode-hook) . eglot-ensure)
-  ((csharp-mode-hook csharp-ts-mode-hook) . eglot-ensure)
-  (css-base-mode-hook . eglot-ensure)
-  ((html-mode-hook html-ts-mode-hook mhtml-mode-hook) . eglot-ensure)
-  ((java-mode-hook java-ts-mode-hook) . eglot-ensure)
-  (js-base-mode-hook . eglot-ensure)
-  (kotlin-ts-mode-hook . eglot-ensure)
-  (lua-ts-mode-hook . eglot-ensure)
-  (python-base-mode-hook . eglot-ensure)
-  (rust-ts-mode-hook . eglot-ensure)
-  (qml-ts-mode-hook . eglot-ensure)
-  :ensure nil)
+
+  ;; Invalidate cache on `eglot-completion-at-point'.
+  (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster))
+
+;; Automatically start `eglot' in specified modes.
+(dolist (hook '(c-ts-mode-hook
+                csharp-ts-mode-hook
+                css-base-mode-hook
+                html-ts-mode-hook
+                java-ts-mode-hook
+                js-base-mode-hook
+                kotlin-ts-mode-hook
+                lua-ts-mode-hook
+                mhtml-ts-mode-hook
+                python-base-mode-hook
+                qml-ts-mode-hook
+                rust-ts-mode-hook))
+  (add-hook hook #'eglot-ensure))
 
 (use-package flymake
   :hook (prog-mode-hook . flymake-mode)
