@@ -124,8 +124,12 @@ the repository."
                   ("M-p" . flymake-goto-prev-error)))
     (keymap-set flymake-mode-map (car bind) (cdr bind))))
 
+;;; Formatter
+
 (use-package apheleia
   :init (apheleia-global-mode))
+
+;;; Third-Party Modes
 
 (use-package markdown-mode
   :mode ("README\\.md\\'" . gfm-mode))
