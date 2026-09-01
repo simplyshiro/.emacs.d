@@ -67,8 +67,8 @@ REVISION is the Git branch, tag, or commit hash to checkout.
 REPO is the GitHub repository in \"OWNER/REPO\" format.
 If nil, it defaults to \"tree-sitter/tree-sitter-LANG\".
 
-SOURCE-DIR is the relative directory containing the grammar source files within
-the repository."
+SOURCE-DIR is the relative directory containing the grammar source
+files within the repository."
   (let ((url (format "https://github.com/%s"
                      (or repo (format "tree-sitter/tree-sitter-%s" lang)))))
     (delq nil (list lang url revision source-dir))))
