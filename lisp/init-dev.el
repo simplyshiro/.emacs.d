@@ -49,6 +49,72 @@
                 rust-ts-mode-hook))
   (add-hook hook #'eglot-ensure))
 
+;;; Tree-sitter
+
+(use-package kotlin-ts-mode
+  :mode "\\.kt\\'")
+
+(use-package qml-ts-mode
+  :ensure (:host github :repo "xhcoding/qml-ts-mode"))
+
+(defun shiro--treesit-generate-language-source
+    (lang revision &optional repo source-dir)
+  "Return a `treesit-language-source-alist' entry for LANG.
+
+LANG is the language symbol (e.g., `rust' or `python').
+REVISION is the Git branch, tag, or commit hash to checkout.
+
+REPO is the GitHub repository in \"OWNER/REPO\" format.
+If nil, it defaults to \"tree-sitter/tree-sitter-LANG\".
+
+SOURCE-DIR is the relative directory containing the grammar source files within
+the repository."
+  (let ((url (format "https://github.com/%s"
+                     (or repo (format "tree-sitter/tree-sitter-%s" lang)))))
+    (delq nil (list lang url revision source-dir))))
+
+(setq treesit-language-source-alist
+      (mapcar (lambda (args)
+                (apply #'shiro--treesit-generate-language-source args))
+              '((bash "v0.25.1")
+                (c "v0.24.1")
+                (c-sharp "v0.23.1")
+                (cpp "v0.23.4")
+                (css "v0.25.0")
+                (go "v0.25.0")
+                (html "v0.23.2")
+                (java "v0.23.5")
+                (javascript "v0.25.0")
+                (json "v0.24.8")
+                (php "v0.24.2" nil "php/src")
+                (python "v0.25.0")
+                (ruby "v0.23.1")
+                (rust "v0.24.2")
+                (tsx "v0.23.2" "tree-sitter/tree-sitter-typescript" "tsx/src")
+                (typescript "v0.23.2" "tree-sitter/tree-sitter-typescript" "typescript/src")
+
+                ;; Third-Party Grammars
+                (kotlin "0.3.8" "fwcd/tree-sitter-kotlin")
+                (lua "v0.5.0" "tree-sitter-grammars/tree-sitter-lua")
+                (qmljs "0.3.0" "yuja/tree-sitter-qmljs"))))
+
+(setq treesit-font-lock-level 4)
+
+;; Remap modes to their respective Tree-sitter mode.
+(setq major-mode-remap-alist
+      '((c++-mode . c++-ts-mode)
+        (c-or-c++-mode . c-or-c++-ts-mode)
+        (c-mode . c-ts-mode)
+        (csharp-mode . csharp-ts-mode)
+        (css-mode . css-ts-mode)
+        (html-mode . html-ts-mode)
+        (java-mode . java-ts-mode)
+        (js-mode . js-ts-mode)
+        (lua-mode . lua-ts-mode)
+        (mhtml-mode . html-ts-mode)
+        (python-mode . python-ts-mode)
+        (ruby-mode . ruby-ts-mode)))
+
 (use-package flymake
   :hook (prog-mode-hook . flymake-mode)
   :bind (:map flymake-mode-map
@@ -56,66 +122,11 @@
               ("M-p" . flymake-goto-prev-error))
   :ensure nil)
 
-(use-package treesit
-  :config
-  (setq major-mode-remap-alist
-        '((c++-mode . c++-ts-mode)
-          (c-mode . c-ts-mode)
-          (c-or-c++-mode . c-or-c++-ts-mode)
-          (csharp-mode . csharp-ts-mode)
-          (css-mode . css-ts-mode)
-          (html-mode . html-ts-mode)
-          (java-mode . java-ts-mode)
-          (js-mode . js-ts-mode)
-          (mhtml-mode . html-ts-mode)
-          (python-mode . python-ts-mode)
-          (ruby-mode . ruby-ts-mode)))
-  (setq treesit-font-lock-level 4)
-  (setq treesit-language-source-alist
-        (mapcar (lambda (args) (apply #'shiro--treesit-generate-language-source args))
-                '((bash "v0.25.1")
-                  (c "v0.24.1")
-                  (c-sharp "v0.23.1")
-                  (cpp "v0.23.4")
-                  (css "v0.25.0")
-                  (go "v0.25.0")
-                  (html "v0.23.2")
-                  (java "v0.23.5")
-                  (javascript "v0.25.0")
-                  (json "v0.24.8")
-                  (php "v0.24.2" nil "php/src")
-                  (python "v0.25.0")
-                  (ruby "v0.23.1")
-                  (rust "v0.24.2")
-                  (tsx "v0.23.2" "tree-sitter/tree-sitter-typescript" "tsx/src")
-                  (typescript "v0.23.2" "tree-sitter/tree-sitter-typescript" "typescript/src")
-                  ;; Unofficial `tree-sitter' Grammars
-                  (kotlin "0.3.8" "fwcd/tree-sitter-kotlin")
-                  (lua "v0.5.0" "tree-sitter-grammars/tree-sitter-lua")
-                  (qmljs "0.3.0" "yuja/tree-sitter-qmljs"))))
-  :preface
-  (defun shiro--treesit-generate-language-source (lang revision &optional repo source-dir)
-    (let ((url (format "https://github.com/%s"
-                       (or repo (format "tree-sitter/tree-sitter-%s" lang)))))
-      (delq nil (list lang url revision source-dir))))
-  :mode ("\\.lua\\'" . lua-ts-mode)
-  :ensure nil)
-
 (use-package apheleia
   :config (apheleia-global-mode))
 
-(use-package kotlin-ts-mode
-  :mode "\\.kt\\'")
-
 (use-package markdown-mode
   :mode ("README\\.md\\'" . gfm-mode))
-
-(use-package qml-ts-mode
-  :ensure (:host github :repo "xhcoding/qml-ts-mode"))
-
-(use-package rust-ts-mode
-  :mode "\\.rs\\'"
-  :ensure nil)
 
 (provide 'init-dev)
 
