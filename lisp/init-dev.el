@@ -7,7 +7,7 @@
 
 ;;; Code:
 
-(add-hook 'prog-mode-hook #'electric-pair-mode)
+(add-hook 'prog-mode-hook #'electric-pair-local-mode)
 
 ;;; Language Server Protocol (LSP) Client
 
