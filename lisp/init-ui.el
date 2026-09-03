@@ -13,6 +13,7 @@
   "Set fonts on FRAME."
   (let ((font-height 120))
     (set-face-attribute 'default frame :height font-height :weight 'medium)
+    (set-face-attribute 'fixed-pitch frame :height font-height :weight 'medium)
     (set-face-attribute 'variable-pitch frame :height font-height :weight 'normal)))
 
 (if (daemonp)
