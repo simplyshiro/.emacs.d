@@ -32,7 +32,10 @@
   (setq eglot-sync-connect nil)
 
   ;; Invalidate cache on `eglot-completion-at-point'.
-  (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster))
+  (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster)
+
+  ;; Use normal font height for inlay hints.
+  (set-face-attribute 'eglot-inlay-hint-face nil :height 1.0))
 
 ;; Automatically start `eglot' in specified modes.
 (dolist (hook '(c-ts-mode-hook
