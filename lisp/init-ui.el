@@ -9,12 +9,29 @@
 
 ;;; Fonts
 
+(defcustom shiro-fixed-pitch-font-family 'nil
+  "Fixed pitch font family to use."
+  :tag "shiro Fixed Pitch Font Family"
+  :group 'shiro
+  :type '(choice (const :tag "Default" nil) string))
+
+(defcustom shiro-variable-pitch-font-family 'nil
+  "Variable pitch font family to use."
+  :tag "shiro Variable Pitch Font Family"
+  :group 'shiro
+  :type '(choice (const :tag "Default" nil) string))
+
 (defun shiro--set-font (&optional frame)
   "Set fonts on FRAME."
   (let ((font-height 120))
-    (set-face-attribute 'default frame :height font-height :weight 'medium)
-    (set-face-attribute 'fixed-pitch frame :height font-height :weight 'medium)
-    (set-face-attribute 'variable-pitch frame :height font-height :weight 'normal)))
+    (set-face-attribute 'default frame :family shiro-fixed-pitch-font-family
+                        :height font-height :weight 'medium)
+    (set-face-attribute 'fixed-pitch frame
+                        :family shiro-fixed-pitch-font-family
+                        :height font-height :weight 'medium)
+    (set-face-attribute 'variable-pitch frame
+                        :family shiro-variable-pitch-font-family
+                        :height font-height :weight 'normal)))
 
 (if (daemonp)
     (add-hook 'server-after-make-frame-hook #'shiro--set-font)
