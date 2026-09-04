@@ -10,8 +10,8 @@
 (defcustom shiro-theme 'doric-light
   "Theme to load on startup."
   :tag "shiro Theme"
-  :type 'symbol
-  :group 'shiro)
+  :group 'shiro
+  :type 'symbol)
 
 (defun shiro--load-theme ()
   "Load `shiro-theme'."
