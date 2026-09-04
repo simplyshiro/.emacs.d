@@ -25,8 +25,10 @@
 (use-package spacious-padding
   :init (spacious-padding-mode)
   :custom (spacious-padding-widths
-           '(:internal-border-width 16
+           '(:internal-border-width 0
                                     :right-divider-width 1
+                                    :fringe-width 8
+                                    :tab-width 0
                                     :mode-line-width 8)))
 
 ;;; Line Numbers
