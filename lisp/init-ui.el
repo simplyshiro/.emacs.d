@@ -18,7 +18,7 @@
 
 (if (daemonp)
     (add-hook 'server-after-make-frame-hook #'shiro--set-font)
-  (shiro--set-font))
+  (add-hook 'after-init-hook #'shiro--set-font))
 
 ;;; Padding
 
