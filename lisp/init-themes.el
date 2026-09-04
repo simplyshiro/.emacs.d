@@ -7,7 +7,7 @@
 
 ;;; Code:
 
-(defcustom shiro-theme 'doric-light
+(defcustom shiro-theme 'modus-operandi
   "Theme to load on startup."
   :tag "shiro Theme"
   :group 'shiro
