@@ -42,6 +42,7 @@
 
 (blink-cursor-mode -1)
 
+;; URL: https://karthinks.com/software/batteries-included-with-emacs/
 (defun shiro-pulse-line (&rest _)
   "Pulse the current line."
   (pulse-momentary-highlight-one-line (point)))
