@@ -13,25 +13,36 @@
   "Fixed pitch font family to use."
   :tag "shiro Fixed Pitch Font Family"
   :group 'shiro
-  :type '(choice (const :tag "Default" nil) string))
+  :type '(choice (const :tag "Default" nil)
+                 (cons (string :tag "Font Family")
+                       (symbol :tag "Weight"))))
 
 (defcustom shiro-variable-pitch-font-family 'nil
   "Variable pitch font family to use."
   :tag "shiro Variable Pitch Font Family"
   :group 'shiro
-  :type '(choice (const :tag "Default" nil) string))
+  :type '(choice (const :tag "Default" nil)
+                 (cons (string :tag "Font Family")
+                       (symbol :tag "Weight"))))
 
 (defun shiro--set-font (&optional frame)
   "Set fonts on FRAME."
-  (let ((font-height 120))
-    (set-face-attribute 'default frame :family shiro-fixed-pitch-font-family
-                        :height font-height :weight 'medium)
+  (let ((font-height 120)
+        (fixed-pitch-weight (or (cdr shiro-fixed-pitch-font-family) 'normal))
+        (variable-pitch-weight (or (cdr shiro-variable-pitch-font-family)
+                                   'normal)))
+    (set-face-attribute 'default frame
+                        :family (car shiro-fixed-pitch-font-family)
+                        :height font-height
+                        :weight fixed-pitch-weight)
     (set-face-attribute 'fixed-pitch frame
-                        :family shiro-fixed-pitch-font-family
-                        :height font-height :weight 'medium)
+                        :family (car shiro-fixed-pitch-font-family)
+                        :height font-height
+                        :weight fixed-pitch-weight)
     (set-face-attribute 'variable-pitch frame
-                        :family shiro-variable-pitch-font-family
-                        :height font-height :weight 'normal)))
+                        :family (car shiro-variable-pitch-font-family)
+                        :height font-height
+                        :weight variable-pitch-weight)))
 
 (if (daemonp)
     (add-hook 'server-after-make-frame-hook #'shiro--set-font)
