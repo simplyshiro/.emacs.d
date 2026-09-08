@@ -22,8 +22,7 @@
                (interactive "P")
                (let ((display-buffer-overriding-action
                       '((display-buffer-pop-up-window display-buffer-use-some-window)
-                        (inhibit-same-window . t)))
-                     (switch-to-buffer-obey-display-actions t))
+                        (inhibit-same-window . t))))
                  (ghostel arg)))
     :bind (("C-c t" . ghostel)
            ("C-x 4 t" . ghostel-other-window))))
