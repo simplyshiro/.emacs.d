@@ -12,7 +12,8 @@
 (if (getenv "TERMUX_VERSION")
     (use-package eat
       :config (setq eat-kill-buffer-on-exit t)
-      :bind ("C-c t" . eat))
+      :bind (("C-c t" . eat)
+             ("C-x 4 t" . eat-other-window)))
   (use-package ghostel
     :config
     (setq ghostel-module-auto-install 'download)
