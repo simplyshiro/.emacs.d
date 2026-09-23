@@ -25,9 +25,16 @@
                  (cons (string :tag "Font Family")
                        (symbol :tag "Weight"))))
 
+(defcustom shiro-font-height 120
+  "Font height to use."
+  :tag "shiro Font Height"
+  :group 'shiro
+  :type '(choice (natnum :value 120 :tag "Point Size")
+                 (float :value 1.0 :tag "Scale")))
+
 (defun shiro--set-font (&optional frame)
   "Set fonts on FRAME."
-  (let ((font-height 120)
+  (let ((font-height shiro-font-height)
         (fixed-pitch-weight (or (cdr shiro-fixed-pitch-font-family) 'normal))
         (variable-pitch-weight (or (cdr shiro-variable-pitch-font-family)
                                    'normal)))
