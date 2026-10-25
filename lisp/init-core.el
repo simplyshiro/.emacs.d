@@ -148,6 +148,12 @@ UNIT must be a keyword symbol like `:kib', `:mib', or `:gib'."
      '("<escape>" . ignore)))
   (meow-setup)
   (meow-global-mode)
+
+  ;; Use normal font height for the cheatsheet.
+  (dolist (face '(meow-cheatsheet-command
+                  meow-cheatsheet-highlight))
+    (set-face-attribute face nil :height 1.0))
+
   :demand t)
 
 (use-package consult
