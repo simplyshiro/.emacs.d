@@ -21,11 +21,6 @@
   :bind (("C-c t" . ghostel)
          ("C-x 4 t" . ghostel-other-window)))
 
-(use-package meow-ghostel
-  :hook (ghostel-mode-hook . meow-ghostel-mode)
-  :after (ghostel meow)
-  :ensure (:host github :repo "dakra/meow-ghostel"))
-
 (provide 'init-terminal)
 
 ;;; init-terminal.el ends here
