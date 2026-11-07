@@ -29,8 +29,8 @@
   "Font height to use."
   :tag "shiro Font Height"
   :group 'shiro
-  :type '(choice (natnum :value 120 :tag "Point Size")
-                 (float :value 1.0 :tag "Scale")))
+  :type '(choice (natnum :value 16 :tag "Pixel Size")
+                 (float :value 12.0 :tag "Point Size")))
 
 (defun shiro--set-font (&optional frame)
   "Set fonts on FRAME."
@@ -39,13 +39,13 @@
         (variable-pitch-weight (or (cdr shiro-variable-pitch-font-family)
                                    'normal)))
     (set-face-attribute 'default frame
-                        :family (car shiro-fixed-pitch-font-family)
-                        :height font-height
-                        :weight fixed-pitch-weight)
+                        :font (font-spec :family (car shiro-fixed-pitch-font-family)
+                                         :weight fixed-pitch-weight
+                                         :size font-height))
     (set-face-attribute 'fixed-pitch frame
-                        :family (car shiro-fixed-pitch-font-family)
-                        :height font-height
-                        :weight fixed-pitch-weight)
+                        :font (font-spec :family (car shiro-fixed-pitch-font-family)
+                                         :weight fixed-pitch-weight
+                                         :size font-height))
     (set-face-attribute 'variable-pitch frame
                         :family (car shiro-variable-pitch-font-family)
                         :height font-height
