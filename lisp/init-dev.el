@@ -31,6 +31,9 @@
   (setq eglot-report-progress nil)
   (setq eglot-sync-connect nil)
 
+  ;; Disable semantic tokens.
+  (add-to-list 'eglot-ignored-server-capabilities :semanticTokensProvider)
+
   ;; Invalidate cache on `eglot-completion-at-point'.
   (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster)
 
