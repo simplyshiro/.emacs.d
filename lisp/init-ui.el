@@ -32,8 +32,9 @@
   :type '(choice (natnum :value 16 :tag "Pixel Size")
                  (float :value 12.0 :tag "Point Size")))
 
-(defun shiro--set-font (&optional frame)
+(defun shiro-set-font (&optional frame)
   "Set fonts on FRAME."
+  (interactive)
   (let ((font-height shiro-font-height)
         (fixed-pitch-weight (or (cdr shiro-fixed-pitch-font-family) 'normal))
         (variable-pitch-weight (or (cdr shiro-variable-pitch-font-family)
@@ -52,8 +53,8 @@
                         :weight variable-pitch-weight)))
 
 (if (daemonp)
-    (add-hook 'server-after-make-frame-hook #'shiro--set-font)
-  (add-hook 'after-init-hook #'shiro--set-font))
+    (add-hook 'server-after-make-frame-hook #'shiro-set-font)
+  (add-hook 'after-init-hook #'shiro-set-font))
 
 ;;; Padding
 
